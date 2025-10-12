@@ -78,5 +78,9 @@ public class Book {
                             + "\n Giá:" + Price
                             + "\n Số lượng:" + Amount);
     }
-    public class List(){}
+    
 }
+    public class List()
+    {
+        
+    }
