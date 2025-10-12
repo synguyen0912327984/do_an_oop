@@ -1,5 +1,5 @@
 package oop;
-
+import java.util.*;
 public class Book {
     private String bookID;
     private String Title;
@@ -9,7 +9,7 @@ public class Book {
     private int Amount;
 
     // Khoi tao
-
+    public Book() {}
     public Book(String bookID,String Title,String Author,String Publisher,double Price,int Amount){
         this.bookID = bookID;
         this.Title = Title;
@@ -68,6 +68,28 @@ public class Book {
     {
         this.Amount = Amount;
     }
+    //Nhap thong tin
+    public void Input() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Nhập mã sách: ");
+        bookID = sc.nextLine();
+
+        System.out.print("Nhập tên sách: ");
+        Title = sc.nextLine();
+
+        System.out.print("Nhập tác giả: ");
+        Author = sc.nextLine();
+
+        System.out.print("Nhập nhà xuất bản: ");
+        Publisher = sc.nextLine();
+
+        System.out.print("Nhập giá: ");
+        Price = sc.nextDouble();
+
+        System.out.print("Nhập số lượng: ");
+        Amount = sc.nextInt();
+    }
     // In thong tin
     public void ToString()
     {
@@ -80,5 +102,4 @@ public class Book {
     }
     
 }
-
 
