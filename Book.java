@@ -91,7 +91,7 @@ public class Book {
         Amount = sc.nextInt();
     }
     // In thong tin
-    public void ToString()
+    public void Output()
     {
         System.out.println( "Mã sách: " + bookID
                             + "\n Tên sách:" + Title 
@@ -102,4 +102,5 @@ public class Book {
     }
     
 }
+
 
