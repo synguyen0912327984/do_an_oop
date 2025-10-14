@@ -1,0 +1,50 @@
+HD001,B001,Lập trình Java cơ bản,3,85000
+HD001,B002,Cấu trúc dữ liệu & Giải thuật,2,99000
+HD001,B003,Nhập môn lập trình C++,4,78000
+HD001,B004,Lập trình hướng đối tượng,1,120000
+HD001,B005,Thuật toán và ứng dụng,2,105000
+HD002,B006,Python cho người mới bắt đầu,3,87000
+HD002,B007,Phân tích thiết kế hệ thống,2,93000
+HD002,B008,Cơ sở dữ liệu SQL,4,96000
+HD002,B009,Lập trình Web với HTML CSS,5,65000
+HD002,B010,Lập trình Web với JavaScript,3,72000
+HD003,B011,Trí tuệ nhân tạo cơ bản,2,145000
+HD003,B012,Học máy nâng cao,1,180000
+HD003,B013,Mạng máy tính,3,98000
+HD003,B014,An toàn thông tin,2,110000
+HD003,B015,Hệ điều hành,4,89000
+HD004,B016,Nhập môn CNTT,5,75000
+HD004,B017,Phân tích dữ liệu với Excel,3,88000
+HD004,B018,Kỹ thuật phần mềm,2,115000
+HD004,B019,Quản lý dự án CNTT,1,135000
+HD004,B020,Thiết kế giao diện người dùng,3,99000
+HD005,B021,Lập trình di động Android,2,125000
+HD005,B022,Lập trình di động iOS,1,155000
+HD005,B023,Lập trình React Native,3,118000
+HD005,B024,Kiểm thử phần mềm,2,97000
+HD005,B025,Phân tích yêu cầu phần mềm,4,88000
+HD006,B026,Deep Learning căn bản,2,165000
+HD006,B027,Machine Learning với Python,3,142000
+HD006,B028,Thống kê ứng dụng,2,98000
+HD006,B029,Nhập môn lập trình R,1,91000
+HD006,B030,Phân tích dữ liệu lớn,2,130000
+HD007,B031,Kỹ thuật lập trình nâng cao,3,99000
+HD007,B032,Phân tích độ phức tạp thuật toán,2,112000
+HD007,B033,Cấu trúc máy tính,2,85000
+HD007,B034,Nguyên lý ngôn ngữ lập trình,1,97000
+HD007,B035,Toán rời rạc ứng dụng,3,88000
+HD008,B036,Cơ sở lập trình Python,4,87000
+HD008,B037,Lập trình Java nâng cao,2,125000
+HD008,B038,Lập trình hướng sự kiện,3,93000
+HD008,B039,Quản trị hệ thống Linux,1,110000
+HD008,B040,Kỹ năng làm việc nhóm,5,65000
+HD009,B041,Phát triển ứng dụng web,2,132000
+HD009,B042,Thiết kế UI/UX hiện đại,3,105000
+HD009,B043,Xây dựng hệ thống thương mại điện tử,1,155000
+HD009,B044,Phân tích dữ liệu bằng SQL,4,96000
+HD009,B045,Giới thiệu về DevOps,2,118000
+HD010,B046,Lập trình mạng,3,97000
+HD010,B047,An ninh mạng nâng cao,1,142000
+HD010,B048,Khoa học dữ liệu cơ bản,2,139000
+HD010,B049,Phân tích dữ liệu với Pandas,3,125000
+HD010,B050,Lập trình song song và đa luồng,2,148000
