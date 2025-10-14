@@ -68,21 +68,35 @@ public class Book {
     {
         this.Amount = Amount;
     }
+        // Nhập thông tin sách
+    public void Input() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhập mã sách: ");
+        bookID = sc.nextLine();
+        System.out.print("Nhập tên sách: ");
+        Title = sc.nextLine();
+        System.out.print("Nhập tác giả: ");
+        Author = sc.nextLine();
+        System.out.print("Nhập nhà xuất bản: ");
+        Publisher = sc.nextLine();
+        System.out.print("Nhập giá: ");
+        Price = sc.nextDouble();
+        System.out.print("Nhập số lượng: ");
+        Amount = sc.nextInt();
+        
+    }
    @Override
     public String toString()
     {
         return "Mã sách: " + bookID
-                + "Tên sách:" + Title 
-                + "Tác giả:" + Author
-                + "Nhà xuất bản:" + Publisher
-                + "Giá:" + Price
-                + "Số lượng:" + Amount;
+                + "\nTên sách:" + Title 
+                + "\nTác giả:" + Author
+                + "\nNhà xuất bản:" + Publisher
+                + "\nGiá:" + Price
+                + "\nSố lượng:" + Amount;
     }
     
 }
-
-
-
 
 
 
