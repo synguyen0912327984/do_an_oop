@@ -69,7 +69,7 @@ public class Book {
         this.Amount = Amount;
     }
    //@Override
-    public String ToString()
+    public String toString()
     {
         return "Mã sách: " + bookID
                 + "Tên sách:" + Title 
@@ -80,6 +80,7 @@ public class Book {
     }
     
 }
+
 
 
 
