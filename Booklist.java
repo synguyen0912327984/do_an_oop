@@ -9,16 +9,6 @@ public class Booklist {
         list = new Book[100];
         n = 0; 
     };
-    //Nhập danh sách
-    public void InputList(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Nhập số lượng sách:");
-        n = sc.nextInt();
-        for(int i = 0;i<n;i++){
-            list[i] = new Book(); //khởi tạo
-            list[i].Input(); //nhập
-        }
-    }
     //xuất danh sách
     public void OutputList(){
         System.out.println("Các sách hiện tại là:");
@@ -43,4 +33,5 @@ public class Booklist {
 
     }
 }
+
 
