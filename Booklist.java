@@ -53,5 +53,46 @@ public class Booklist {
             System.out.println("----------");
         }
     }
-
+    //phuong thuc tim kiem
+    public void find(String type, String keyword) {
+        ArrayList<Book> result = new ArrayList<>();
+        
+        switch (type.toLowerCase()) { 
+            case "id":
+                result = findByID(keyword);
+                break;
+            case "title":
+                result = findByTitle(keyword);
+                break;
+        }
+    
+    if (result.isEmpty()) {
+            System.out.println("❗ Không tìm thấy sách phù hợp.");
+        } else {
+            System.out.println("✅ Kết quả tìm thấy:");
+            for (Book b : result) {
+                b.display();
+            }
+        }
+    }
+    //tim theo ID
+    public ArrayList<Book> findByID(String bookID) {
+        ArrayList<Book> result = new ArrayList<>();
+        for (Book b : list) {
+            if (b.getbookID().equalsIgnoreCase(bookID)) {
+                result.add(b);
+            }
+        }
+        return result;
+    }
+    //tim theo title
+    public ArrayList<Book> findByTitle(String title) {
+        ArrayList<Book> result = new ArrayList<>();
+        for (Book b : list) {
+            if (b.getTitle().toLowerCase().contains(title.toLowerCase())) {
+                result.add(b);
+            }
+        }
+        return result;
+    }
 }
