@@ -20,7 +20,7 @@ public class ListInvoiceDetails {
 
     public void displayAll() {
         if (list.isEmpty()) {
-            System.out.println("Danh sách chi tiết hóa đơn trống!");
+            System.out.println("Empty");
             return;
         }
 

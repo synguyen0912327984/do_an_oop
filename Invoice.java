@@ -1,32 +1,34 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Invoice {
-
-    // ✅ static nested class
-    public static class Date {
-        private int day;
-        private int month;
-        private int year;
-
-        public Date(int day, int month, int year) {
-            this.day = day;
-            this.month = month;
-            this.year = year;
-        }
-
-        public void display() {
-            System.out.println(day + "/" + month + "/" + year);
-        }
-    }
-
     private String idInvoice;
     private String idCustomer;
     private String nameCustomer;
-    private Date time;
+    private LocalDate time; 
 
-    public Invoice(String idInvoice, String idCustomer, String nameCustomer, Date time) {
+    public Invoice(String idInvoice, String idCustomer, String nameCustomer, LocalDate time) {
         this.idInvoice = idInvoice;
         this.idCustomer = idCustomer;
         this.nameCustomer = nameCustomer;
         this.time = time;
+    }
+
+    
+    public String getIdInvoice() {
+        return idInvoice;
+    }
+
+    public String getIdCustomer() {
+        return idCustomer;
+    }
+
+    public String getNameCustomer() {
+        return nameCustomer;
+    }
+
+    public LocalDate getTime() {
+        return time;
     }
 
     public void displayInvoice() {
@@ -34,6 +36,7 @@ public class Invoice {
         System.out.println("Customer ID: " + idCustomer);
         System.out.println("Customer Name: " + nameCustomer);
         System.out.print("Date: ");
-        time.display();
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.println(time.format(fmt));
     }
 }

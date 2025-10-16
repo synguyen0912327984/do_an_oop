@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ListInvoice {
@@ -17,7 +18,7 @@ public class ListInvoice {
 
     public void displayAll() {
         if (list.isEmpty()) {
-            System.out.println("Danh sách hóa đơn trống!");
+            System.out.println("Empty!");
             return;
         }
 
@@ -40,17 +41,19 @@ public class ListInvoice {
                     int month = Integer.parseInt(arrdate[1]);
                     int year = Integer.parseInt(arrdate[2]);
 
-                    Invoice.Date date = new Invoice.Date(day, month, year);
+                    LocalDate date = LocalDate.of(year, month, day);
                     Invoice invoice = new Invoice(arr[0], arr[1], arr[2], date);
                     list.add(invoice);
                 }
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Lỗi khi đọc file: " + e.getMessage());
         }
 
         this.list = list;
         return list;
     }
+
+   
 }
