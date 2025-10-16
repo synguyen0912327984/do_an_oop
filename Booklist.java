@@ -1,91 +1,58 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.*;
 
 public class Booklist {
-    private ArrayList<Book> list;  // danh sach
-    private int n;                 // số lượng sách
-    private static String List_BOOK = "books.txt"; // static cho ten file
+    private ArrayList<Book> list = new ArrayList<>();
+
     // Khoi tao
-    public Booklist() {
-        list = new ArrayList<>();
-        n = 0;
+    public Booklist() {}
+    public Booklist(ArrayList<Book> list){
+        this.list = list;
     }
-    // Doc file
-     public void readFile() 
+
+    // Get va set
+    public ArrayList<Book> getList()
     {
-        readFile(List_BOOK);
+        return list;
+    }
+    public void setList(ArrayList<Book> list)
+    {
+        this.list = list;
     }
 
-    public void readFile(String filename) {
-            try {
-                File file = new File(filename);
-                Scanner sc = new Scanner(file);
+    public ArrayList<Book> readFile() {
+        ArrayList<Book> tempList = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("books.txt"))) {
+            String line;
 
-                n = sc.nextInt();
-                sc.nextLine();
+            while ((line = br.readLine()) != null) {
+                String[] arr = line.split(",");
+                if (arr.length == 6) {
+                    String bookID = arr[0].trim();
+                    String title = arr[1].trim();
+                    String author = arr[2].trim();
+                    String publisher = arr[3].trim();
+                    double price = Double.parseDouble(arr[4].trim());
+                    int amount = Integer.parseInt(arr[5].trim());
 
-                list = new ArrayList<>();
-
-                String bookID, Title, Author, Publisher;
-                double Price;
-                int Amount;
-
-                for (int i = 0; i < n; i++) {
-                    bookID = sc.nextLine();
-                    Title = sc.nextLine();
-                    Author = sc.nextLine();
-                    Publisher = sc.nextLine();
-                    Price = sc.nextDouble();
-                    Amount = sc.nextInt();
-                    sc.nextLine();
-
-                    Book b = new Book(bookID, Title, Author, Publisher, Price, Amount);
-                    list.add(b);
+                    Book book = new Book(bookID, title, author, publisher, price, amount);
+                    tempList.add(book);
                 }
-
-                sc.close();
-            } catch (FileNotFoundException e) {
-                System.out.println("Cannot open file");
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        this.list=tempList;
+        return tempList;
+    }
 
-    // Xuat danh sach
-    public void OutputList() {
-        System.out.println("Các sách hiện tại là:");
-        for (int i = 0; i < list.size(); i++) {
-            System.out.print(list.get(i).toString());
+    public void displayAll(){
+        for(Book hd: list){
+            hd.display();
+            System.out.println("----------");
         }
     }
 
-    // So luong
-    public int getN()
-    {
-        return n;
-    }
-
-    public void setN(int n)
-    {
-        this.n = n;
-    }
-
-    // Them sach
-    public void AddBook() {
-
-    }
-
-    // Xoa sach theo ID
-    public void DeleteBookByID() {
-
-    }
-
-    // Sua sach theo ID
-    public void EditBookByID() {
-
-    }
-
-    // Tim sach theo ID
-    public void FindBookByID() {
-
-    }
 }

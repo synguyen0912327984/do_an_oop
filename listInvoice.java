@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ListInvoice {
@@ -16,44 +17,47 @@ public class ListInvoice {
         return list;
     }
 
+    
     public void displayAll() {
         if (list.isEmpty()) {
-            System.out.println("Empty!");
+            System.out.println("Danh sách hóa đơn trống!");
             return;
         }
 
         for (Invoice hd : list) {
             hd.displayInvoice();
-            System.out.println();
+            System.out.println("-----------------------------");
         }
     }
 
+    // ✅ Đọc dữ liệu từ file Invoice.txt
     public ArrayList<Invoice> readFile() {
-        ArrayList<Invoice> list = new ArrayList<>();
+        ArrayList<Invoice> tempList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("Invoice.txt"))) {
             String line;
 
             while ((line = br.readLine()) != null) {
                 String[] arr = line.split(",");
                 if (arr.length == 4) {
-                    String[] arrdate = arr[3].split("/");
-                    int day = Integer.parseInt(arrdate[0]);
-                    int month = Integer.parseInt(arrdate[1]);
-                    int year = Integer.parseInt(arrdate[2]);
+                    String idInvoice = arr[0].trim();
+                    String idCustomer = arr[1].trim();
+                    String idEmployee = arr[2].trim(); 
+                    String dateStr = arr[3].trim();
+                    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate date = LocalDate.parse(dateStr, fmt);
 
-                    LocalDate date = LocalDate.of(year, month, day);
-                    Invoice invoice = new Invoice(arr[0], arr[1], arr[2], date);
-                    list.add(invoice);
+                    Invoice invoice = new Invoice(idInvoice, idCustomer, idEmployee, date);
+                    tempList.add(invoice);
                 }
             }
 
         } catch (Exception e) {
-            System.out.println("Lỗi khi đọc file: " + e.getMessage());
+            e.printStackTrace();
         }
 
-        this.list = list;
-        return list;
+        this.list = tempList;
+        return tempList;
     }
 
-   
+    
 }

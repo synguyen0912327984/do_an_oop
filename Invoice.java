@@ -2,19 +2,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Invoice {
-    private String idInvoice;
-    private String idCustomer;
-    private String nameCustomer;
-    private LocalDate time; 
+    private String idInvoice;     // Mã hóa đơn
+    private String idCustomer;    // Mã khách hàng
+    private String idEmployee;    // Mã nhân viên
+    private LocalDate time;       // Ngày lập hóa đơn
 
-    public Invoice(String idInvoice, String idCustomer, String nameCustomer, LocalDate time) {
+    public Invoice(String idInvoice, String idCustomer, String idEmployee, LocalDate time) {
         this.idInvoice = idInvoice;
         this.idCustomer = idCustomer;
-        this.nameCustomer = nameCustomer;
+        this.idEmployee = idEmployee;
         this.time = time;
     }
 
-    
     public String getIdInvoice() {
         return idInvoice;
     }
@@ -23,8 +22,8 @@ public class Invoice {
         return idCustomer;
     }
 
-    public String getNameCustomer() {
-        return nameCustomer;
+    public String getIdEmployee() {
+        return idEmployee;
     }
 
     public LocalDate getTime() {
@@ -34,7 +33,7 @@ public class Invoice {
     public void displayInvoice() {
         System.out.println("Invoice ID: " + idInvoice);
         System.out.println("Customer ID: " + idCustomer);
-        System.out.println("Customer Name: " + nameCustomer);
+        System.out.println("Employee ID: " + idEmployee);
         System.out.print("Date: ");
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         System.out.println(time.format(fmt));

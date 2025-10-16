@@ -68,15 +68,21 @@ public class Book {
         this.Amount = Amount;
     }
 
-   @Override
-    public String toString()
-    {
-        return "Mã sách: " + bookID
-                + "\nTên sách:" + Title 
-                + "\nTác giả:" + Author
-                + "\nNhà xuất bản:" + Publisher
-                + "\nGiá:" + Price
-                + "\nSố lượng:" + Amount;
+
+    public void display() {
+        System.out.println("=====================================");
+        System.out.println("Book ID     : " + bookID);
+        System.out.println("Title       : " + Title);
+        System.out.println("Author      : " + Author);
+        System.out.println("Publisher   : " + Publisher);
+        System.out.println("Price       : " + String.format("%,.0f VND", Price));
+        System.out.println("Quantity    : " + Amount);
+        System.out.println("=====================================");
+    }
+
+    @Override
+    public String toString() {
+        return bookID + "," + Title + "," + Author + "," + Publisher + "," + Price + "," + Amount;
     }
     
 }
