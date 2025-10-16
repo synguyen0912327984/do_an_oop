@@ -1,46 +1,75 @@
 package Java.project.team;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
+
 public class Booklist {
-    private Book[] list;
-    private int n; // số lượng sách
-    //Khởi tạo
-    public Booklist()
+    private ArrayList<Book> list;  // danh sach
+    private int n;                 // số lượng sách
+    private static String List_BOOK = "books.txt"; // static cho ten file
+    // Khởi tạo
+    public Booklist() {
+        list = new ArrayList<>();
+        n = 0;
+    }
+    //đọc file
+     public void readFile() 
     {
-        list = new Book[100];
-        n = 0; 
-    };
-    //Nhập danh sách
-    public void InputList(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Nhập số lượng sách:");
-        n = sc.nextInt();
-        for(int i = 0;i<n;i++){
-            list[i] = new Book(); //khởi tạo
-            list[i].Input(); //nhập
+        readFile(List_BOOK);
+    }
+
+    public void readFile(String filename) 
+    {
+        try{
+            File file = new File(filename);
+            Scanner sc = new Scanner(file);
+            setN(sc.nextInt());
+            list = new ArrayList<Book>(n);
+            for(int i = 0; i < n; i++){
+                setbookID(sc.nextLine());
+                
+            }
+        } catch(FileNotFoundException e) {
+            System.out.println("Cannot open file");
         }
     }
-    //xuất danh sách
-    public void OutputList(){
+
+    // Xuất danh sách
+    public void OutputList() {
         System.out.println("Các sách hiện tại là:");
-        for(int i = 0; i < n;i++){
-            System.out.print(list[i].toString()); 
+        for (int i = 0; i < list.size(); i++) {
+            System.out.print(list.get(i).toString());
         }
     }
-    //Thêm sách
-    public void AddBook(){
+
+    // So luong
+    public int getN()
+    {
+        return n;
+    }
+
+    public void setN(int n)
+    {
+        this.n = n;
+    }
+
+    // Thêm sách
+    public void AddBook() {
 
     }
-    //Xóa sách theo ID
-    public void DeleteBookByID(){
+
+    // Xóa sách theo ID
+    public void DeleteBookByID() {
 
     }
-    //Sửa sách theo ID
-    public void EditBookByID(){
+
+    // Sửa sách theo ID
+    public void EditBookByID() {
 
     }
-    //Tìm sách theo ID
-    public void FindBookByID(){
+
+    // Tìm sách theo ID
+    public void FindBookByID() {
 
     }
 }
-
