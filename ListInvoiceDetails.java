@@ -29,7 +29,7 @@ public class ListInvoiceDetails {
         }
     }
 
-    public ArrayList<InvoiceDetail> readFile() {
+    public void readFile() {
         ArrayList<InvoiceDetail> list = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader("InvoiceDetail.txt"))) {
@@ -55,7 +55,6 @@ public class ListInvoiceDetails {
         }
 
         this.list = list;
-        return list;
     }
 
     public double getTotalByInvoiceId(String idInvoice) {

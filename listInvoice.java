@@ -31,7 +31,7 @@ public class ListInvoice {
     }
 
     // ✅ Đọc dữ liệu từ file Invoice.txt
-    public ArrayList<Invoice> readFile() {
+    public void readFile() {
         ArrayList<Invoice> tempList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("Invoice.txt"))) {
             String line;
@@ -56,7 +56,6 @@ public class ListInvoice {
         }
 
         this.list = tempList;
-        return tempList;
     }
 
     

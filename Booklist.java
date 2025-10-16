@@ -21,7 +21,7 @@ public class Booklist {
         this.list = list;
     }
 
-    public ArrayList<Book> readFile() {
+    public void readFile() {
         ArrayList<Book> tempList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("books.txt"))) {
             String line;
@@ -45,7 +45,6 @@ public class Booklist {
             e.printStackTrace();
         }
         this.list=tempList;
-        return tempList;
     }
 
     public void displayAll(){
