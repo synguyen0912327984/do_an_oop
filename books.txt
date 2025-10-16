@@ -1,0 +1,19 @@
+3
+B01
+Dế Mèn Phiêu Lưu Ký
+Tô Hoài
+NXB Kim Đồng
+35000
+10
+B02
+Lão Hạc
+Nam Cao
+NXB Văn Học
+25000
+5
+B03
+Tuổi Trẻ Đáng Giá Bao Nhiêu
+Rosie Nguyễn
+NXB Trẻ
+90000
+8
