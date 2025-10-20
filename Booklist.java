@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class Booklist {
@@ -95,4 +96,39 @@ public class Booklist {
         }
         return result;
     }
+    public ArrayList<Book> findByAuthor(String author) {
+        ArrayList<Book> result = new ArrayList<>();
+        for (Book b : list) {
+            if (b.getAuthor().toLowerCase().contains(author.toLowerCase())) {
+                result.add(b);
+            }
+        }
+        return result;
+    }
+    public ArrayList<Book> AddBook(Book book) {
+        list.add(book);
+        return list;
+    }
+    public void removeBook(String bookID) {
+        boolean removed = list.removeIf(b -> b.getbookID().equalsIgnoreCase(bookID));
+        if (removed) {
+            System.out.println("✅ Đã xóa sách có ID: " + bookID);
+            saveToFile();
+        } else {
+            System.out.println("❗ Không tìm thấy sách có ID: " + bookID);
+        }
+    }
+
+    public void saveToFile() {
+        try (PrintWriter pw = new PrintWriter("books.txt")) {
+            for (Book b : list) {
+                pw.println(b.getbookID() + "," + b.getTitle() + "," + b.getAuthor() + "," +
+                           b.getPublisher() + "," + b.getPrice() + "," + b.getAmount());
+            }
+            System.out.println("💾 File books.txt đã được cập nhật.");
+        } catch (Exception e) {
+            System.err.println("Lỗi ghi file: " + e.getMessage());
+        }
+    }
 }
+
