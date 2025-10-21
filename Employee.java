@@ -1,5 +1,3 @@
-package Java.project.team;
-
 class Employee extends Person {
     private static int employeeCount = 0;
     private String position;
@@ -17,8 +15,14 @@ class Employee extends Person {
 
     @Override
     public void displayinfo() {
-        System.out.println("Employee ID: " + id + "Name: " + name + "Phone: " + phoneNumber + "Address: " + address
-                + "Position: " + position + "Salary: " + salary);
+        System.out.println("=====================================");
+        System.out.println("Employee ID     : " + id);
+        System.out.println("Name            : " + name);
+        System.out.println("Phone           : " + phoneNumber);
+        System.out.println("Address         : " + address);
+        System.out.println("Position        : " + position);
+        System.out.println("Salary          : " + salary);
+        System.out.println("=====================================");
     }
 
     @Override
@@ -27,8 +31,8 @@ class Employee extends Person {
     }
 
     /*
-     * Đọc file(.txt)
-     * File có dạng : id,name,phonenumber,address,position,salary
+     * Doc file(.txt)
+     * File co dang : id,name,phonenumber,address,position,salary
      */
     public static Employee fromString(String line) {
         String p[] = line.split(",");
