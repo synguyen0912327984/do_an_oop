@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import java.util.Scanner;
 
+=======
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+>>>>>>> b5b1bfbaba73ef69c7b2702ebafc6d841150a679
 class Customer extends Person implements ICustomerActions {
     private static int customerCount = 0;
     private int loyaltyPoints;
@@ -43,6 +48,7 @@ class Customer extends Person implements ICustomerActions {
     @Override
     public void Buy(Book a) {
         System.out.print("Enter the amount you want to buy: ");
+<<<<<<< HEAD
         Scanner sc = new Scanner(System.in);
         int temp1 = Integer.parseInt(sc.nextLine());
         if (a.getAmount() >= temp1) {
@@ -57,6 +63,24 @@ class Customer extends Person implements ICustomerActions {
         } else
             System.out.println("Only " + a.getAmount() + " items are available. Please adjust your quantity.");
         sc.close();
+=======
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+            int temp1 = Integer.parseInt(br.readLine());
+            if(a.getAmount() >= temp1){
+                System.out.print("Are you sure? y/n: ");
+                String temp2 = br.readLine();
+                if(temp2.equalsIgnoreCase("y")){
+                    System.out.println("Successfully purchased!");
+                    a.setAmount(a.getAmount() - temp1);
+                    addLoyaltyPoints((int)(a.getPrice() / 10));
+                }
+                else System.out.println("Cancelled.");
+            }
+        else System.out.println("Only " + a.getAmount() + " items are available. Please adjust your quantity.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+>>>>>>> b5b1bfbaba73ef69c7b2702ebafc6d841150a679
     }
 
     @Override
