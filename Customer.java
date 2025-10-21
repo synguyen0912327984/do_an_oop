@@ -51,11 +51,11 @@ class Customer extends Person implements ICustomerActions {
                 if(temp2.equalsIgnoreCase("y")){
                     System.out.println("Successfully purchased!");
                     a.setAmount(a.getAmount() - temp1);
-                    addLoyaltyPoints((int)(a.getPrice() / 10));
+                    addLoyaltyPoints((int)(a.getPrice() / 10000));
                 }
                 else System.out.println("Cancelled.");
             }
-        else System.out.println("Only " + a.getAmount() + " items are available. Please adjust your quantity.");
+            else System.out.println("Only " + a.getAmount() + " items are available. Please adjust your quantity.");
         } catch (Exception e) {
             e.printStackTrace();
         }
