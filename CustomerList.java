@@ -1,13 +1,22 @@
-package Java.project.team;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.*;
 
 public class CustomerList {
-    private List<Customer> customers;
+    private ArrayList<Customer> customers;
     private static final String FILE_NAME = "Customers.txt";
 
     public CustomerList() {
-        // Đọc file và chuyển nó thành đối tượng rồi đưa vào danh sách (Customer list);
+        // Doc file va chuyen no thanh doi tuong roi dua vao danh sach (Customer list); (Nguyen da lam)
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+
+            while ((line = br.readLine()) != null)
+                addCustomer(Customer.fromString(line));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void addCustomer(Customer c) {
