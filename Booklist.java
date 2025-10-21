@@ -118,7 +118,7 @@ public class Booklist {
         if (b.getbookID().equalsIgnoreCase(book.getbookID())) 
             {
             System.out.println("ID da ton tai. Khong the them sach moi."); //Rang buoc ID sach la duy nhat
-                return;
+                return null;
             }
         }
         list.add(book);

@@ -23,6 +23,27 @@ public class CustomerList {
         customers.add(c);
     }
 
+    //Tim kiem
+
+    public void find(int keys, String keyword) {
+        switch (keys) { 
+            case 1:
+                if(findById(keyword) == null){
+                    System.out.println("Cannot find valid customer");
+                    break;
+                }
+                findById(keyword).displayinfo();
+                break;
+            case 2:
+                if(findByPhone(keyword) == null){
+                    System.out.println("Cannot find valid customer");
+                    break;
+                }
+                findByPhone(keyword).displayinfo();;
+                break;
+        }
+    }
+
     public Customer findById(String id) {
         for (Customer c : customers) {
             if (c.getId().equalsIgnoreCase(id)) {

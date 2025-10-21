@@ -1,4 +1,5 @@
-class Customer extends Person {
+import java.util.Scanner;
+class Customer extends Person implements ICustomerActions {
     private static int customerCount = 0;
     private int loyaltyPoints;
 
@@ -34,6 +35,44 @@ class Customer extends Person {
     @Override
     public String toString() {
         return id + "," + name + "," + phoneNumber + "," + address + "," + loyaltyPoints;
+    }
+
+    //Interface
+
+    @Override
+    public void Buy(Book a){
+        System.out.print("Enter the amount you want to buy: ");
+        Scanner sc = new Scanner(System.in);
+        int temp1 = Integer.parseInt(sc.nextLine());
+        if(a.getAmount() >= temp1){
+            System.out.print("Are you sure? y/n: ");
+            String temp2 = sc.nextLine();
+            if(temp2.equalsIgnoreCase("y")){
+                System.out.println("Successfully purchased!");
+                a.setAmount(a.getAmount() - temp1);
+                addLoyaltyPoints((int)(a.getPrice() / 10));
+            }
+            else System.out.println("Cancelled.");
+        }
+        else System.out.println("Only " + a.getAmount() + " items are available. Please adjust your quantity.");
+    }
+
+    @Override
+    public void addLoyaltyPoints(int points){
+        if(points > 0){
+            this.loyaltyPoints += points;
+            System.out.println(points + " Added to account! Total: " + loyaltyPoints);
+        }
+        else System.out.println("Invalid points!");
+    }
+
+    @Override 
+    public void redeemPoints(int points){
+        if(points > 0 && points <= loyaltyPoints){
+            this.loyaltyPoints -= points;
+            System.out.println(points + " points redeemed successfully! Remain: " + loyaltyPoints);
+        }
+        else System.out.println("Not enough points to redeem");
     }
 
     /*
