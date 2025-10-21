@@ -1,5 +1,3 @@
-package Java.project.team;
-
 abstract class Person {
     protected String id;
     protected String name;
