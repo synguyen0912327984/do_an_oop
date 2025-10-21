@@ -8,15 +8,25 @@ public class CustomerList {
 
     public CustomerList() {
         // Doc file va chuyen no thanh doi tuong roi dua vao danh sach (Customer list); (Nguyen da lam)
+        customers = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
 
-            while ((line = br.readLine()) != null)
+            while ((line = br.readLine()) != null) {
                 addCustomer(Customer.fromString(line));
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Customer> getList(){
+        return customers;
+    }
+
+    public void setList(ArrayList<Customer> customers){
+        this.customers = customers;
     }
 
     public void addCustomer(Customer c) {
