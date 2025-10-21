@@ -111,12 +111,20 @@ public class Booklist {
         }
         return result;
     }
-
+    //Phuong thuc them sach
     public ArrayList<Book> AddBook(Book book) {
+        for (Book b : list) 
+        {
+        if (b.getbookID().equalsIgnoreCase(book.getbookID())) 
+            {
+            System.out.println("ID da ton tai. Khong the them sach moi."); //Rang buoc ID sach la duy nhat
+                return;
+            }
+        }
         list.add(book);
         return list;
     }
-
+    // Phuong thuc xoa sach
     public void removeBook(String bookID) {
         boolean removed = list.removeIf(b -> b.getbookID().equalsIgnoreCase(bookID));
         if (removed) {
@@ -126,7 +134,19 @@ public class Booklist {
             System.out.println("Khong tim thay sach co ID: " + bookID);
         }
     }
-
+    // Phuong thuc sua sach
+    public void updateBook(String bookID, Book updatedBook) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getbookID().equalsIgnoreCase(bookID)) {
+                list.set(i, updatedBook); //thay the phan tu tai vi tri i bang updatedBook
+                System.out.println("Da cap nhat sach co ID: " + bookID);
+                saveToFile();
+                return;
+            }
+        }
+        System.out.println("Khong tim thay sach co ID: " + bookID);
+    }
+    // Phuong thuc cap nhat file
     public void saveToFile() {
         try (PrintWriter pw = new PrintWriter("books.txt")) {
             for (Book b : list) {
