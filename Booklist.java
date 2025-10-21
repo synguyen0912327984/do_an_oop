@@ -13,12 +13,10 @@ public class Booklist {
     }
 
     // Get va set
-    public ArrayList<Book> getList()
-    {
+    public ArrayList<Book> getList() {
         return list;
     }
-    public void setList(ArrayList<Book> list)
-    {
+    public void setList(ArrayList<Book> list) {
         this.list = list;
     }
 
@@ -45,16 +43,17 @@ public class Booklist {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        this.list=tempList;
+        this.list = tempList;
     }
 
-    public void displayAll(){
-        for(Book hd: list){
+    public void displayAll() {
+        for (Book hd : list) {
             hd.display();
             System.out.println("----------");
         }
     }
-    //phuong thuc tim kiem
+
+    // Phuong thuc tim kiem
     public void find(String type, String keyword) {
         ArrayList<Book> result = new ArrayList<>();
         
@@ -65,18 +64,22 @@ public class Booklist {
             case "title":
                 result = findByTitle(keyword);
                 break;
+            case "author":
+                result = findByAuthor(keyword);
+                break;
         }
     
-    if (result.isEmpty()) {
-            System.out.println("❗ Không tìm thấy sách phù hợp.");
+        if (result.isEmpty()) {
+            System.out.println("Khong tim thay sach phu hop.");
         } else {
-            System.out.println("✅ Kết quả tìm thấy:");
+            System.out.println("Ket qua tim thay:");
             for (Book b : result) {
                 b.display();
             }
         }
     }
-    //tim theo ID
+
+    // Tim theo ID
     public ArrayList<Book> findByID(String bookID) {
         ArrayList<Book> result = new ArrayList<>();
         for (Book b : list) {
@@ -86,7 +89,8 @@ public class Booklist {
         }
         return result;
     }
-    //tim theo title
+
+    // Tim theo title
     public ArrayList<Book> findByTitle(String title) {
         ArrayList<Book> result = new ArrayList<>();
         for (Book b : list) {
@@ -96,6 +100,8 @@ public class Booklist {
         }
         return result;
     }
+
+    // Tim theo author
     public ArrayList<Book> findByAuthor(String author) {
         ArrayList<Book> result = new ArrayList<>();
         for (Book b : list) {
@@ -105,17 +111,19 @@ public class Booklist {
         }
         return result;
     }
+
     public ArrayList<Book> AddBook(Book book) {
         list.add(book);
         return list;
     }
+
     public void removeBook(String bookID) {
         boolean removed = list.removeIf(b -> b.getbookID().equalsIgnoreCase(bookID));
         if (removed) {
-            System.out.println("✅ Đã xóa sách có ID: " + bookID);
+            System.out.println("Da xoa sach co ID: " + bookID);
             saveToFile();
         } else {
-            System.out.println("❗ Không tìm thấy sách có ID: " + bookID);
+            System.out.println("Khong tim thay sach co ID: " + bookID);
         }
     }
 
@@ -125,10 +133,9 @@ public class Booklist {
                 pw.println(b.getbookID() + "," + b.getTitle() + "," + b.getAuthor() + "," +
                            b.getPublisher() + "," + b.getPrice() + "," + b.getAmount());
             }
-            System.out.println("💾 File books.txt đã được cập nhật.");
+            System.out.println("File books.txt da duoc cap nhat.");
         } catch (Exception e) {
-            System.err.println("Lỗi ghi file: " + e.getMessage());
+            System.err.println("Loi ghi file: " + e.getMessage());
         }
     }
 }
-
