@@ -3,11 +3,12 @@ import java.io.FileReader;
 import java.util.*;
 
 public class EmployeeList {
-    private List<Employee> employees;
+    private ArrayList<Employee> employees;
     private static final String FILE_NAME = "Employees.txt";
 
     public EmployeeList() {
         // Doc file va chuyen no thanh doi tuong roi dua vao danh sach (Employee list);
+        employees = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
 
