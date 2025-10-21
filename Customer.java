@@ -1,5 +1,3 @@
-package Java.project.team;
-
 class Customer extends Person {
     private static int customerCount = 0;
     private int loyaltyPoints;
@@ -8,8 +6,8 @@ class Customer extends Person {
         super(null, name, phoneNumber, address);
         this.id = String.format("C%03d", customerCount++);
         /*
-         * Định dạng chuỗi với chuỗi định dạng C + customerCount
-         * %03d độ dài tối thiểu là 3 nếu không đủ thì chèn 0 vào đầu
+         * Dinh dang chuoi voi chuoi dinh dang C + customnerCount
+         * %03d do dai toi thieu la 3 neu khong du thi chen 0 vao dau
          */
         this.loyaltyPoints = loyaltyPoints;
     }
@@ -24,8 +22,13 @@ class Customer extends Person {
 
     @Override
     public void displayinfo() {
-        System.out.println(
-                "Customer ID: " + id + ", Name: " + name + "Phone" + phoneNumber + "LoyaltyPoints" + loyaltyPoints);
+        System.out.println("=====================================");
+        System.out.println("Customer ID     : " + id);
+        System.out.println("Name            : " + name);
+        System.out.println("Phone           : " + phoneNumber);
+        System.out.println("Address         : " + address);
+        System.out.println("LoyaltyPoints   : " + loyaltyPoints);
+        System.out.println("=====================================");
     }
 
     @Override
@@ -34,8 +37,8 @@ class Customer extends Person {
     }
 
     /*
-     * Đọc file(.txt)
-     * File có dạng : id,name,phonenumber,address,loyaltypoints
+     * Doc file(.txt)
+     * File co dang : id,name,phonenumber,address,loyaltypoints
      */
     public static Customer fromString(String line) {
         String p[] = line.split(",");
