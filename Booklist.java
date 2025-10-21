@@ -144,7 +144,7 @@ public class Booklist {
         boolean removed = list.removeIf(b -> b.getbookID().equalsIgnoreCase(bookID));
         if (removed) {
             System.out.println("Da xoa sach co ID: " + bookID);
-            saveToFile();
+            
         } else {
             System.out.println("Khong tim thay sach co ID: " + bookID);
         }
@@ -155,12 +155,17 @@ public class Booklist {
             if (list.get(i).getbookID().equalsIgnoreCase(bookID)) {
                 list.set(i, updatedBook); //thay the phan tu tai vi tri i bang updatedBook
                 System.out.println("Da cap nhat sach co ID: " + bookID);
-                saveToFile();
+                
                 return;
             }
         }
         System.out.println("Khong tim thay sach co ID: " + bookID);
     }
+    //Phuong thuc thong ke tong so sach hien co
+    public void totalBooks() {
+
+    }
+
     // Phuong thuc cap nhat file
    public void saveToFile() {
     try (BufferedWriter bw = new BufferedWriter(new FileWriter("books.txt"))) {
