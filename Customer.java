@@ -55,7 +55,6 @@ class Customer extends Person implements ICustomerActions {
             else System.out.println("Cancelled.");
         }
         else System.out.println("Only " + a.getAmount() + " items are available. Please adjust your quantity.");
-        sc.close();
     }
 
     @Override
