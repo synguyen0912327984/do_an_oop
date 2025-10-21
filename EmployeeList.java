@@ -1,5 +1,9 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IO;
+import java.io.IOException;
 import java.util.*;
 
 public class EmployeeList {
@@ -14,7 +18,6 @@ public class EmployeeList {
 
             while ((line = br.readLine()) != null)
                 addEmployee(Employee.fromString(line));
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,6 +52,14 @@ public class EmployeeList {
     }
 
     public void saveToFile() {
-        // Ghi vao file theo dang chuoi dau vao (toString)
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
+            for (Employee obj : employees) {
+                bw.write(obj.toString());
+                bw.newLine();
+            }
+            System.out.println("File saved successfully: " + FILE_NAME);
+        } catch (IOException e) {
+            System.out.println("file save failed: " + FILE_NAME);
+        }
     }
 }
