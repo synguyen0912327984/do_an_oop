@@ -30,29 +30,39 @@ public class ListInvoiceDetails {
     }
 
     public void readFile() {
-    ArrayList<InvoiceDetail> tempList = new ArrayList<>();
+        ArrayList<InvoiceDetail> tempList = new ArrayList<>();
 
-    try (BufferedReader br = new BufferedReader(new FileReader("InvoiceDetail.txt"))) {
-        String line;
+        try (BufferedReader br = new BufferedReader(new FileReader("InvoiceDetail.txt"))) {
+            String line;
 
-        while ((line = br.readLine()) != null) {
-            String[] arr = line.split(",");
-            if (arr.length == 3) { // file có 3 phần: mã hóa đơn, mã sách, số lượng
-                String idInvoice = arr[0];
-                String idBook = arr[1];
-                int quantity = Integer.parseInt(arr[2]);
+            while ((line = br.readLine()) != null) {
+                String[] arr = line.split(",");
+                if (arr.length == 3) { // file có 3 phần: mã hóa đơn, mã sách, số lượng
+                    String idInvoice = arr[0];
+                    String idBook = arr[1];
+                    int quantity = Integer.parseInt(arr[2]);
 
-                InvoiceDetail detail = new InvoiceDetail(idInvoice, idBook, quantity);
-                tempList.add(detail);
+                    InvoiceDetail detail = new InvoiceDetail(idInvoice, idBook, quantity);
+                    tempList.add(detail);
+                }
             }
+
+            this.list = tempList;
+
+        } catch (Exception e) {
+            System.err.println("Lỗi khi đọc file InvoiceDetail.txt: " + e.getMessage());
         }
 
-        this.list = tempList;
-
-    } catch (Exception e) {
-        System.err.println("Lỗi khi đọc file InvoiceDetail.txt: " + e.getMessage());
     }
-}
+    public ArrayList<InvoiceDetail> find(String id){
+        ArrayList<InvoiceDetail> l = new ArrayList<>(); 
+        for(InvoiceDetail st: list){
+            if(id.equalsIgnoreCase(st.getIdInvoice())) {
+                l.add(st);
+            }
+        }
+        return l;
+    }
 
 
     

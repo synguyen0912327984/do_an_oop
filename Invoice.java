@@ -5,7 +5,9 @@ public class Invoice {
     private String idInvoice;     
     private String idCustomer;    
     private String idEmployee;    
-    private LocalDate time;       
+    private LocalDate time;   
+    
+    public Invoice(){}
 
     public Invoice(String idInvoice, String idCustomer, String idEmployee, LocalDate time) {
         this.idInvoice = idInvoice;
