@@ -7,7 +7,7 @@ public class InvoiceDetail {
     public InvoiceDetail() {}
 
     
-    public InvoiceDetail(String idInvoice, String idBook, String nameBook, int quantity, double price) {
+    public InvoiceDetail(String idInvoice, String idBook, int quantity) {
         this.idInvoice = idInvoice;
         this.idBook = idBook;
         this.quantity = quantity;

@@ -38,10 +38,10 @@ public class ListInvoice {
             while ((line = br.readLine()) != null) {
                 String[] arr = line.split(",");
                 if (arr.length == 4) {
-                    String idInvoice = arr[0].trim();
-                    String idCustomer = arr[1].trim();
-                    String idEmployee = arr[2].trim(); 
-                    String dateStr = arr[3].trim();
+                    String idInvoice = arr[0];
+                    String idCustomer = arr[1];
+                    String idEmployee = arr[2]; 
+                    String dateStr = arr[3];
                     DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     LocalDate date = LocalDate.parse(dateStr, fmt);
 
@@ -55,6 +55,13 @@ public class ListInvoice {
         }
 
         this.list = tempList;
+    }
+
+    public Invoice test(String id){
+        for(Invoice st:list){
+            if(id.equalsIgnoreCase(st.getIdInvoice())) return st;
+        }
+        return null;
     }
 
     
