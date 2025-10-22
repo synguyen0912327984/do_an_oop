@@ -64,5 +64,10 @@ public class ListInvoice {
         return null;
     }
 
+    public void addlist(Invoice l1){
+        list.add(l1);
+    }
+    
+
     
 }

@@ -7,7 +7,7 @@ public class Invoice {
     private String idEmployee;    
     private LocalDate time;   
     
-    public Invoice(){}
+    public Invoice() {}
 
     public Invoice(String idInvoice, String idCustomer, String idEmployee, LocalDate time) {
         this.idInvoice = idInvoice;
@@ -16,6 +16,7 @@ public class Invoice {
         this.time = time;
     }
 
+    // Getters
     public String getIdInvoice() {
         return idInvoice;
     }
@@ -30,6 +31,24 @@ public class Invoice {
 
     public LocalDate getTime() {
         return time;
+    }
+
+
+    // 🔽 Setters
+    public void setIdInvoice(String idInvoice) {
+        this.idInvoice = idInvoice;
+    }
+
+    public void setIdCustomer(String idCustomer) {
+        this.idCustomer = idCustomer;
+    }
+
+    public void setIdEmployee(String idEmployee) {
+        this.idEmployee = idEmployee;
+    }
+
+    public void setTime(LocalDate time) {
+        this.time = time;
     }
 
     public void displayInvoice() {
