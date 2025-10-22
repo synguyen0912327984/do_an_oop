@@ -2,10 +2,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Invoice {
-    private String idInvoice;     // Mã hóa đơn
-    private String idCustomer;    // Mã khách hàng
-    private String idEmployee;    // Mã nhân viên
-    private LocalDate time;       // Ngày lập hóa đơn
+    private String idInvoice;     
+    private String idCustomer;    
+    private String idEmployee;    
+    private LocalDate time;       
 
     public Invoice(String idInvoice, String idCustomer, String idEmployee, LocalDate time) {
         this.idInvoice = idInvoice;
