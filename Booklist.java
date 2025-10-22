@@ -61,7 +61,8 @@ public class Booklist {
         
         switch (type.toLowerCase()) { 
             case "id":
-                result = findByID(keyword);
+                Book found = findByID(keyword);
+                if (found != null) result.add(found); // do kieu du lieu tra ve la Book, tai thang sy doi
                 break;
             case "title":
                 result = findByTitle(keyword);
@@ -85,14 +86,13 @@ public class Booklist {
     }
 
     // Tim theo ID
-    public ArrayList<Book> findByID(String bookID) {
-        ArrayList<Book> result = new ArrayList<>();
+    public Book findByID(String bookID) {
         for (Book b : list) {
             if (b.getbookID().equalsIgnoreCase(bookID)) {
-                result.add(b);
+                return b;
             }
         }
-        return result;
+        return null;
     }
 
     // Tim theo title
