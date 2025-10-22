@@ -1,10 +1,7 @@
 public class InvoiceDetail {
     private String idInvoice;   
-    private String idBook;       
-    private String nameBook;     
-    private int quantity;        
-    private double price;        
-    private double total;        
+    private String idBook;           
+    private int quantity;                      
 
     
     public InvoiceDetail() {}
@@ -13,10 +10,7 @@ public class InvoiceDetail {
     public InvoiceDetail(String idInvoice, String idBook, String nameBook, int quantity, double price) {
         this.idInvoice = idInvoice;
         this.idBook = idBook;
-        this.nameBook = nameBook;
         this.quantity = quantity;
-        this.price = price;
-        this.total = quantity * price; // Tự động tính tổng tiền
     }
 
     // Getter và Setter
@@ -36,44 +30,17 @@ public class InvoiceDetail {
         this.idBook = idBook;
     }
 
-    public String getNameBook() {
-        return nameBook;
-    }
 
-    public void setNameBook(String nameBook) {
-        this.nameBook = nameBook;
-    }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-        this.total = this.quantity * this.price; // Cập nhật lại tổng tiền
+    public void setQuantity(int quantity){
+        this.quantity=quantity;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-        this.total = this.quantity * this.price; // Cập nhật lại tổng tiền
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    // Hàm hiển thị thông tin chi tiết hóa đơn
-    public void displayDetail() {
-        System.out.println("Invoice ID: " + idInvoice);
-        System.out.println("Book ID: " + idBook);
-        System.out.println("Book Name: " + nameBook);
-        System.out.println("Quantity: " + quantity);
-        System.out.println("Price: " + price);
-        System.out.println("Total: " + total);
-        System.out.println("---------------------------");
+    public void display(){
+        System.out.printf("%-15s %-15s %-10d%n",idInvoice,idBook,quantity);
     }
 }
