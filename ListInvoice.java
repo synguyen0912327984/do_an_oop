@@ -30,7 +30,6 @@ public class ListInvoice {
         }
     }
 
-    // ✅ Đọc dữ liệu từ file Invoice.txt
     public void readFile() {
         ArrayList<Invoice> tempList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("Invoice.txt"))) {
