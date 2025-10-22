@@ -62,7 +62,7 @@ public class Booklist {
         switch (type.toLowerCase()) { 
             case "id":
                 Book found = findByID(keyword);
-                if (found != null) result.add(found); // do kieu du lieu tra ve la Book, tai thang sy doi
+                if (found != null) result.add(found); // do kieu du lieu tra ve la Book 
                 break;
             case "title":
                 result = findByTitle(keyword);
