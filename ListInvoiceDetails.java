@@ -25,7 +25,7 @@ public class ListInvoiceDetails {
         }
 
         for (InvoiceDetail ct : list) {
-            ct.displayDetail();
+            ct.display();
         }
     }
 
@@ -57,15 +57,6 @@ public class ListInvoiceDetails {
         this.list = list;
     }
 
-    public double getTotalByInvoiceId(String idInvoice) {
-        double total = 0;
-        for (InvoiceDetail ct : list) {
-            if (ct.getIdInvoice().equalsIgnoreCase(idInvoice)) {
-                total += ct.getTotal();
-            }
-        }
-        return total;
-    }
 
     
     
