@@ -2,24 +2,26 @@ class Employee extends Person {
     private static int employeeCount = 0;
     private String position;
     private double salary;
-    private boolean available = false;
 
     public String getPosition() {
         return position;
     }
 
-    public void setAvailable(boolean value) {
-        available = value;
-    }
-
     public Employee(String name, String phoneNumber, String address, String position, double salary,
             boolean available) {
         super(null, name, phoneNumber, address);
-        employeeCount++;
-        this.id = String.format("E%03", employeeCount);
+        this.id = String.format("E%03d", employeeCount++);
         this.position = position;
         this.salary = salary;
-        this.available = available;
+        this.active = true;
+    }
+
+    private Employee(String id, String name, String phoneNumber, String address, String position, double salary,
+            boolean active) {
+        super(id, name, phoneNumber, address);
+        this.position = position;
+        this.salary = salary;
+        this.active = active;
     }
 
     @Override
@@ -37,7 +39,7 @@ class Employee extends Person {
 
     @Override
     public String toString() {
-        return id + "," + name + "," + phoneNumber + "," + address + "," + position + "," + salary + "," + available;
+        return id + "," + name + "," + phoneNumber + "," + address + "," + position + "," + salary + "," + active;
     }
 
     /*
@@ -47,8 +49,8 @@ class Employee extends Person {
     public static Employee fromString(String line) {
         String p[] = line.split(",");
         if (p.length == 7) {
-            Employee e = new Employee(p[1], p[2], p[3], p[4], Double.parseDouble(p[5]), Boolean.parseBoolean(p[6]));
-            e.setId(p[0]);
+            Employee e = new Employee(p[0], p[1], p[2], p[3], p[4], Double.parseDouble(p[5]),
+                    Boolean.parseBoolean(p[6]));
             return e;
         }
         return null;

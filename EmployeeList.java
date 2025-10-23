@@ -20,6 +20,17 @@ public class EmployeeList {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        int maxId = 0;
+        for (Employee emp : employees) {
+            try {
+                int idNum = Integer.parseInt(emp.getId().substring(1));
+                maxId = (maxId > idNum) ? maxId : idNum;
+            } catch (NumberFormatException e) {
+                // Khong dung dinh dang thi bo qua
+            }
+        }
+        Employee.setEmloyeeCount(maxId + 1);
     }
 
     public void addEmployee(Employee c) {
@@ -27,18 +38,18 @@ public class EmployeeList {
     }
 
     public Employee findById(String id) {
-        for (Employee c : employees) {
-            if (c.getId().equalsIgnoreCase(id)) {
-                return c;
+        for (Employee e : employees) {
+            if (e.getId().equalsIgnoreCase(id) && e.isActive()) {
+                return e;
             }
         }
         return null;
     }
 
     public Employee findByPhone(String phone) {
-        for (Employee c : employees) {
-            if (c.getPhoneNumber().equalsIgnoreCase(phone)) {
-                return c;
+        for (Employee e : employees) {
+            if (e.getPhoneNumber().equalsIgnoreCase(phone) && e.isActive()) {
+                return e;
             }
         }
         return null;
@@ -48,7 +59,7 @@ public class EmployeeList {
         ArrayList<Employee> results = new ArrayList<>();
         String lowerCaseName = name.toLowerCase();
         for (Employee e : employees) {
-            if (e.getName().toLowerCase().contains(lowerCaseName)) {
+            if (e.getName().toLowerCase().contains(lowerCaseName) && e.isActive()) {
                 results.add(e);
             }
         }
@@ -57,12 +68,13 @@ public class EmployeeList {
 
     public void removeEmployeeById(String id) {
         Employee del = findById(id);
-        del.setAvailable(false);
+        del.setActive(false);
     }
 
     public void displayAll() {
-        for (Employee c : employees) {
-            c.displayinfo();
+        for (Employee e : employees) {
+            if (e.isActive())
+                e.displayinfo();
         }
     }
 

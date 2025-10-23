@@ -3,6 +3,7 @@ abstract class Person {
     protected String name;
     protected String phoneNumber;
     protected String address;
+    protected boolean active = true;
 
     public Person(String id, String name, String phoneNumber, String address) {
         this.id = id;
@@ -35,12 +36,20 @@ abstract class Person {
         this.name = name;
     }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
     public void displayinfo() {
