@@ -69,7 +69,7 @@ public class Main {
         ListInvoiceDetails listdet = new ListInvoiceDetails();
         listin.readFile();
         listdet.readFile();
-        listb.readFile();
+        listb.displayAll();
         // in hoa don 
         addCustomerold(listemp, listCus, listin, listdet, listb);
         

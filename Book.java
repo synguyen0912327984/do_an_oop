@@ -83,5 +83,25 @@ public class Book {
     public String toString() {
         return bookID + "," + Title + "," + Author + "," + Publisher + "," + Price + "," + Amount;
     }
+    public static Book fromString(String line) {
+    String[] p = line.split(",");
+    if (p.length == 6) { // ✅ kiểm tra đủ 6 phần
+        try {
+            String bookID = p[0];
+            String title = p[1];
+            String author = p[2];
+            String publisher = p[3];
+            double price = Double.parseDouble(p[4]);
+            int amount = Integer.parseInt(p[5]);
+            return new Book(bookID, title, author, publisher, price, amount);
+        } catch (NumberFormatException e) {
+            System.err.println("Lỗi định dạng dữ liệu: " + e.getMessage());
+        }
+    } else {
+        System.err.println("Dòng dữ liệu không hợp lệ: " + line);
+    }
+    return null;
+}
+
     
 }
