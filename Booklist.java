@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class Booklist {
@@ -67,6 +69,9 @@ public class Booklist {
             case "author":
                 result = findByAuthor(keyword);
                 break;
+            case "publisher":
+                result = findByPublisher(keyword);
+                break;
         }
     
         if (result.isEmpty()) {
@@ -111,6 +116,16 @@ public class Booklist {
         }
         return result;
     }
+    //Tim theo publisher
+    public ArrayList<Book> findByPublisher(String publisher) {
+        ArrayList<Book> result = new ArrayList<>();
+        for (Book b : list) {
+            if (b.getPublisher().toLowerCase().contains(publisher.toLowerCase())) {
+                result.add(b);
+            }
+        }
+        return result;
+    }
     //Phuong thuc them sach
     public ArrayList<Book> AddBook(Book book) {
         for (Book b : list) 
@@ -129,7 +144,7 @@ public class Booklist {
         boolean removed = list.removeIf(b -> b.getbookID().equalsIgnoreCase(bookID));
         if (removed) {
             System.out.println("Da xoa sach co ID: " + bookID);
-            saveToFile();
+            
         } else {
             System.out.println("Khong tim thay sach co ID: " + bookID);
         }
@@ -140,22 +155,32 @@ public class Booklist {
             if (list.get(i).getbookID().equalsIgnoreCase(bookID)) {
                 list.set(i, updatedBook); //thay the phan tu tai vi tri i bang updatedBook
                 System.out.println("Da cap nhat sach co ID: " + bookID);
-                saveToFile();
+                
                 return;
             }
         }
         System.out.println("Khong tim thay sach co ID: " + bookID);
     }
-    // Phuong thuc cap nhat file
-    public void saveToFile() {
-        try (PrintWriter pw = new PrintWriter("books.txt")) {
-            for (Book b : list) {
-                pw.println(b.getbookID() + "," + b.getTitle() + "," + b.getAuthor() + "," +
-                           b.getPublisher() + "," + b.getPrice() + "," + b.getAmount());
-            }
-            System.out.println("File books.txt da duoc cap nhat.");
-        } catch (Exception e) {
-            System.err.println("Loi ghi file: " + e.getMessage());
-        }
+    //Phuong thuc thong ke tong so sach hien co
+    public void totalBooks() {
+
     }
+
+    // Phuong thuc cap nhat file
+   public void saveToFile() {
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter("books.txt"))) {
+        for (Book b : list) {
+            bw.write(b.getbookID() + "," +
+                     b.getTitle() + "," +
+                     b.getAuthor() + "," +
+                     b.getPublisher() + "," +
+                     b.getPrice() + "," +
+                     b.getAmount());
+            bw.newLine();
+        }
+        System.out.println("File books.txt da duoc cap nhat.");
+    } catch (IOException e) {
+        System.err.println("Loi ghi file: " + e.getMessage());
+    }
+}
 }
