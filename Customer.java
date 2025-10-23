@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
 class Customer extends Person implements ICustomerActions {
     private static int customerCount = 0;
     private int loyaltyPoints;
@@ -45,17 +46,17 @@ class Customer extends Person implements ICustomerActions {
         System.out.print("Enter the amount you want to buy: ");
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
             int temp1 = Integer.parseInt(br.readLine());
-            if(a.getAmount() >= temp1){
+            if (a.getAmount() >= temp1) {
                 System.out.print("Are you sure? y/n: ");
                 String temp2 = br.readLine();
-                if(temp2.equalsIgnoreCase("y")){
+                if (temp2.equalsIgnoreCase("y")) {
                     System.out.println("Successfully purchased!");
                     a.setAmount(a.getAmount() - temp1);
-                    addLoyaltyPoints((int)(a.getPrice() / 10000));
-                }
-                else System.out.println("Cancelled.");
-            }
-            else System.out.println("Only " + a.getAmount() + " items are available. Please adjust your quantity.");
+                    addLoyaltyPoints((int) (a.getPrice() / 10000));
+                } else
+                    System.out.println("Cancelled.");
+            } else
+                System.out.println("Only " + a.getAmount() + " items are available. Please adjust your quantity.");
         } catch (Exception e) {
             e.printStackTrace();
         }
