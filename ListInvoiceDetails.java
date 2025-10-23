@@ -65,6 +65,13 @@ public class ListInvoiceDetails {
     }
 
 
+    public void addlist(InvoiceDetail ln){
+        list.add(ln);
+    }
+
+    
+
+
     
     
 }
