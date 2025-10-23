@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
 
-public class Main {
+public class Manager {
 
     public double calculateTotal(ArrayList<InvoiceDetail> ind, Booklist lb) {
         double allTotal = 0;
@@ -12,7 +12,8 @@ public class Main {
         return allTotal;
     }
 
-    public static void PrintInvoice(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld, Booklist lb, String id) {
+    public static void PrintInvoice(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
+            Booklist lb, String id) {
         Invoice inv = ln.test(id);
         if (inv == null) {
             System.out.println(id + " is empty");
@@ -38,7 +39,8 @@ public class Main {
         for (int i = 0; i < ind.size(); i++) {
             InvoiceDetail d = ind.get(i);
             Book b = lb.findByID(d.getIdBook());
-            if (b == null) continue; // safety check
+            if (b == null)
+                continue; // safety check
             double total = d.getQuantity() * b.getPrice();
             totalAll += total;
 
@@ -51,7 +53,8 @@ public class Main {
         System.out.println("==============================================================");
     }
 
-    public static void addCustomerOld(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld, Booklist lb) {
+    public static void addCustomerOld(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
+            Booklist lb) {
         Scanner sc = new Scanner(System.in);
         Invoice inv = new Invoice();
 
@@ -71,7 +74,8 @@ public class Main {
             System.out.print("idCus: ");
             id = sc.nextLine();
             valid = lc.findById(id) != null;
-            if (!valid) System.out.println("Customer ID not found!");
+            if (!valid)
+                System.out.println("Customer ID not found!");
         } while (!valid);
         inv.setIdCustomer(id);
 
@@ -80,7 +84,8 @@ public class Main {
             System.out.print("idEmp: ");
             id = sc.nextLine();
             valid = le.findById(id) != null;
-            if (!valid) System.out.println("Employee ID not found!");
+            if (!valid)
+                System.out.println("Employee ID not found!");
         } while (!valid);
         inv.setIdEmployee(id);
 
@@ -99,7 +104,8 @@ public class Main {
                 System.out.print("IdBook: ");
                 idBook = sc.nextLine();
                 book = lb.findByID(idBook);
-                if (book == null) System.out.println("Book ID not found!");
+                if (book == null)
+                    System.out.println("Book ID not found!");
             } while (book == null);
             System.out.println(book.getAmount());
             // Quantity input
@@ -130,7 +136,6 @@ public class Main {
 
         // Save invoice and details
         ArrayList<InvoiceDetail> Newden = new ArrayList<>();
-        
 
         System.out.println("Invoice " + idInvoice + " created successfully!");
     }
@@ -146,7 +151,7 @@ public class Main {
         listdet.readFile();
 
         // Example usage
-    //    PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
+        // PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
         addCustomerOld(listemp, listCus, listin, listdet, listb);
     }
 }
