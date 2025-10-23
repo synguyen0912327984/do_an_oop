@@ -5,6 +5,7 @@ public class Book {
     private String Publisher;
     private double Price;
     private int Amount;
+    private boolean status; //trang thai sach con hoat dong hay khong
 
     // Khoi tao
     public Book() {}
@@ -15,9 +16,17 @@ public class Book {
         this.Publisher = Publisher;
         this.Price = Price;
         this.Amount = Amount;
+        this.status = true; //mac dinh la con hoat dong
     }
 
     // Get va set
+    public boolean isActive() { //ho tro ham xoa 
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
     public String getbookID() //Mã Sách
     {
         return bookID;
