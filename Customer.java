@@ -26,12 +26,14 @@ class Customer extends Person implements ICustomerActions {
     @Override
     public void displayinfo() {
         System.out.println("=====================================");
-        System.out.println("Customer ID     : " + id);
-        System.out.println("Name            : " + name);
-        System.out.println("Phone           : " + phoneNumber);
-        System.out.println("Address         : " + address);
+        super.displayinfo();
         System.out.println("LoyaltyPoints   : " + loyaltyPoints);
         System.out.println("=====================================");
+    }
+
+    @Override
+    public String getRole() {
+        return "Customer";
     }
 
     @Override
@@ -97,4 +99,5 @@ class Customer extends Person implements ICustomerActions {
     public static void setCustomerCounter(int value) {
         customerCount = value;
     }
+
 }

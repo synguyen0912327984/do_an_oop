@@ -77,6 +77,17 @@ public class CustomerList {
         return null;
     }
 
+    public ArrayList<Customer> findAllByName(String name) {
+        ArrayList<Customer> results = new ArrayList<>();
+        String lowerCaseName = name.toLowerCase();
+        for (Customer e : customers) {
+            if (e.getName().toLowerCase().contains(lowerCaseName)) {
+                results.add(e);
+            }
+        }
+        return results;
+    }
+
     public void displayAll() {
         for (Customer c : customers) {
             c.displayinfo();

@@ -44,6 +44,17 @@ public class EmployeeList {
         return null;
     }
 
+    public ArrayList<Employee> findAllByName(String name) {
+        ArrayList<Employee> results = new ArrayList<>();
+        String lowerCaseName = name.toLowerCase();
+        for (Employee e : employees) {
+            if (e.getName().toLowerCase().contains(lowerCaseName)) {
+                results.add(e);
+            }
+        }
+        return results;
+    }
+
     public void removeEmployeeById(String id) {
         Employee del = findById(id);
         del.setAvailable(false);

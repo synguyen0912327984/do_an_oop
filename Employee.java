@@ -16,7 +16,7 @@ class Employee extends Person {
             boolean available) {
         super(null, name, phoneNumber, address);
         employeeCount++;
-        this.id = String.format("E%d03", employeeCount);
+        this.id = String.format("E%03", employeeCount);
         this.position = position;
         this.salary = salary;
         this.available = available;
@@ -24,14 +24,15 @@ class Employee extends Person {
 
     @Override
     public void displayinfo() {
-        System.out.println("=====================================");
-        System.out.println("Employee ID     : " + id);
-        System.out.println("Name            : " + name);
-        System.out.println("Phone           : " + phoneNumber);
-        System.out.println("Address         : " + address);
+        super.displayinfo();
         System.out.println("Position        : " + position);
         System.out.println("Salary          : " + salary);
         System.out.println("=====================================");
+    }
+
+    @Override
+    public String getRole() {
+        return "Employee";
     }
 
     @Override

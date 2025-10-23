@@ -43,5 +43,14 @@ abstract class Person {
         this.address = address;
     }
 
-    public abstract void displayinfo();
+    public void displayinfo() {
+        System.out.println("=====================================");
+        System.out.println("ID        : " + id);
+        System.out.println("Tên       : " + name);
+        System.out.println("SĐT       : " + phoneNumber);
+        System.out.println("Địa chỉ   : " + address);
+        System.out.println("Vai trò   : " + getRole());
+    }
+
+    public abstract String getRole();
 }
