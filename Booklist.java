@@ -7,6 +7,7 @@ import java.util.*;
 
 public class Booklist {
     private ArrayList<Book> list = new ArrayList<>();
+    Scanner sc = new Scanner(System.in);
     private static final String FILE_NAME = "books.txt";
     // Khoi tao
     public Booklist() {
@@ -15,7 +16,7 @@ public class Booklist {
             String line;
 
             while ((line = br.readLine()) != null) {
-                AddBook(Book.fromString(line));
+                list.add(Book.fromString(line));// neu sua lai thanh AddBook thi se bi dinh Scanner, ket trong vong lap trong ham Addbook
             }
 
         } catch (Exception e) {
@@ -26,6 +27,9 @@ public class Booklist {
     }
 
     // Get va set
+    public int getQuantity(){
+        return list.size();
+    }
     public ArrayList<Book> getList() {
         return list;
     }
@@ -37,8 +41,10 @@ public class Booklist {
 
     public void displayAll() {
         for (Book hd : list) {
+            if(hd.isActive()){
             hd.display();
             System.out.println("----------");
+            }
         }
     }
 
@@ -113,29 +119,97 @@ public class Booklist {
         }
         return result;
     }
+    //Phuong thuc nhap thong tin sach 
+    public void inputBookInfo(Book book){
+        
+    //nhap title
+        boolean valid;
+        do
+        {
+            System.out.print("Nhap title: ");
+            String title_test;
+            title_test = sc.nextLine();
+            valid = !title_test.isEmpty();
+            if(valid)
+                book.setTitle(title_test);
+            else
+                System.out.println("Title khong duoc de trong. Vui long nhap lai.");
+        }while(!valid);
+    //Nhap Author    
+        do
+        {
+            System.out.print("Nhap Author: ");
+            String Author_test;
+            Author_test = sc.nextLine();
+            valid = !Author_test.isEmpty();
+            if(valid)
+                book.setAuthor(Author_test);
+            else
+                System.out.println("Author khong duoc de trong. Vui long nhap lai.");
+        }while(!valid);
+        //Nhap Publisher
+        do{
+            System.out.print("Nhap Publisher: ");
+            String Publisher_test;
+            Publisher_test = sc.nextLine();
+            valid = !Publisher_test.isEmpty();
+            if(valid)
+                book.setPublisher(Publisher_test);
+            else
+                System.out.println("Publisher khong duoc de trong. Vui long nhap lai.");
+        }while(!valid);
+        //Nhap Price
+        do{
+            System.out.print("Nhap Price: ");
+            String Price_input = sc.nextLine();
+            valid = !Price_input.isEmpty();
+            if(valid)
+                book.setPrice(Double.parseDouble(Price_input));
+            else
+                System.out.println("Price khong duoc de trong. Vui long nhap lai.");
+
+            if((Double.parseDouble(Price_input))<0)
+                System.out.println("Price khong duoc nhap gia tri am. Vui long nhap lai");
+            
+            
+        }while(!valid);
+        do{
+            System.out.print("Nhap Amount: ");
+            String Amount_input = sc.nextLine();
+            valid = !Amount_input.isEmpty();
+            if(valid)
+                book.setAmount(Integer.parseInt(Amount_input));
+            else
+                System.out.println("Amount khong duoc de trong. Vui long nhap lai.");
+
+            if((Integer.parseInt(Amount_input))<0)
+                System.out.println("Amount khong duoc nhap gia tri am. Vui long nhap lai");
+            
+            
+        }while(!valid);
+    }
     //Phuong thuc them sach
     public void AddBook(Book book) {
-    if (book == null) {
-        System.out.println("Sach khong hop le (null).");
-        return;
-    }
-    if (book.getbookID() == null || book.getbookID().isEmpty()) {
-        System.out.println("Ma sach khong duoc de trong.");
-        return;
-    }
-    if (book.getPrice() < 0 || book.getAmount() < 0) {
-        System.out.println("Gia hoac so luong khong hop le.");
-        return;
-    }
-
-    for (Book b : list) {
-        if (b.getbookID().equalsIgnoreCase(book.getbookID())) {
-            System.out.println("ID da ton tai. Khong the them sach moi.");
-            return;
+        //Tao ID cho book
+        
+        int number = getQuantity()+1;
+        String test_idBook;
+        do{
+            test_idBook = "B0" + number;
+            number++;
         }
+        while (findByID(test_idBook) != null);
+        book.setbookID(test_idBook);
+        System.out.println("Book ID da duoc tao: " + book.getbookID());
+
+        inputBookInfo(book);
+        list.add(book);
+        book.setStatus(true); 
+        System.out.println("Da them sach thanh cong!");
     }
-    list.add(book);
-}
+    
+    
+
     // Phuong thuc xoa sach
     public boolean removeBook(String bookID) 
     {
@@ -146,7 +220,7 @@ public class Booklist {
                 return false;
             }
             b.setStatus(false); // danh dau xoa
-            saveToFile();
+            
             System.out.println("Da danh dau sach co ID: " + bookID + " la 'Deleted'.");
             return true;
         }
@@ -166,17 +240,25 @@ public class Booklist {
         }
     }
     // Phuong thuc sua sach
-    public void updateBook(String bookID, Book updatedBook) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getbookID().equalsIgnoreCase(bookID)) {
-                list.set(i, updatedBook); //thay the phan tu tai vi tri i bang updatedBook
-                System.out.println("Da cap nhat sach co ID: " + bookID);
-                
-                return;
-            }
+public void updateBook() {
+    System.out.print("Nhap ID sach can sua: ");
+    String bookID_Fix = sc.nextLine(); // nhap id sach can sua
+
+    boolean found = false;
+    for (Book i : list) {
+        if (i.getbookID().equalsIgnoreCase(bookID_Fix)) {
+            inputBookInfo(i); // Update sach
+            System.out.println("Da cap nhat sach co ID: " + bookID_Fix);
+            found = true;
+            break;
         }
-        System.out.println("Khong tim thay sach co ID: " + bookID);
     }
+
+    if (!found) {
+        System.out.println("Khong tim thay sach co ID: " + bookID_Fix);
+    }
+}
+            
     //Phuong thuc thong ke tong so sach hien co
     public void totalBooks() {
         int total = 0;
@@ -187,7 +269,18 @@ public class Booklist {
         }
         System.out.println("Tong so sach hien co trong kho: " + total);
     }
-
+    //Phuong thuc thong ke cac sach co so luong > x
+    public void booksGreaterThan(){
+        System.out.println("Nhap so luong x: ");
+        int x = sc.nextInt();
+        System.out.println("Cac sach co so luong > " + x + ":");
+        for (Book b : list) {
+            if (b.isActive() && b.getAmount() > x) {
+                b.display();
+                System.out.println("----------");
+            }
+        }
+    }
     // Phuong thuc cap nhat file
    public void saveToFile() 
    {
