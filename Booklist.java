@@ -7,9 +7,20 @@ import java.util.*;
 
 public class Booklist {
     private ArrayList<Book> list = new ArrayList<>();
-
+    private static final String FILE_NAME = "books.txt";
     // Khoi tao
-    public Booklist() {}
+    public Booklist() {
+        list = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                AddBook(Book.fromString(line));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }}
     public Booklist(ArrayList<Book> list){
         this.list = list;
     }
@@ -22,31 +33,7 @@ public class Booklist {
         this.list = list;
     }
 
-    public void readFile() {
-        ArrayList<Book> tempList = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("books.txt"))) {
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                String[] arr = line.split(",");
-                if (arr.length == 6) {
-                    String bookID = arr[0].trim();
-                    String title = arr[1].trim();
-                    String author = arr[2].trim();
-                    String publisher = arr[3].trim();
-                    double price = Double.parseDouble(arr[4].trim());
-                    int amount = Integer.parseInt(arr[5].trim());
-
-                    Book book = new Book(bookID, title, author, publisher, price, amount);
-                    tempList.add(book);
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        this.list = tempList;
-    }
+    
 
     public void displayAll() {
         for (Book hd : list) {
@@ -61,7 +48,8 @@ public class Booklist {
         
         switch (type.toLowerCase()) { 
             case "id":
-                result = findByID(keyword);
+                Book found = findByID(keyword);
+                if (found != null) result.add(found); // do kieu du lieu tra ve la Book 
                 break;
             case "title":
                 result = findByTitle(keyword);
@@ -85,14 +73,13 @@ public class Booklist {
     }
 
     // Tim theo ID
-    public ArrayList<Book> findByID(String bookID) {
-        ArrayList<Book> result = new ArrayList<>();
+    public Book findByID(String bookID) {
         for (Book b : list) {
             if (b.getbookID().equalsIgnoreCase(bookID)) {
-                result.add(b);
+                return b;
             }
         }
-        return result;
+        return null;
     }
 
     // Tim theo title
@@ -127,26 +114,55 @@ public class Booklist {
         return result;
     }
     //Phuong thuc them sach
-    public ArrayList<Book> AddBook(Book book) {
-        for (Book b : list) 
-        {
-        if (b.getbookID().equalsIgnoreCase(book.getbookID())) 
-            {
-            System.out.println("ID da ton tai. Khong the them sach moi."); //Rang buoc ID sach la duy nhat
-                return null;
-            }
-        }
-        list.add(book);
-        return list;
+    public void AddBook(Book book) {
+    if (book == null) {
+        System.out.println("Sach khong hop le (null).");
+        return;
     }
+    if (book.getbookID() == null || book.getbookID().isEmpty()) {
+        System.out.println("Ma sach khong duoc de trong.");
+        return;
+    }
+    if (book.getPrice() < 0 || book.getAmount() < 0) {
+        System.out.println("Gia hoac so luong khong hop le.");
+        return;
+    }
+
+    for (Book b : list) {
+        if (b.getbookID().equalsIgnoreCase(book.getbookID())) {
+            System.out.println("ID da ton tai. Khong the them sach moi.");
+            return;
+        }
+    }
+    list.add(book);
+}
     // Phuong thuc xoa sach
-    public void removeBook(String bookID) {
-        boolean removed = list.removeIf(b -> b.getbookID().equalsIgnoreCase(bookID));
-        if (removed) {
-            System.out.println("Da xoa sach co ID: " + bookID);
-            
-        } else {
-            System.out.println("Khong tim thay sach co ID: " + bookID);
+    public boolean removeBook(String bookID) 
+    {
+    for (Book b : list) {
+        if (b.getbookID().equalsIgnoreCase(bookID)) {
+            if (!b.isActive()) {
+                System.out.println("Sach nay da bi danh dau xoa truoc do.");
+                return false;
+            }
+            b.setStatus(false); // danh dau xoa
+            saveToFile();
+            System.out.println("Da danh dau sach co ID: " + bookID + " la 'Deleted'.");
+            return true;
+        }
+    }
+    System.out.println("Khong tim thay sach co ID: " + bookID);
+    return false;
+    }
+    
+    //phuong thuc in ra danh sach sach da xoa
+    public void displayDeletedBooks(){
+        System.out.println("Danh sach sach da bi xoa:");
+        for (Book b : list) {
+            if (!b.isActive()) {
+                b.display();
+                System.out.println("----------");
+            }
         }
     }
     // Phuong thuc sua sach
@@ -163,12 +179,19 @@ public class Booklist {
     }
     //Phuong thuc thong ke tong so sach hien co
     public void totalBooks() {
-
+        int total = 0;
+        for (Book b : list) {
+            if (b.isActive()) {
+                total += b.getAmount();
+            }
+        }
+        System.out.println("Tong so sach hien co trong kho: " + total);
     }
 
     // Phuong thuc cap nhat file
-   public void saveToFile() {
-    try (BufferedWriter bw = new BufferedWriter(new FileWriter("books.txt"))) {
+   public void saveToFile() 
+   {
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
         for (Book b : list) {
             bw.write(b.getbookID() + "," +
                      b.getTitle() + "," +
@@ -182,5 +205,6 @@ public class Booklist {
     } catch (IOException e) {
         System.err.println("Loi ghi file: " + e.getMessage());
     }
-}
+    }
+    
 }

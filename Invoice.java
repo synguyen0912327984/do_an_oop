@@ -2,10 +2,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Invoice {
-    private String idInvoice;     // Mã hóa đơn
-    private String idCustomer;    // Mã khách hàng
-    private String idEmployee;    // Mã nhân viên
-    private LocalDate time;       // Ngày lập hóa đơn
+    private String idInvoice;     
+    private String idCustomer;    
+    private String idEmployee;    
+    private LocalDate time;   
+    
+    public Invoice() {}
 
     public Invoice(String idInvoice, String idCustomer, String idEmployee, LocalDate time) {
         this.idInvoice = idInvoice;
@@ -14,6 +16,7 @@ public class Invoice {
         this.time = time;
     }
 
+    // Getters
     public String getIdInvoice() {
         return idInvoice;
     }
@@ -28,6 +31,24 @@ public class Invoice {
 
     public LocalDate getTime() {
         return time;
+    }
+
+
+    // 🔽 Setters
+    public void setIdInvoice(String idInvoice) {
+        this.idInvoice = idInvoice;
+    }
+
+    public void setIdCustomer(String idCustomer) {
+        this.idCustomer = idCustomer;
+    }
+
+    public void setIdEmployee(String idEmployee) {
+        this.idEmployee = idEmployee;
+    }
+
+    public void setTime(LocalDate time) {
+        this.time = time;
     }
 
     public void displayInvoice() {

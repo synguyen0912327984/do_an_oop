@@ -5,6 +5,7 @@ public class Book {
     private String Publisher;
     private double Price;
     private int Amount;
+    private boolean status; //trang thai sach con hoat dong hay khong
 
     // Khoi tao
     public Book() {}
@@ -15,9 +16,17 @@ public class Book {
         this.Publisher = Publisher;
         this.Price = Price;
         this.Amount = Amount;
+        this.status = true; //mac dinh la con hoat dong
     }
 
     // Get va set
+    public boolean isActive() { //ho tro ham xoa 
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
     public String getbookID() //Mã Sách
     {
         return bookID;
@@ -83,5 +92,25 @@ public class Book {
     public String toString() {
         return bookID + "," + Title + "," + Author + "," + Publisher + "," + Price + "," + Amount;
     }
+    public static Book fromString(String line) {
+    String[] p = line.split(",");
+    if (p.length == 6) { // ✅ kiểm tra đủ 6 phần
+        try {
+            String bookID = p[0];
+            String title = p[1];
+            String author = p[2];
+            String publisher = p[3];
+            double price = Double.parseDouble(p[4]);
+            int amount = Integer.parseInt(p[5]);
+            return new Book(bookID, title, author, publisher, price, amount);
+        } catch (NumberFormatException e) {
+            System.err.println("Lỗi định dạng dữ liệu: " + e.getMessage());
+        }
+    } else {
+        System.err.println("Dòng dữ liệu không hợp lệ: " + line);
+    }
+    return null;
+}
+
     
 }

@@ -38,7 +38,7 @@ B037,Catching Fire,Suzanne Collins,Scholastic Press,100000,40
 B038,Mockingjay,Suzanne Collins,Scholastic Press,105000,38
 B039,Dune,Frank Herbert,Chilton Books,115000,32
 B040,Foundation,Isaac Asimov,Bantam Books,99000,29
-B041,I, Robot,Isaac Asimov,Bantam Books,94000,25
+B041,I & Robot,Isaac Asimov,Bantam Books,94000,25
 B042,Animal Farm,George Orwell,Secker & Warburg,79000,33
 B043,The Shining,Stephen King,Doubleday,99000,26
 B044,It,Stephen King,Viking Press,110000,22

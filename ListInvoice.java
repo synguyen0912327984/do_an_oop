@@ -9,6 +9,10 @@ public class ListInvoice {
 
     public ListInvoice() {}
 
+    public int getQuantity(){
+        return list.size();
+    }
+
     public ListInvoice(ArrayList<Invoice> list) {
         this.list = list;
     }
@@ -30,7 +34,6 @@ public class ListInvoice {
         }
     }
 
-    // ✅ Đọc dữ liệu từ file Invoice.txt
     public void readFile() {
         ArrayList<Invoice> tempList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("Invoice.txt"))) {
@@ -39,10 +42,10 @@ public class ListInvoice {
             while ((line = br.readLine()) != null) {
                 String[] arr = line.split(",");
                 if (arr.length == 4) {
-                    String idInvoice = arr[0].trim();
-                    String idCustomer = arr[1].trim();
-                    String idEmployee = arr[2].trim(); 
-                    String dateStr = arr[3].trim();
+                    String idInvoice = arr[0];
+                    String idCustomer = arr[1];
+                    String idEmployee = arr[2]; 
+                    String dateStr = arr[3];
                     DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     LocalDate date = LocalDate.parse(dateStr, fmt);
 
@@ -57,6 +60,18 @@ public class ListInvoice {
 
         this.list = tempList;
     }
+
+    public Invoice test(String id){
+        for(Invoice st:list){
+            if(id.equalsIgnoreCase(st.getIdInvoice())) return st;
+        }
+        return null;
+    }
+
+    public void addlist(Invoice l1){
+        list.add(l1);
+    }
+    
 
     
 }
