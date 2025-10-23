@@ -46,10 +46,10 @@ abstract class Person {
     public void displayinfo() {
         System.out.println("=====================================");
         System.out.println("ID        : " + id);
-        System.out.println("Tên       : " + name);
-        System.out.println("SĐT       : " + phoneNumber);
-        System.out.println("Địa chỉ   : " + address);
-        System.out.println("Vai trò   : " + getRole());
+        System.out.println("Name      : " + name);
+        System.out.println("Phone     : " + phoneNumber);
+        System.out.println("Address   : " + address);
+        System.out.println("Role      : " + getRole());
     }
 
     public abstract String getRole();

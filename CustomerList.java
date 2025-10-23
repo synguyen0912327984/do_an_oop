@@ -54,7 +54,6 @@ public class CustomerList {
                     break;
                 }
                 findByPhone(keyword).displayinfo();
-                ;
                 break;
         }
     }
