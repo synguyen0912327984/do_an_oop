@@ -9,6 +9,10 @@ public class ListInvoice {
 
     public ListInvoice() {}
 
+    public int getQuantity(){
+        return list.size();
+    }
+
     public ListInvoice(ArrayList<Invoice> list) {
         this.list = list;
     }
