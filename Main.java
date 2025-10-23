@@ -4,26 +4,39 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Main {
-/*     public static void PrintInvoice(EmployeeList le,CustomerList lc,ListInvoice ln,ListInvoiceDetails ld,Booklist lb,String id){
+
+    public double calculatetototal(ArrayList<InvoiceDetail> ind,Booklist lb){
+        double Alltotal=0;
+        for(InvoiceDetail st:ind){
+            Alltotal+=st.getQuantity()*lb.findByID(st.getIdBook()).getPrice();
+        }
+        return Alltotal;
+    }
+
+    public static void PrintInvoice(EmployeeList le,CustomerList lc,ListInvoice ln,ListInvoiceDetails ld,Booklist lb,String id){
         Invoice inv = new Invoice();
         ArrayList<InvoiceDetail> ind = new ArrayList<>();
-        ArrayList<Book> inb = new ArrayList<>();
         if(ln.test(id)==null){
             System.out.println(id+"is empty");
             return ;
         }
+        inv=ln.test(id);
+        ind=ld.find(id);    
+        System.out.println("Customer:"+lc.findById(inv.getIdCustomer()).getName());
+        System.out.println("Staff:"+le.findById(inv.getIdEmployee()).getName());
+        for(int i=0;i<ind.size();i++){
+            System.out.println(lb.findByID(ind.get(i)));
+        }
         
-        for
         
         
         
-        
-    }*/ 
+    } 
 
     public static void addCustomerold(EmployeeList le,CustomerList lc,ListInvoice ln,ListInvoiceDetails ld,Booklist lb){
         String idInvoice = new String();
         idInvoice="HD";
-        int number =
+        
 
 
 
@@ -69,9 +82,10 @@ public class Main {
         ListInvoiceDetails listdet = new ListInvoiceDetails();
         listin.readFile();
         listdet.readFile();
-        listb.displayAll();
+        listb.readFile();
         // in hoa don 
-        addCustomerold(listemp, listCus, listin, listdet, listb);
+        PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
+    //    addCustomerold(listemp, listCus, listin, listdet, listb);
         
         
         
