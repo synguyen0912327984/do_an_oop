@@ -59,7 +59,7 @@ public class Main {
         System.out.println("Staff  : " + le.findById(inv.getIdEmployee()).getName());
         System.out.println("--------------------------------------------------------------");
         
-<<<<<<< Updated upstream
+
         // 🔹 In tiêu đề bảng
         System.out.printf("%-5s %-40s %-10s %-10s %-10s%n",
             "No", "Name", "Amount", "Price", "Total");
@@ -160,6 +160,9 @@ public class Main {
                     System.out.println("Dont enough to buy");
                 }
             } while (n1);
+            System.out.println("1.continue");
+            System.out.println("correct");
+            
         }while(choice);
         
         
@@ -177,13 +180,11 @@ public class Main {
         listin.readFile();
         listdet.readFile();
         // in hoa don 
-<<<<<<< Updated upstream
-     //  PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
-        addCustomerold(listemp, listCus, listin, listdet, listb); 
-=======
+
+
         PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
-    //    addCustomerold(listemp, listCus, listin, listdet, listb);
->>>>>>> Stashed changes
+        addCustomerold(listemp, listCus, listin, listdet, listb);
+
         
         
         
