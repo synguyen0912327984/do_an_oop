@@ -101,14 +101,27 @@ public class Main {
             boolean n1;
             String idbook = new String();
             int quantity;
+            boolean choice=true;
             
         do{
             n1=true;
             do {
                 System.out.println("Idbook:");
-
+                id=sc.nextLine();
+                if(lb.findByID(idbook)==null){
+                    System.out.println("id empty");
+                }else{
+                    n1=false;
+                }
             } while (n1);
-        }while()
+            do {
+                System.out.print("quantity:");
+                quantity=sc.nextInt();
+                if(quantity<lb.findByID(idbook).getAmount()){
+                    System.out.println("Dont enough to buy");
+                }
+            } while (n1);
+        }while(choice);
         
         
     }
