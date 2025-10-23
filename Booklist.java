@@ -137,13 +137,32 @@ public class Booklist {
     list.add(book);
 }
     // Phuong thuc xoa sach
-    public void removeBook(String bookID) {
-        boolean removed = list.removeIf(b -> b.getbookID().equalsIgnoreCase(bookID));
-        if (removed) {
-            System.out.println("Da xoa sach co ID: " + bookID);
-            
-        } else {
-            System.out.println("Khong tim thay sach co ID: " + bookID);
+    public boolean removeBook(String bookID) 
+    {
+    for (Book b : list) {
+        if (b.getbookID().equalsIgnoreCase(bookID)) {
+            if (!b.isActive()) {
+                System.out.println("Sach nay da bi danh dau xoa truoc do.");
+                return false;
+            }
+            b.setStatus(false); // danh dau xoa
+            saveToFile();
+            System.out.println("Da danh dau sach co ID: " + bookID + " la 'Deleted'.");
+            return true;
+        }
+    }
+    System.out.println("Khong tim thay sach co ID: " + bookID);
+    return false;
+    }
+    
+    //phuong thuc in ra danh sach sach da xoa
+    public void displayDeletedBooks(){
+        System.out.println("Danh sach sach da bi xoa:");
+        for (Book b : list) {
+            if (!b.isActive()) {
+                b.display();
+                System.out.println("----------");
+            }
         }
     }
     // Phuong thuc sua sach
@@ -160,7 +179,13 @@ public class Booklist {
     }
     //Phuong thuc thong ke tong so sach hien co
     public void totalBooks() {
-
+        int total = 0;
+        for (Book b : list) {
+            if (b.isActive()) {
+                total += b.getAmount();
+            }
+        }
+        System.out.println("Tong so sach hien co trong kho: " + total);
     }
 
     // Phuong thuc cap nhat file
