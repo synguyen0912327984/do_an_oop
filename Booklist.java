@@ -221,7 +221,7 @@ public class Booklist {
             }
             b.setStatus(false); // danh dau xoa
             
-            System.out.println("Da danh dau sach co ID: " + bookID + " la 'Deleted'.");
+            System.out.println("Da xoa sach co ID:" + bookID); // chi xoa mem
             return true;
         }
     }
