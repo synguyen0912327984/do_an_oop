@@ -44,6 +44,11 @@ public class EmployeeList {
         return null;
     }
 
+    public void removeEmployeeById(String id) {
+        Employee del = findById(id);
+        del.setAvailable(false);
+    }
+
     public void displayAll() {
         for (Employee c : employees) {
             c.displayinfo();
