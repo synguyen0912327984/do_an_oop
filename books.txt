@@ -1,50 +1,50 @@
-B001,To Kill a Mockingbird,Harper Lee,HarperCollins,85000,30
-B002,1984,George Orwell,Penguin Books,78000,25
-B003,Pride and Prejudice,Jane Austen,Oxford Press,90000,40
-B004,The Great Gatsby,F. Scott Fitzgerald,Scribner,88000,35
-B005,The Catcher in the Rye,J.D. Salinger,Little Brown,82000,50
-B006,Moby Dick,Herman Melville,Harper & Brothers,95000,20
-B007,War and Peace,Leo Tolstoy,Wordsworth Editions,120000,15
-B008,Crime and Punishment,Fyodor Dostoevsky,Modern Library,110000,22
-B009,The Odyssey,Homer,Penguin Classics,100000,18
-B010,Jane Eyre,Charlotte Bronte,Smith Elder,87000,30
-B011,Brave New World,Aldous Huxley,Chatto & Windus,92000,27
-B012,The Hobbit,J.R.R. Tolkien,Allen & Unwin,89000,45
-B013,The Lord of the Rings,J.R.R. Tolkien,Allen & Unwin,150000,28
-B014,Harry Potter and the Sorcerer’s Stone,J.K. Rowling,Bloomsbury,95000,60
-B015,Harry Potter and the Chamber of Secrets,J.K. Rowling,Bloomsbury,97000,55
-B016,Harry Potter and the Prisoner of Azkaban,J.K. Rowling,Bloomsbury,98000,50
-B017,Harry Potter and the Goblet of Fire,J.K. Rowling,Bloomsbury,105000,48
-B018,Harry Potter and the Order of the Phoenix,J.K. Rowling,Bloomsbury,110000,47
-B019,Harry Potter and the Half-Blood Prince,J.K. Rowling,Bloomsbury,112000,46
-B020,Harry Potter and the Deathly Hallows,J.K. Rowling,Bloomsbury,115000,44
-B021,The Da Vinci Code,Dan Brown,Doubleday,99000,38
-B022,Angels and Demons,Dan Brown,Pocket Books,97000,40
-B023,Inferno,Dan Brown,Bantam Press,98000,42
-B024,Origin,Dan Brown,Bantam Press,102000,41
-B025,The Alchemist,Paulo Coelho,HarperOne,88000,50
-B026,Veronika Decides to Die,Paulo Coelho,HarperCollins,87000,33
-B027,The Pilgrimage,Paulo Coelho,HarperCollins,86000,30
-B028,Eleven Minutes,Paulo Coelho,HarperOne,89000,29
-B029,The Kite Runner,Khaled Hosseini,Riverhead Books,94000,37
-B030,A Thousand Splendid Suns,Khaled Hosseini,Bloomsbury,95000,39
-B031,And the Mountains Echoed,Khaled Hosseini,Bloomsbury,93000,35
-B032,The Book Thief,Markus Zusak,Picador,97000,36
-B033,The Fault in Our Stars,John Green,Dutton Books,92000,45
-B034,Looking for Alaska,John Green,HarperCollins,91000,30
-B035,Paper Towns,John Green,Bloomsbury,93000,28
-B036,The Hunger Games,Suzanne Collins,Scholastic Press,98000,42
-B037,Catching Fire,Suzanne Collins,Scholastic Press,100000,40
-B038,Mockingjay,Suzanne Collins,Scholastic Press,105000,38
-B039,Dune,Frank Herbert,Chilton Books,115000,32
-B040,Foundation,Isaac Asimov,Bantam Books,99000,29
-B041,I & Robot,Isaac Asimov,Bantam Books,94000,25
-B042,Animal Farm,George Orwell,Secker & Warburg,79000,33
-B043,The Shining,Stephen King,Doubleday,99000,26
-B044,It,Stephen King,Viking Press,110000,22
-B045,Misery,Stephen King,Viking Press,95000,28
-B046,The Green Mile,Stephen King,Signet Books,93000,31
-B047,The Stand,Stephen King,Doubleday,115000,18
-B048,Pet Sematary,Stephen King,Doubleday,89000,24
-B049,Doctor Sleep,Stephen King,Scribner,97000,20
-B050,The Institute,Stephen King,Scribner,98000,19
+B001,To Kill a Mockingbird,Harper Lee,HarperCollins,85000,30,true
+B002,1984,George Orwell,Penguin Books,78000,25,true
+B003,Pride and Prejudice,Jane Austen,Oxford Press,90000,40,true
+B004,The Great Gatsby,F. Scott Fitzgerald,Scribner,88000,35,true
+B005,The Catcher in the Rye,J.D. Salinger,Little Brown,82000,50,true
+B006,Moby Dick,Herman Melville,Harper & Brothers,95000,20,true
+B007,War and Peace,Leo Tolstoy,Wordsworth Editions,120000,15,true
+B008,Crime and Punishment,Fyodor Dostoevsky,Modern Library,110000,22,true
+B009,The Odyssey,Homer,Penguin Classics,100000,18,true
+B010,Jane Eyre,Charlotte Bronte,Smith Elder,87000,30,true
+B011,Brave New World,Aldous Huxley,Chatto & Windus,92000,27,true
+B012,The Hobbit,J.R.R. Tolkien,Allen & Unwin,89000,45,true
+B013,The Lord of the Rings,J.R.R. Tolkien,Allen & Unwin,150000,28,true
+B014,Harry Potter and the Sorcerer’s Stone,J.K. Rowling,Bloomsbury,95000,60,true
+B015,Harry Potter and the Chamber of Secrets,J.K. Rowling,Bloomsbury,97000,55,true
+B016,Harry Potter and the Prisoner of Azkaban,J.K. Rowling,Bloomsbury,98000,50,true
+B017,Harry Potter and the Goblet of Fire,J.K. Rowling,Bloomsbury,105000,48,true
+B018,Harry Potter and the Order of the Phoenix,J.K. Rowling,Bloomsbury,110000,47,true
+B019,Harry Potter and the Half-Blood Prince,J.K. Rowling,Bloomsbury,112000,46,true
+B020,Harry Potter and the Deathly Hallows,J.K. Rowling,Bloomsbury,115000,44,true
+B021,The Da Vinci Code,Dan Brown,Doubleday,99000,38,true
+B022,Angels and Demons,Dan Brown,Pocket Books,97000,40,true
+B023,Inferno,Dan Brown,Bantam Press,98000,42,true
+B024,Origin,Dan Brown,Bantam Press,102000,41,true
+B025,The Alchemist,Paulo Coelho,HarperOne,88000,50,true
+B026,Veronika Decides to Die,Paulo Coelho,HarperCollins,87000,33,true
+B027,The Pilgrimage,Paulo Coelho,HarperCollins,86000,30,true
+B028,Eleven Minutes,Paulo Coelho,HarperOne,89000,29,true
+B029,The Kite Runner,Khaled Hosseini,Riverhead Books,94000,37,true
+B030,A Thousand Splendid Suns,Khaled Hosseini,Bloomsbury,95000,39,true
+B031,And the Mountains Echoed,Khaled Hosseini,Bloomsbury,93000,35,true
+B032,The Book Thief,Markus Zusak,Picador,97000,36,true
+B033,The Fault in Our Stars,John Green,Dutton Books,92000,45,true
+B034,Looking for Alaska,John Green,HarperCollins,91000,30,true
+B035,Paper Towns,John Green,Bloomsbury,93000,28,true
+B036,The Hunger Games,Suzanne Collins,Scholastic Press,98000,42,true
+B037,Catching Fire,Suzanne Collins,Scholastic Press,100000,40,true
+B038,Mockingjay,Suzanne Collins,Scholastic Press,105000,38,true
+B039,Dune,Frank Herbert,Chilton Books,115000,32,true
+B040,Foundation,Isaac Asimov,Bantam Books,99000,29,true
+B041,I & Robot,Isaac Asimov,Bantam Books,94000,25,true
+B042,Animal Farm,George Orwell,Secker & Warburg,79000,33,true
+B043,The Shining,Stephen King,Doubleday,99000,26,true
+B044,It,Stephen King,Viking Press,110000,22,true
+B045,Misery,Stephen King,Viking Press,95000,28,true
+B046,The Green Mile,Stephen King,Signet Books,93000,31,true
+B047,The Stand,Stephen King,Doubleday,115000,18,true
+B048,Pet Sematary,Stephen King,Doubleday,89000,24,true
+B049,Doctor Sleep,Stephen King,Scribner,97000,20,true
+B050,The Institute,Stephen King,Scribner,98000,19,true
