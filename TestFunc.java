@@ -1,6 +1,7 @@
 
 //Day la munu cho phan Customer va Employee
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TestFunc {
@@ -17,8 +18,14 @@ public class TestFunc {
             System.out.println("2. Tao nhan vien moi");
             System.out.println("3. In danh sach khach hang");
             System.out.println("4. In danh sach nhan vien");
-            System.out.println("5. Tim kiem khach hang theo ten");
+            System.out.println("5. Tim kiem khach hang theo id");
             System.out.println("6. Tim kien nhan vien theo id");
+            System.out.println("7. Tim kiem khach hang theo ten");
+            System.out.println("8. Tim kiem nhan vien theo ten");
+            System.out.println("9. Tim kiem khach hang theo so dien thoai");
+            System.out.println("10. Tim kiem nhan vien cho so dien thoai");
+            System.out.println("11. Xoa khach hang trong cua hang");
+            System.out.println("12.Sa thai nhan vien trong cua hang");
             System.out.println("0. Thoat");
             System.out.println("==========================");
             System.out.print(" Nhap su lua chon cua ban: ");
@@ -28,6 +35,8 @@ public class TestFunc {
 
             switch (select) {
                 case 0:
+                    e.saveToFile();
+                    c.saveToFile();
                     System.out.println("TAM BIET!");
                     break;
 
@@ -54,10 +63,10 @@ public class TestFunc {
                 case 5:
                     System.out.print("Nhap id khach hang can tim: ");
                     String customerId = sc.nextLine();
-                    Customer rsCustomer = c.findById(customerId);
-                    if (rsCustomer != null) {
+                    Customer rsCId = c.findById(customerId);
+                    if (rsCId != null) {
                         System.out.println("Tim thay khach hang:");
-                        rsCustomer.displayinfo();
+                        rsCId.displayinfo();
                     } else {
                         System.out.println("Khong tim thay khach hang voi ID: " + customerId);
                     }
@@ -66,15 +75,59 @@ public class TestFunc {
                 case 6:
                     System.out.print("Nhap id nhan vien can tim: ");
                     String employeeId = sc.nextLine();
-                    Employee rsEmployee = e.findById(employeeId);
-                    if (rsEmployee != null) {
+                    Employee rsEId = e.findById(employeeId);
+                    if (rsEId != null) {
                         System.out.println("Tim thay khach hang:");
-                        rsEmployee.displayinfo();
+                        rsEId.displayinfo();
                     } else {
                         System.out.println("Khong tim thay khach hang voi ID: " + employeeId);
                     }
                     break;
-
+                case 7:
+                    System.out.println("Nhap ten khach hang can tim");
+                    String customerName = sc.nextLine();
+                    ArrayList<Customer> rsCName = c.findAllByName(customerName);
+                    for (Customer cus : rsCName) {
+                        cus.displayinfo();
+                    }
+                    break;
+                case 8:
+                    System.out.println("Nhap ten nhan vien can tim");
+                    String employeeName = sc.nextLine();
+                    ArrayList<Employee> rsEName = e.findAllByName(employeeName);
+                    if (rsEName.isEmpty()) {
+                        for (Employee emp : rsEName) {
+                            emp.displayinfo();
+                        }
+                    } else {
+                        System.out.println("Khong tim thay ten nao hop le");
+                    }
+                    break;
+                case 9:
+                    System.out.println("Nhap so dien thoai khach hang can tim");
+                    String customerPhone = sc.nextLine();
+                    Customer rsCPhone = c.findByPhone(customerPhone);
+                    if (rsCPhone != null) {
+                        rsCPhone.displayinfo();
+                    } else {
+                        System.out.println("Khong tim thay so dien thoai");
+                    }
+                    break;
+                case 10:
+                    System.out.println("Nhap so dien thoai nhan vien can tim");
+                    String employeePhone = sc.nextLine();
+                    Employee rsEPhone = e.findByPhone(employeePhone);
+                    if (rsEPhone != null) {
+                        rsEPhone.displayinfo();
+                    } else {
+                        System.out.println("Khong tim thay so dien thoai");
+                    }
+                    break;
+                case 11:
+                    System.out.println();
+                    break;
+                case 12:
+                    break;
                 default:
                     System.out.println("Lua chon khong hop le , vui long thu lai!");
                     break;
