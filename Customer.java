@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-class Customer extends Person implements ICustomerActions {
+class Customer extends Person {
     private static int customerCount = 0;
     private int loyaltyPoints;
 
@@ -49,7 +49,6 @@ class Customer extends Person implements ICustomerActions {
 
     // Interface
 
-    @Override
     public void Buy(Book a) {
         System.out.print("Enter the amount you want to buy: ");
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
@@ -70,7 +69,6 @@ class Customer extends Person implements ICustomerActions {
         }
     }
 
-    @Override
     public void addLoyaltyPoints(int points) {
         if (points > 0) {
             this.loyaltyPoints += points;
@@ -79,7 +77,6 @@ class Customer extends Person implements ICustomerActions {
             System.out.println("Invalid points!");
     }
 
-    @Override
     public void redeemPoints(int points) {
         if (points > 0 && points <= loyaltyPoints) {
             this.loyaltyPoints -= points;

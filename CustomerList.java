@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-public class CustomerList {
+public class CustomerList implements IActions<Customer>{
     private ArrayList<Customer> customers;
     private static final String FILE_NAME = "Customers.txt";
 
@@ -17,7 +17,7 @@ public class CustomerList {
             String line;
 
             while ((line = br.readLine()) != null) {
-                addCustomer(Customer.fromString(line));
+                add(Customer.fromString(line));
             }
 
         } catch (Exception e) {
@@ -45,12 +45,14 @@ public class CustomerList {
         this.customers = customers;
     }
 
-    public void addCustomer(Customer c) {
+    @Override
+    public void add(Customer c) {
         customers.add(c);
     }
 
     // Tim kiem
 
+    @Override
     public void find(int keys, String keyword) {
         switch (keys) {
             case 1:
@@ -67,6 +69,19 @@ public class CustomerList {
                 }
                 findByPhone(keyword).displayinfo();
                 break;
+            case 3:
+                if(findAllByName(keyword) == null){
+                        System.out.println("Cannot find valid customer");
+                        break;
+                }
+                else{
+                    int i = 1;
+                    for(Customer c : findAllByName(keyword)){
+                        System.out.println(i + ".");
+                        c.displayinfo();
+                        i++;
+                    }
+                }
         }
     }
 
@@ -99,7 +114,8 @@ public class CustomerList {
         return results;
     }
 
-    public void removeCustomerById(String id) {
+    @Override
+    public void removeById(String id) {
         Customer del = findById(id);
         del.setActive(false);
     }
