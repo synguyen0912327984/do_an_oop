@@ -55,7 +55,7 @@ public class Manager {
         System.out.println("==============================================================");
     }
 
-     public static void addCustomerOld(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
+     public static void addInvoice(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
             Booklist lb) {
         Scanner sc = new Scanner(System.in);
         Invoice inv = new Invoice();
@@ -72,7 +72,7 @@ public class Manager {
         // Customer ID input
         String id;
         String Phone;
-        boolean valid;
+        boolean valid =false;
         do {
             System.out.print("NumberPhone: ");
             Phone = sc.nextLine();
@@ -87,10 +87,9 @@ public class Manager {
             System.out.print("idEmp: ");
             id = sc.nextLine();
             valid = le.findById(id) != null;
-            if(le.findById(id).getRole().equalsIgnoreCase("Cashier")) valid = false ;
-            if (!valid)
+            if (!valid || le.findById(id).getRole().equalsIgnoreCase("Cashier"))
                 System.out.println("Employee ID invalid!");
-        } while (!valid);
+        } while (!valid || le.findById(id).getRole().equalsIgnoreCase("Cashier"));
         inv.setIdEmployee(id);
 
         inv.setTime(LocalDate.now());
@@ -104,7 +103,7 @@ public class Manager {
             int quantity;
             ArrayList<Book> books= new ArrayList<>()  ;
             String bookname;
-            int choice ;
+            int choice1 ;
             // Book ID input
             do {
                 System.out.print("NameBook: ");
@@ -114,38 +113,15 @@ public class Manager {
                     System.out.println("Book ID not found!");
             } while (books.size()==0);
             for(int i=0;i<books.size();i++){
-                System.out.print("No "+(i+1);
+                System.out.print("No "+(i+1));
                 books.get(i).display();
             }
             // Quantity input
-            do {
-                System.out.print("Quantity: ");
-                quantity = sc.nextInt();
-                sc.nextLine(); // consume newline
-                if (quantity > book.getAmount()) {
-                    System.out.println("Not enough stock! Available: " + book.getAmount());
-                }
-            } while (quantity > book.getAmount());
-
-            // Add invoice detail
-            InvoiceDetail detail = new InvoiceDetail();
-            detail.setIdInvoice(idInvoice);
-            detail.setIdBook(idBook);
-            detail.setQuantity(quantity);
-            invoiceDetails.add(detail);
-
-            // Update stock
-            book.setAmount(book.getAmount() - quantity);
-            // =0 
-            // Continue?
-            System.out.print("Add another book? (y/n): ");
-            String choice = sc.nextLine();
-            continueAdding = choice.equalsIgnoreCase("y");
         }
 
         // Save invoice and details
-        ArrayList<InvoiceDetail> Newden = new ArrayList<>();
-
+    //    ArrayList<InvoiceDetail> Newden = new ArrayList<>();
+        
     }   
 
       
@@ -162,6 +138,6 @@ public class Manager {
         
         // Example usage
         // PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
-         addCustomerOld(listemp, listCus, listin, listdet, listb);
+         addInvoice(listemp, listCus, listin, listdet, listb);
     }
 }
