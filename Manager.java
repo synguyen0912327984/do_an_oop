@@ -87,8 +87,9 @@ public class Manager {
             System.out.print("idEmp: ");
             id = sc.nextLine();
             valid = le.findById(id) != null;
+            if(le.findById(id).getRole().equalsIgnoreCase("Cashier")) valid = false ;
             if (!valid)
-                System.out.println("Employee ID not found!");
+                System.out.println("Employee ID invalid!");
         } while (!valid);
         inv.setIdEmployee(id);
 
@@ -99,20 +100,23 @@ public class Manager {
         // Add books
         boolean continueAdding = true;
         while (continueAdding) {
-            String idBook;
+            Book book= new Book();
             int quantity;
-            Book book;
+            ArrayList<Book> books= new ArrayList<>()  ;
             String bookname;
+            int choice ;
             // Book ID input
             do {
-                System.out.print("IdBook: ");
-                idBook = sc.nextLine();
-                book = lb.findByID(idBook);
-                if (book == null)
+                System.out.print("NameBook: ");
+                bookname = sc.nextLine();
+                books = lb.findByTitle(bookname);
+                if (books.size()==0)
                     System.out.println("Book ID not found!");
-            } while (book == null);
-            idBook = book.getbookID();
-            System.out.println(book.getAmount());
+            } while (books.size()==0);
+            for(int i=0;i<books.size();i++){
+                System.out.print("No "+(i+1);
+                books.get(i).display();
+            }
             // Quantity input
             do {
                 System.out.print("Quantity: ");
@@ -155,9 +159,9 @@ public class Manager {
 
         listin.readFile();
         listdet.readFile();
-        listin.displayAll();
+        
         // Example usage
         // PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
-       // addCustomerOld(listemp, listCus, listin, listdet, listb);
+         addCustomerOld(listemp, listCus, listin, listdet, listb);
     }
 }

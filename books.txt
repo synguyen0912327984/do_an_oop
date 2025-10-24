@@ -48,3 +48,23 @@ B047,The Stand,Stephen King,Doubleday,115000,18
 B048,Pet Sematary,Stephen King,Doubleday,89000,24
 B049,Doctor Sleep,Stephen King,Scribner,97000,20
 B050,The Institute,Stephen King,Scribner,98000,19
+B051,To Kill a Mockingbird,Emily Watson,Random House,87000,27
+B052,1984,Michael Grant,HarperOne,76000,32
+B053,Pride and Prejudice,Olivia Bennett,Picador,91000,22
+B054,The Great Gatsby,Liam Foster,Vintage Books,86000,30
+B055,The Catcher in the Rye,Isabella Gray,Anchor Books,83000,40
+B056,Moby Dick,Noah Richardson,Modern Library,94000,25
+B057,War and Peace,Amelia Davis,Penguin Random House,118000,20
+B058,Crime and Punishment,Lucas Morgan,Everyman’s Library,111000,18
+B059,The Odyssey,Eleanor Scott,Vintage Classics,99000,24
+B060,Jane Eyre,Charlotte Evans,Pan Macmillan,88000,33
+B061,The Hobbit,Samuel Green,Tor Books,90000,42
+B062,The Lord of the Rings,Victoria Young,Orbit Books,149000,30
+B063,The Da Vinci Code,Henry Brooks,HarperTorch,101000,35
+B064,The Alchemist,Sophia Reed,Anchor Books,89000,48
+B065,The Kite Runner,Benjamin Hayes,Harper Perennial,93000,34
+B066,The Book Thief,Chloe Turner,Del Rey,96000,39
+B067,The Fault in Our Stars,Ethan Ross,Pan Books,91000,38
+B068,The Hunger Games,Mia Campbell,Bloomsbury,97000,41
+B069,Dune,Jack Adams,Delacorte Press,113000,27
+B070,The Shining,Natalie Carter,HarperCollins,98000,29
