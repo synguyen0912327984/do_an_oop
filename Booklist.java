@@ -83,11 +83,11 @@ public class Booklist {
     }
 
     // Tim theo title
-    public ArrayList<Book> findByTitle(String title) {
-        ArrayList<Book> result = new ArrayList<>();
+    public Book findByTitle(String title) {
+        Book result = new Book();
         for (Book b : list) {
             if (b.getTitle().toLowerCase().contains(title.toLowerCase())) {
-                result.add(b);
+                return b;
             }
         }
         return result;

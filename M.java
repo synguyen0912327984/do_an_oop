@@ -76,7 +76,6 @@ public class M {
         } while (!valid);
         id=lc.findByPhone(Phone).getId();
         inv.setIdCustomer(id);
-
         // Employee ID input
         do {
             System.out.print("idEmp: ");
@@ -96,14 +95,15 @@ public class M {
             String idBook;
             int quantity;
             Book book;
-
+            String bookname;
             // Book ID input
             do {
                 System.out.print("BookName: ");
-                idBook = sc.nextLine();
-                book = lb.findByID(idBook);
+                bookname = sc.nextLine();
+                book = lb.findByTitle(bookname);
                 if (book == null) System.out.println("Book ID not found!");
             } while (book == null);
+            idBook = book.getbookID();
             System.out.println(book.getAmount());
             // Quantity input
             do {
