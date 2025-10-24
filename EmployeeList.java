@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-public class EmployeeList {
+public class EmployeeList implements IActions<Employee> {
     private ArrayList<Employee> employees;
     private static final String FILE_NAME = "Employees.txt";
 
@@ -16,7 +16,7 @@ public class EmployeeList {
             String line;
 
             while ((line = br.readLine()) != null)
-                addEmployee(Employee.fromString(line));
+                add(Employee.fromString(line));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,9 +33,49 @@ public class EmployeeList {
         Employee.setEmloyeeCount(maxId + 1);
     }
 
-    public void addEmployee(Employee c) {
+    @Override
+    public void add(Employee c) {
         employees.add(c);
     }
+
+    @Override
+    public void find(int keys, String keyword) {
+        /*System.out.println("1. ID");
+        System.out.println("2. Phone");
+        System.out.println("3. Name");
+        System.out.print("Enter search method: ");*/
+        switch (keys) {
+            case 1:
+                if (findById(keyword) == null) {
+                    System.out.println("Cannot find valid employee");
+                    break;
+                }
+                findById(keyword).displayinfo();
+                break;
+            case 2:
+                if (findByPhone(keyword) == null) {
+                    System.out.println("Cannot find valid employee");
+                    break;
+                }
+                findByPhone(keyword).displayinfo();
+                break;
+            case 3:
+                if(findAllByName(keyword) == null){
+                        System.out.println("Cannot find valid employee");
+                        break;
+                }
+                else{
+                    int i = 1;
+                    for(Employee c : findAllByName(keyword)){
+                        System.out.println(i + ".");
+                        c.displayinfo();
+                        i++;
+                    }
+                }
+
+        }
+    }
+
 
     public Employee findById(String id) {
         for (Employee e : employees) {
@@ -66,7 +106,8 @@ public class EmployeeList {
         return results;
     }
 
-    public void removeEmployeeById(String id) {
+    @Override
+    public void removeById(String id) {
         Employee del = findById(id);
         del.setActive(false);
     }
