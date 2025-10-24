@@ -2,11 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
 
-<<<<<<< HEAD:M.java
-public class M {
-=======
+
 public class Manager {
->>>>>>> 10215179aeed64dc308b408067834ec17e45087a:Manager.java
 
     public double calculateTotal(ArrayList<InvoiceDetail> ind, Booklist lb) {
         double allTotal = 0;
@@ -23,10 +20,11 @@ public class Manager {
             System.out.println(id + " is empty");
             return;
         }
-
+        System.out.println(inv.getIdCustomer());
         ArrayList<InvoiceDetail> ind = ld.find(id);
 
-        System.out.println("==============================================================");
+
+ /*        System.out.println("==============================================================");
         System.out.println("                       HÓA ĐƠN BÁN SÁCH                      ");
         System.out.println("==============================================================");
         System.out.println("IdInvoice : " + inv.getIdInvoice());
@@ -54,15 +52,11 @@ public class Manager {
 
         System.out.println("--------------------------------------------------------------");
         System.out.printf("%-55s %-10s %-10.2f VND%n", "", "AllTotal:", totalAll);
-        System.out.println("==============================================================");
+        System.out.println("==============================================================");*/
     }
 
-<<<<<<< HEAD:M.java
-    public static void addInvoice(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld, Booklist lb) {
-=======
-    public static void addCustomerOld(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
+ /*    public static void addCustomerOld(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
             Booklist lb) {
->>>>>>> 10215179aeed64dc308b408067834ec17e45087a:Manager.java
         Scanner sc = new Scanner(System.in);
         Invoice inv = new Invoice();
 
@@ -80,20 +74,13 @@ public class Manager {
         String Phone;
         boolean valid;
         do {
-<<<<<<< HEAD:M.java
-            System.out.print("CusNumberPhone: ");// tim so dien thoai -> toi id
+            System.out.print("NumberPhone: ");
             Phone = sc.nextLine();
             valid = lc.findByPhone(Phone) != null;
-            if (!valid) System.out.println("Customer ID not found!");
-=======
-            System.out.print("idCus: ");
-            id = sc.nextLine();
-            valid = lc.findById(id) != null;
             if (!valid)
-                System.out.println("Customer ID not found!");
->>>>>>> 10215179aeed64dc308b408067834ec17e45087a:Manager.java
+                System.out.println("NumberPhone not found!");
         } while (!valid);
-        id=lc.findByPhone(Phone).getId();
+        id = lc.findByPhone(Phone).getId();
         inv.setIdCustomer(id);
         // Employee ID input
         do {
@@ -118,18 +105,11 @@ public class Manager {
             String bookname;
             // Book ID input
             do {
-<<<<<<< HEAD:M.java
-                System.out.print("BookName: ");
-                bookname = sc.nextLine();
-                book = lb.findByTitle(bookname);
-                if (book == null) System.out.println("Book ID not found!");
-=======
                 System.out.print("IdBook: ");
                 idBook = sc.nextLine();
                 book = lb.findByID(idBook);
                 if (book == null)
                     System.out.println("Book ID not found!");
->>>>>>> 10215179aeed64dc308b408067834ec17e45087a:Manager.java
             } while (book == null);
             idBook = book.getbookID();
             System.out.println(book.getAmount());
@@ -160,18 +140,9 @@ public class Manager {
         }
 
         // Save invoice and details
-<<<<<<< HEAD:M.java
-        for(InvoiceDetail st:invoiceDetails){
-            ld.addlist(st);
-        }
-
-        PrintInvoice(le, lc, ln, ld, lb, idInvoice);
-        
-=======
         ArrayList<InvoiceDetail> Newden = new ArrayList<>();
->>>>>>> 10215179aeed64dc308b408067834ec17e45087a:Manager.java
 
-    }
+    }   */
 
       
 
@@ -184,16 +155,9 @@ public class Manager {
 
         listin.readFile();
         listdet.readFile();
-
+        listin.displayAll();
         // Example usage
-<<<<<<< HEAD:M.java
-     //   PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
-        addInvoice(listemp, listCus, listin, listdet, listb);
-        
-        
-=======
         // PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
-        addCustomerOld(listemp, listCus, listin, listdet, listb);
->>>>>>> 10215179aeed64dc308b408067834ec17e45087a:Manager.java
+       // addCustomerOld(listemp, listCus, listin, listdet, listb);
     }
 }

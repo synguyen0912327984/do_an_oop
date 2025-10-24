@@ -89,15 +89,16 @@ public class Booklist {
     }
 
     // Tim theo title
-    public Book findByTitle(String title) {
-        Book result = new Book();
-        for (Book b : list) {
-            if (b.getTitle().toLowerCase().contains(title.toLowerCase())) {
-                return b;
-            }
+   public ArrayList<Book> findByTitle(String title) {
+    ArrayList<Book> result = new ArrayList<>();
+    for (Book b : list) {
+        if (b.getTitle().toLowerCase().contains(title.toLowerCase())) {
+            result.add(b);
         }
-        return result;
     }
+    return result;
+}
+
 
     // Tim theo author
     public ArrayList<Book> findByAuthor(String author) {
