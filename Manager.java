@@ -60,7 +60,7 @@ public class Manager {
         Scanner sc = new Scanner(System.in);
         Invoice inv = new Invoice();
 
-        // Generate new invoice ID
+         // Generate new invoice ID
         int number = ln.getQuantity() + 1;
         String idInvoice;
         do {
@@ -72,7 +72,7 @@ public class Manager {
         // Customer ID input
         String id;
         String Phone;
-        boolean valid =false;
+        boolean valid ;
         do {
             System.out.print("NumberPhone: ");
             Phone = sc.nextLine();
@@ -87,37 +87,33 @@ public class Manager {
             System.out.print("idEmp: ");
             id = sc.nextLine();
             valid = le.findById(id) != null;
-            if (!valid || le.findById(id).getRole().equalsIgnoreCase("Cashier"))
+            if (!valid || 
+                !(le.findById(id).getPosition().equalsIgnoreCase("Cashier") ||
+                le.findById(id).getPosition().equalsIgnoreCase("Salesman") ||
+                le.findById(id).getPosition().equalsIgnoreCase("Manager"))) {
                 System.out.println("Employee ID invalid!");
-        } while (!valid || le.findById(id).getRole().equalsIgnoreCase("Cashier"));
-        inv.setIdEmployee(id);
+}
+        } while (!valid || 
+            !(le.findById(id).getPosition().equalsIgnoreCase("Cashier") ||
+            le.findById(id).getPosition().equalsIgnoreCase("Salesman") ||
+            le.findById(id).getPosition().equalsIgnoreCase("Manager")));
+
 
         inv.setTime(LocalDate.now());
         ln.addlist(inv);
         ArrayList<InvoiceDetail> invoiceDetails = new ArrayList<>();
-
-        // Add books
-        boolean continueAdding = true;
-        while (continueAdding) {
-            Book book= new Book();
-            int quantity;
-            ArrayList<Book> books= new ArrayList<>()  ;
-            String bookname;
-            int choice1 ;
-            // Book ID input
-            do {
-                System.out.print("NameBook: ");
-                bookname = sc.nextLine();
-                books = lb.findByTitle(bookname);
-                if (books.size()==0)
-                    System.out.println("Book ID not found!");
-            } while (books.size()==0);
-            for(int i=0;i<books.size();i++){
-                System.out.print("No "+(i+1));
-                books.get(i).display();
-            }
-            // Quantity input
-        }
+        // add buy book
+        String nameBook = new String();
+        String continue1 = new String();
+        ArrayList<Book> books = new ArrayList<>();
+        Book book = new Book();
+        boolean continue2;
+        do{
+            System.out.print("NameBook:");
+            nameBook= sc.nextLine()
+        }while(continue2)  
+        
+       
 
         // Save invoice and details
     //    ArrayList<InvoiceDetail> Newden = new ArrayList<>();
