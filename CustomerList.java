@@ -23,6 +23,18 @@ public class CustomerList {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        int maxId = 0;
+        for (Customer cus : customers) {
+            try {
+                int idNum = Integer.parseInt(cus.getId().substring(1));
+                maxId = (maxId > idNum) ? maxId : idNum;
+            } catch (NumberFormatException e) {
+                // Khong dung dinh dang thi bo qua
+            }
+        }
+        Customer.setCustomerCounter(maxId + 1);
+
     }
 
     public ArrayList<Customer> getList() {
@@ -54,14 +66,13 @@ public class CustomerList {
                     break;
                 }
                 findByPhone(keyword).displayinfo();
-                ;
                 break;
         }
     }
 
     public Customer findById(String id) {
         for (Customer c : customers) {
-            if (c.getId().equalsIgnoreCase(id)) {
+            if (c.getId().equalsIgnoreCase(id) && c.isActive()) {
                 return c;
             }
         }
@@ -70,16 +81,33 @@ public class CustomerList {
 
     public Customer findByPhone(String phone) {
         for (Customer c : customers) {
-            if (c.getPhoneNumber().equalsIgnoreCase(phone)) {
+            if (c.getPhoneNumber().equalsIgnoreCase(phone) && c.isActive()) {
                 return c;
             }
         }
         return null;
     }
 
+    public ArrayList<Customer> findAllByName(String name) {
+        ArrayList<Customer> results = new ArrayList<>();
+        String lowerCaseName = name.toLowerCase();
+        for (Customer c : customers) {
+            if (c.getName().toLowerCase().contains(lowerCaseName) && c.isActive()) {
+                results.add(c);
+            }
+        }
+        return results;
+    }
+
+    public void removeCustomerById(String id) {
+        Customer del = findById(id);
+        del.setActive(false);
+    }
+
     public void displayAll() {
         for (Customer c : customers) {
-            c.displayinfo();
+            if (c.isActive())
+                c.displayinfo();
         }
     }
 

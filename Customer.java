@@ -5,7 +5,7 @@ class Customer extends Person implements ICustomerActions {
     private static int customerCount = 0;
     private int loyaltyPoints;
 
-    public Customer(String name, String phoneNumber, String address, int loyaltyPoints) {
+    public Customer(String name, String phoneNumber, String address, int loyaltyPoints, boolean active) {
         super(null, name, phoneNumber, address);
         this.id = String.format("C%03d", customerCount++);
         /*
@@ -13,6 +13,13 @@ class Customer extends Person implements ICustomerActions {
          * %03d do dai toi thieu la 3 neu khong du thi chen 0 vao dau
          */
         this.loyaltyPoints = loyaltyPoints;
+        this.active = true;
+    }
+
+    private Customer(String id, String name, String phoneNumber, String address, int loyaltyPoints, boolean active) {
+        super(id, name, phoneNumber, address);
+        this.loyaltyPoints = loyaltyPoints;
+        this.active = active;
     }
 
     public int getLoyaltyPoints() {
@@ -26,17 +33,19 @@ class Customer extends Person implements ICustomerActions {
     @Override
     public void displayinfo() {
         System.out.println("=====================================");
-        System.out.println("Customer ID     : " + id);
-        System.out.println("Name            : " + name);
-        System.out.println("Phone           : " + phoneNumber);
-        System.out.println("Address         : " + address);
+        super.displayinfo();
         System.out.println("LoyaltyPoints   : " + loyaltyPoints);
         System.out.println("=====================================");
     }
 
     @Override
+    public String getRole() {
+        return "Customer";
+    }
+
+    @Override
     public String toString() {
-        return id + "," + name + "," + phoneNumber + "," + address + "," + loyaltyPoints;
+        return id + "," + name + "," + phoneNumber + "," + address + "," + loyaltyPoints + "," + active;
     }
 
     // Interface
@@ -86,9 +95,8 @@ class Customer extends Person implements ICustomerActions {
      */
     public static Customer fromString(String line) {
         String p[] = line.split(",");
-        if (p.length == 5) {
-            Customer c = new Customer(p[1], p[2], p[3], Integer.parseInt(p[4]));
-            c.setId(p[0]);
+        if (p.length == 6) {
+            Customer c = new Customer(p[0], p[1], p[2], p[3], Integer.parseInt(p[4]), Boolean.parseBoolean(p[5]));
             return c;
         }
         return null;
@@ -97,4 +105,5 @@ class Customer extends Person implements ICustomerActions {
     public static void setCustomerCounter(int value) {
         customerCount = value;
     }
+
 }
