@@ -5,7 +5,7 @@ class Customer extends Person implements ICustomerActions {
     private static int customerCount = 0;
     private int loyaltyPoints;
 
-    public Customer(String name, String phoneNumber, String address, int loyaltyPoints, boolean active) {
+    public Customer(String name, String phoneNumber, String address, int loyaltyPoints) {
         super(null, name, phoneNumber, address);
         this.id = String.format("C%03d", customerCount++);
         /*
@@ -13,7 +13,6 @@ class Customer extends Person implements ICustomerActions {
          * %03d do dai toi thieu la 3 neu khong du thi chen 0 vao dau
          */
         this.loyaltyPoints = loyaltyPoints;
-        this.active = true;
     }
 
     private Customer(String id, String name, String phoneNumber, String address, int loyaltyPoints, boolean active) {

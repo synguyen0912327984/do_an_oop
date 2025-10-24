@@ -7,13 +7,11 @@ class Employee extends Person {
         return position;
     }
 
-    public Employee(String name, String phoneNumber, String address, String position, double salary,
-            boolean available) {
+    public Employee(String name, String phoneNumber, String address, String position, double salary) {
         super(null, name, phoneNumber, address);
         this.id = String.format("E%03d", employeeCount++);
         this.position = position;
         this.salary = salary;
-        this.active = true;
     }
 
     private Employee(String id, String name, String phoneNumber, String address, String position, double salary,
