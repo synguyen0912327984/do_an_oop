@@ -24,7 +24,7 @@ public class Manager {
         ArrayList<InvoiceDetail> ind = ld.find(id);
 
 
- /*        System.out.println("==============================================================");
+        System.out.println("==============================================================");
         System.out.println("                       HÓA ĐƠN BÁN SÁCH                      ");
         System.out.println("==============================================================");
         System.out.println("IdInvoice : " + inv.getIdInvoice());
@@ -52,10 +52,10 @@ public class Manager {
 
         System.out.println("--------------------------------------------------------------");
         System.out.printf("%-55s %-10s %-10.2f VND%n", "", "AllTotal:", totalAll);
-        System.out.println("==============================================================");*/
+        System.out.println("==============================================================");
     }
 
- /*    public static void addCustomerOld(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
+     public static void addCustomerOld(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
             Booklist lb) {
         Scanner sc = new Scanner(System.in);
         Invoice inv = new Invoice();
@@ -142,7 +142,7 @@ public class Manager {
         // Save invoice and details
         ArrayList<InvoiceDetail> Newden = new ArrayList<>();
 
-    }   */
+    }   
 
       
 
