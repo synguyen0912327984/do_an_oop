@@ -9,7 +9,7 @@ public class Book {
 
     // Khoi tao
     public Book() {}
-    public Book(String bookID,String Title,String Author,String Publisher,double Price,int Amount){
+    public Book(String bookID,String Title,String Author,String Publisher,double Price,int Amount,boolean status){
         this.bookID = bookID;
         this.Title = Title;
         this.Author = Author;
@@ -90,11 +90,11 @@ public class Book {
 
     @Override
     public String toString() {
-        return bookID + "," + Title + "," + Author + "," + Publisher + "," + Price + "," + Amount;
+        return bookID + "," + Title + "," + Author + "," + Publisher + "," + Price + "," + Amount + "," + status;
     }
     public static Book fromString(String line) {
     String[] p = line.split(",");
-    if (p.length == 6) { // ✅ kiểm tra đủ 6 phần
+    if (p.length == 7) { // ✅ kiểm tra đủ 6 phần
         try {
             String bookID = p[0];
             String title = p[1];
@@ -102,7 +102,8 @@ public class Book {
             String publisher = p[3];
             double price = Double.parseDouble(p[4]);
             int amount = Integer.parseInt(p[5]);
-            return new Book(bookID, title, author, publisher, price, amount);
+            boolean status = Boolean.parseBoolean(p[6]);
+            return new Book(bookID, title, author, publisher, price, amount, status);
         } catch (NumberFormatException e) {
             System.err.println("Lỗi định dạng dữ liệu: " + e.getMessage());
         }
