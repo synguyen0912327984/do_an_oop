@@ -94,7 +94,7 @@ public class TestFunc {
 
         Customer newCustomer = new Customer(name, phone, address, 0);
 
-        c.addCustomer(newCustomer);
+        c.add(newCustomer);
         System.out.println("Da tao khach hang moi thanh cong voi ID: " + newCustomer.getId());
     }
 
@@ -113,7 +113,7 @@ public class TestFunc {
         sc.nextLine();
         Employee newEmployee = new Employee(name, phone, address, position, salary);
 
-        e.addEmployee(newEmployee);
+        e.add(newEmployee);
         System.out.println("Da them nhan vien moi thanh cong voi ID: " + newEmployee.getId());
     }
 }
