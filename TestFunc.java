@@ -1,3 +1,6 @@
+
+//Day la munu cho phan Customer va Employee
+
 import java.util.Scanner;
 
 public class TestFunc {
