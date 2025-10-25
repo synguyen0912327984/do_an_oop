@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class Manager {
@@ -188,11 +189,30 @@ public class Manager {
     }   
 
 
-    public static void DailySalesReport(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
-            Booklist lb){
+   public static void DailySalesReport(EmployeeList empList, CustomerList custList, ListInvoice invoiceList, 
+                                    ListInvoiceDetails invoiceDetailsList, Booklist bookList) {
+    Scanner sc = new Scanner(System.in);
+    LocalDate date = null;
+    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-            
+    while (true) {
+        try {
+            System.out.print("Enter date (dd/MM/yyyy): ");
+            String input = sc.nextLine();
+            date = LocalDate.parse(input, fmt);
+            if (date.isAfter(LocalDate.now())) {
+                System.out.println(" The date cannot be in the future!");
+                continue;
+            }
+            break;
+        } catch (Exception e) {
+            System.out.println(" Invalid date, please try again!");
         }
+    }
+
+    ArrayList<Invoice> inv = new ArrayList<>();
+
+}
 
     
 
@@ -210,7 +230,7 @@ public class Manager {
         
         // Example usage
         // PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
-        addInvoice(listemp, listCus, listin, listdet, listb);
-        
+        //addInvoice(listemp, listCus, listin, listdet, listb);
+        DailySalesReport(listemp, listCus, listin, listdet, listb);
     }
 }
