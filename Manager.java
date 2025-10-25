@@ -58,7 +58,7 @@ public class Manager {
      public static void addInvoice(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
             Booklist lb) {
         Scanner sc = new Scanner(System.in);
-        Invoice inv = new Invoice();
+         Invoice inv = new Invoice();
 
          // Generate new invoice ID
         int number = ln.getQuantity() + 1;
@@ -103,17 +103,63 @@ public class Manager {
         ln.addlist(inv);
         ArrayList<InvoiceDetail> invoiceDetails = new ArrayList<>();
         // add buy book
+        int choice ;
+        int quantity;
         String nameBook = new String();
         String continue1 = new String();
         ArrayList<Book> books = new ArrayList<>();
+        ArrayList<InvoiceDetail> listdentail = new ArrayList<>();
+        InvoiceDetail dentail = new InvoiceDetail();
         Book book = new Book();
-        boolean continue2;
+        boolean continue2=true;
         do{
-            System.out.print("NameBook:");
-            nameBook= sc.nextLine()
-        }while(continue2)  
-        
+            do{
+                System.out.print("NameBook:");
+                nameBook= sc.nextLine();
+                books = lb.findByTitle(nameBook);
+                if(books.size()==0){
+                    System.out.println("Namebook is empty");
+                }else{
+                    continue2=false;
+                }
+            }while(continue2);
+
+            for(int i=0;i<books.size();i++){
+                System.out.println("No"+(i+1));
+                books.get(i).display();
+            } 
+            do{
+                System.out.print("Your choice:");
+                choice = sc.nextInt();
+                if(choice>books.size()|| choice<=0) System.out.println("your choice is empty");
+            }while(choice>books.size()|| choice<=0);
+            book = books.get(choice-1);
+            //quanity
+            do{
+                System.out.print("Amouth to buy:");
+                quantity = sc.nextInt();
+                if(quantity > book.getAmount()){
+                    System.out.println("Dont enoguh amouth to buy");
+                }else if(quantity == 0){
+                    System.out.println("Invalid amouth ");
+                }
+            }while(quantity > book.getAmount()|| quantity ==0);
+
+            book.setAmount(book.getAmount()-quantity);
+
+            dentail.setIdBook(book.getbookID());
+            dentail.setQuantity(book.getAmount());
+            dentail.setIdInvoice(idInvoice);
+            listdentail.add(dentail);
+
+            System.out.print("Do you want to buy another book ?(y/n)");
+            continue1 = sc.nextLine();
+            
+            
+
+            
        
+        }while (continue1.equalsIgnoreCase("y"));
 
         // Save invoice and details
     //    ArrayList<InvoiceDetail> Newden = new ArrayList<>();
