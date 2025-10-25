@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Booklist {
-    private ArrayList<Book> list = new ArrayList<>();
+    private ArrayList<Book> list;
     Scanner sc = new Scanner(System.in);
     private static final String FILE_NAME = "books.txt";
     // Khoi tao
@@ -49,29 +49,28 @@ public class Booklist {
     }
 
     // Phuong thuc tim kiem
-    public void find(String type, String keyword) {
+    public void find(int type, String keyword) {
         ArrayList<Book> result = new ArrayList<>();
         
-        switch (type.toLowerCase()) { 
-            case "id":
+        switch (type) { 
+            case 1:
                 Book found = findByID(keyword);
                 if (found != null) result.add(found); // do kieu du lieu tra ve la Book 
                 break;
-            case "title":
+            case 2:
                 result = findByTitle(keyword);
                 break;
-            case "author":
+            case 3:
                 result = findByAuthor(keyword);
                 break;
-            case "publisher":
+            case 4:
                 result = findByPublisher(keyword);
                 break;
         }
-    
         if (result.isEmpty()) {
             System.out.println("Khong tim thay sach phu hop.");
         } else {
-            System.out.println("Ket qua tim thay:");
+            System.out.println("Ket qua tim thay: ");
             for (Book b : result) {
                 b.display();
             }
