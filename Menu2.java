@@ -56,6 +56,20 @@ public class Menu2 {
                                     sc.nextLine();
                                     if(type < 1 || type > 4) System.out.println("Cancelled.");
                                     else{
+                                        switch(type){
+                                            case 1:
+                                                System.out.println("Enter ID: ");
+                                                break;
+                                            case 2:
+                                                System.out.println("Enter Title: ");
+                                                break;
+                                            case 3:
+                                                System.out.println("Enter Author: ");
+                                                break;
+                                            case 4:
+                                                System.out.println("Enter Publisher: ");
+                                                break;
+                                        }
                                         String search = sc.nextLine();
                                         bl.find(type, search);
                                     }
@@ -98,15 +112,28 @@ public class Menu2 {
                                         System.out.println("Enter: ");
                                         select4 = sc.nextInt();
                                         sc.nextLine();
+                                        String temp;
                                         switch(select4){
                                             case 1:
-                                                c.findByPhone(p).redeemPoints(30);
+                                                System.out.print("Are you sure? y/n: ");
+                                                temp = sc.nextLine();
+                                                if(temp.equalsIgnoreCase("y"))
+                                                    c.findByPhone(p).redeemPoints(30);
+                                                else System.out.println("Cancelled.");
                                                 break;
                                             case 2:
-                                                c.findByPhone(p).redeemPoints(50);
+                                                System.out.print("Are you sure? y/n: ");
+                                                temp = sc.nextLine();
+                                                if(temp.equalsIgnoreCase("y"))
+                                                    c.findByPhone(p).redeemPoints(50);
+                                                else System.out.println("Cancelled.");
                                                 break;
                                             case 3:
-                                                c.findByPhone(p).redeemPoints(80);
+                                                System.out.print("Are you sure? y/n: ");
+                                                temp = sc.nextLine();
+                                                if(temp.equalsIgnoreCase("y"))
+                                                    c.findByPhone(p).redeemPoints(80);
+                                                else System.out.println("Cancelled.");
                                                 break;
                                             case 0:
                                                 System.out.println("Returning...");
@@ -154,9 +181,13 @@ public class Menu2 {
         while (true) {
             System.out.print("Enter phone number: ");
             phone = sc.nextLine();
-            if (Person.isValidPhoneNumber(phone)) {
+            if (Person.isValidPhoneNumber(phone) && c.findByPhone(phone) == null) {
                 break;
-            } else {
+            } 
+            else if(Person.isValidPhoneNumber(phone) && c.findByPhone(phone) != null){
+                System.out.println("Phone number already exist.");
+            }
+            else {
                 System.out.println("Invalid phone number! (10 nums and start with 0).");
             }
         }
