@@ -187,6 +187,13 @@ public class Manager {
         
     }   
 
+
+    public static void DailySalesReport(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
+            Booklist lb){
+
+            
+        }
+
     
 
       
@@ -204,7 +211,6 @@ public class Manager {
         // Example usage
         // PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
         addInvoice(listemp, listCus, listin, listdet, listb);
-        listin.saveFile();
-        listdet.savefile();
+        
     }
 }

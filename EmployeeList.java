@@ -40,10 +40,12 @@ public class EmployeeList implements IActions<Employee> {
 
     @Override
     public void find(int keys, String keyword) {
-        /*System.out.println("1. ID");
-        System.out.println("2. Phone");
-        System.out.println("3. Name");
-        System.out.print("Enter search method: ");*/
+        /*
+         * System.out.println("1. ID");
+         * System.out.println("2. Phone");
+         * System.out.println("3. Name");
+         * System.out.print("Enter search method: ");
+         */
         switch (keys) {
             case 1:
                 if (findById(keyword) == null) {
@@ -60,13 +62,12 @@ public class EmployeeList implements IActions<Employee> {
                 findByPhone(keyword).displayinfo();
                 break;
             case 3:
-                if(findAllByName(keyword) == null){
-                        System.out.println("Cannot find valid employee");
-                        break;
-                }
-                else{
+                if (findAllByName(keyword) == null) {
+                    System.out.println("Cannot find valid employee");
+                    break;
+                } else {
                     int i = 1;
-                    for(Employee c : findAllByName(keyword)){
+                    for (Employee c : findAllByName(keyword)) {
                         System.out.println(i + ".");
                         c.displayinfo();
                         i++;
@@ -75,7 +76,6 @@ public class EmployeeList implements IActions<Employee> {
 
         }
     }
-
 
     public Employee findById(String id) {
         for (Employee e : employees) {
@@ -110,6 +110,67 @@ public class EmployeeList implements IActions<Employee> {
     public void removeById(String id) {
         Employee del = findById(id);
         del.setActive(false);
+    }
+
+    public void editEmployee(String id, Scanner scanner) {
+        Employee employeeToEdit = this.findById(id);
+
+        if (employeeToEdit == null) {
+            System.out.println("Khong tim thay nhan vien voi id: " + id);
+            return;
+        }
+
+        System.out.println("Chinh sua thong tin nhan vien (enter de bo qua)");
+        employeeToEdit.displayinfo();
+
+        System.out.print("Ten moi (" + employeeToEdit.getName() + "): ");
+        String newName = scanner.nextLine();
+        if (!newName.isEmpty()) {
+            employeeToEdit.setName(newName);
+        }
+
+        while (true) {
+            System.out.print("SĐT mới (" + employeeToEdit.getPhoneNumber() + "): ");
+            String newPhone = scanner.nextLine();
+
+            if (newPhone.isEmpty()) {
+                break;
+            }
+
+            if (Person.isValidPhoneNumber(newPhone)) {
+                employeeToEdit.setPhoneNumber(newPhone);
+                break;
+            } else {
+                System.out.println("SDT khong hop le");
+                System.out.println("Vui long nhap lai hoac an enter de bo qua");
+            }
+        }
+
+        System.out.print("Dia chi moi (" + employeeToEdit.getAddress() + "): ");
+        String newAddress = scanner.nextLine();
+        if (!newAddress.isEmpty()) {
+            employeeToEdit.setAddress(newAddress);
+        }
+
+        System.out.print("Chuc vu moi (" + employeeToEdit.getPosition() + "): ");
+        String newPosition = scanner.nextLine();
+        if (!newPosition.isEmpty()) {
+            employeeToEdit.setPosition(newPosition);
+        }
+
+        System.out.print("Luong moi (" + employeeToEdit.getSalary() + "): ");
+        String newSalaryStr = scanner.nextLine();
+        if (!newSalaryStr.isEmpty()) {
+            try {
+                double newSalary = Double.parseDouble(newSalaryStr);
+                employeeToEdit.setSalary(newSalary);
+            } catch (NumberFormatException e) {
+                System.out.println("Gia tri khong hop le. Luong khong duoc thay doi");
+            }
+        }
+
+        System.out.println("---Cap nhap nhan vien thanh cong---");
+        employeeToEdit.displayinfo(); // Hiển thị thông tin mới
     }
 
     public void displayAll() {

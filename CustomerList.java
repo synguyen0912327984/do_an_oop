@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-public class CustomerList implements IActions<Customer>{
+public class CustomerList implements IActions<Customer> {
     private ArrayList<Customer> customers;
     private static final String FILE_NAME = "Customers.txt";
 
@@ -70,13 +70,12 @@ public class CustomerList implements IActions<Customer>{
                 findByPhone(keyword).displayinfo();
                 break;
             case 3:
-                if(findAllByName(keyword) == null){
-                        System.out.println("Cannot find valid customer");
-                        break;
-                }
-                else{
+                if (findAllByName(keyword) == null) {
+                    System.out.println("Cannot find valid customer");
+                    break;
+                } else {
                     int i = 1;
-                    for(Customer c : findAllByName(keyword)){
+                    for (Customer c : findAllByName(keyword)) {
                         System.out.println(i + ".");
                         c.displayinfo();
                         i++;
@@ -176,6 +175,61 @@ public class CustomerList implements IActions<Customer>{
         }
     }
 
+    public void editCustomer(String id, Scanner scanner) {
+        Customer customerToEdit = this.findById(id);
+
+        if (customerToEdit == null) {
+            System.out.println("Khong tim thay khach hang voi id: " + id);
+            return;
+        }
+
+        System.out.println("Chinh sua thong tin khach hang (enter de bo qua)");
+        customerToEdit.displayinfo();
+
+        System.out.print("Ten moi (" + customerToEdit.getName() + "): ");
+        String newName = scanner.nextLine();
+        if (!newName.isEmpty()) {
+            customerToEdit.setName(newName);
+        }
+
+        while (true) {
+            System.out.print("SĐT mới (" + customerToEdit.getPhoneNumber() + "): ");
+            String newPhone = scanner.nextLine();
+
+            if (newPhone.isEmpty()) {
+                break;
+            }
+
+            if (Person.isValidPhoneNumber(newPhone)) {
+                customerToEdit.setPhoneNumber(newPhone);
+                break;
+            } else {
+                System.out.println("SDT khong hop le");
+                System.out.println("Vui long nhap lai hoac an enter de bo qua");
+            }
+        }
+
+        System.out.print("Dia chi moi (" + customerToEdit.getAddress() + "): ");
+        String newAddress = scanner.nextLine();
+        if (!newAddress.isEmpty()) {
+            customerToEdit.setAddress(newAddress);
+        }
+
+        System.out.print("Diem thuong moi (" + customerToEdit.getLoyaltyPoints() + "): ");
+        String newPointsStr = scanner.nextLine();
+        if (!newPointsStr.isEmpty()) {
+            try {
+                int newPoints = Integer.parseInt(newPointsStr);
+                customerToEdit.setLoyaltyPoints(newPoints);
+            } catch (NumberFormatException e) {
+                System.out.println("Gia tri khong hop le. Diem thuong khong duoc thay doi");
+            }
+        }
+
+        System.out.println("---Cap nhat thong tin khach hang thanh cong!---");
+        customerToEdit.displayinfo();
+    }
+
     public void saveToFile() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
             for (Customer obj : customers) {
@@ -187,4 +241,5 @@ public class CustomerList implements IActions<Customer>{
             System.out.println("file save failed: " + FILE_NAME);
         }
     }
+
 }
