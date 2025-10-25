@@ -7,6 +7,18 @@ class Employee extends Person {
         return position;
     }
 
+    public void setPosition(String position){
+        this.position = position;
+    }
+
+    public double getSalary(){
+        return salary;
+    }
+
+    public void setSalary(double salary){
+        this.salary = salary;
+    }
+
     public Employee(String name, String phoneNumber, String address, String position, double salary) {
         super(null, name, phoneNumber, address);
         this.id = String.format("E%03d", employeeCount++);

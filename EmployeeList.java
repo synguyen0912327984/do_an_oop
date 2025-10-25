@@ -119,6 +119,60 @@ public class EmployeeList implements IActions<Employee> {
         }
     }
 
+    @Override 
+    public void edit(Employee a){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("EDIT:");
+        System.out.print("1. Name\n2. Phone\n3. Address\n4. Active\n 5. Position\n 6. Salary\nEnter: ");
+        int keys = Integer.parseInt(sc.nextLine());
+        String keyword;
+        switch(keys){
+            case 1: //Name
+                System.out.print("Enter new name: ");
+                keyword = sc.nextLine();
+                a.setName(keyword);
+                System.out.println("Changed successfully!");
+                break;
+            case 2: //Phone
+                System.out.print("Enter new phone number: ");
+                keyword = sc.nextLine();
+                a.setPhoneNumber(keyword);
+                System.out.println("Changed successfully!");
+                break;
+            case 3: //Address
+                System.out.print("Enter new address: ");
+                keyword = sc.nextLine();
+                a.setAddress(keyword);
+                System.out.println("Changed successfully!");
+                break;
+            case 4: //Active
+                System.out.println("Active (true/false): ");
+                keyword = sc.nextLine();
+                a.setActive(Boolean.parseBoolean(keyword));
+                System.out.println("Changed successfully!");
+                break;
+            case 5: //Position
+                System.out.print("1. Cashier\n2. Salesman\n3. Accountant\n4. Manager\nPosition: ");
+                int c = sc.nextInt();
+                if(c == 1) keyword = "Cashier";
+                else if(c == 2) keyword = "Salesman";
+                else if(c == 3) keyword = "Accountant";
+                else keyword = "Manager";
+                a.setPosition(keyword);
+                System.out.println("Changed successfully!");
+                break;
+            case 6: //Salary
+                System.out.print("Enter new salary: ");
+                keyword = sc.nextLine();
+                a.setSalary(Double.parseDouble(keyword));
+                System.out.println("Changed successfully!");
+                break;
+            default:
+                System.out.println("Cancelled.");
+                break;
+        }
+    }
+
     public void saveToFile() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
             for (Employee obj : employees) {

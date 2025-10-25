@@ -25,7 +25,7 @@ public class TestFunc {
             System.out.println("9. Tim kiem khach hang theo so dien thoai");
             System.out.println("10. Tim kiem nhan vien cho so dien thoai");
             System.out.println("11. Xoa khach hang trong cua hang");
-            System.out.println("12.Sa thai nhan vien trong cua hang");
+            System.out.println("12. Sa thai nhan vien trong cua hang");
             System.out.println("0. Thoat");
             System.out.println("==========================");
             System.out.print(" Nhap su lua chon cua ban: ");
