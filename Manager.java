@@ -64,8 +64,13 @@ public class Manager {
         int number = ln.getQuantity() + 1;
         String idInvoice;
         do {
-            idInvoice = "HD" + number;
-            number++;
+            if(number<100){
+                idInvoice = "HD0" + number;
+                number++;
+            }else{
+                idInvoice ="HD" + number;
+                number++;
+            }
         } while (ln.test(idInvoice) != null);
         inv.setIdInvoice(idInvoice);
         System.out.println(idInvoice);
@@ -131,11 +136,16 @@ public class Manager {
             do{
                 System.out.print("Your choice:");
                 choice = sc.nextInt();
-                if(choice>books.size()|| choice<=0) System.out.println("your choice is empty");
-            }while(choice>books.size()|| choice<=0);
+                if(choice>books.size()|| choice<=0) {
+                    System.out.println("your choice is empty");
+                }else if(books.get(choice-1).getAmount() == 0){
+                    System.out.println("Sold out!");
+                }
+            }while(choice>books.size()|| choice<=0||books.get(choice-1).getAmount() == 0);
             book = books.get(choice-1);
             //quanity
             do{
+                System.out.println("amouth book:" +lb.findByID(book.getbookID()).getAmount());
                 System.out.print("Amouth to buy:");
                 quantity = sc.nextInt();
                 if(quantity > book.getAmount()){
@@ -165,14 +175,19 @@ public class Manager {
 
         ln.test(inv.getIdInvoice()).displayInvoice();
         for(InvoiceDetail st:listdentail){
-            st.display();
+            ld.addlist(st);
         }
-        
 
+        
+        PrintInvoice(le, lc, ln, ld, lb, inv.getIdInvoice());
+        
+        
         // Save invoice and details
     //    
         
     }   
+
+    
 
       
 
@@ -188,6 +203,8 @@ public class Manager {
         
         // Example usage
         // PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
-         addInvoice(listemp, listCus, listin, listdet, listb);
+        addInvoice(listemp, listCus, listin, listdet, listb);
+        listin.saveFile();
+        listdet.savefile();
     }
 }
