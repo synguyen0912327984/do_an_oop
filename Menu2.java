@@ -56,6 +56,20 @@ public class Menu2 {
                                     sc.nextLine();
                                     if(type < 1 || type > 4) System.out.println("Cancelled.");
                                     else{
+                                        switch(type){
+                                            case 1:
+                                                System.out.println("Enter ID: ");
+                                                break;
+                                            case 2:
+                                                System.out.println("Enter Title: ");
+                                                break;
+                                            case 3:
+                                                System.out.println("Enter Author: ");
+                                                break;
+                                            case 4:
+                                                System.out.println("Enter Publisher: ");
+                                                break;
+                                        }
                                         String search = sc.nextLine();
                                         bl.find(type, search);
                                     }
