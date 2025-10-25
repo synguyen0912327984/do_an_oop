@@ -90,7 +90,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return bookID + "," + Title + "," + Author + "," + Publisher + "," + Price + "," + Amount + "," + status;
+        return bookID + ";" + Title + ";" + Author + ";" + Publisher + ";" + Price + ";" + Amount + ";" + status;
     }
     public static Book fromString(String line) {
     String[] p = line.split(";");
