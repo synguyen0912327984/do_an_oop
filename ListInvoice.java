@@ -3,6 +3,9 @@ import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.time.format.DateTimeFormatter;
 
 public class ListInvoice {
     private ArrayList<Invoice> list = new ArrayList<>();
@@ -71,7 +74,26 @@ public class ListInvoice {
     public void addlist(Invoice l1){
         list.add(l1);
     }
-    
+
+    public void saveFile() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Invoice.txt"))) {
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            for (Invoice invoice : list) {
+                String line = invoice.getIdInvoice() + "," 
+                            + invoice.getIdCustomer() + "," 
+                            + invoice.getIdEmployee() + "," 
+                            + invoice.getTime().format(fmt);
+                bw.write(line);
+                bw.newLine();
+            }
+
+            System.out.println("save file Invoice.txt corret!");
+        } catch (Exception e) {
+            System.err.println("erorr when save file Invoice.txt: " + e.getMessage());
+        }
+    }
+        
 
     
 }

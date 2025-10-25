@@ -93,7 +93,7 @@ public class Book {
         return bookID + "," + Title + "," + Author + "," + Publisher + "," + Price + "," + Amount + "," + status;
     }
     public static Book fromString(String line) {
-    String[] p = line.split(",");
+    String[] p = line.split(";");
     if (p.length == 7) { // ✅ kiểm tra đủ 6 phần
         try {
             String bookID = p[0];

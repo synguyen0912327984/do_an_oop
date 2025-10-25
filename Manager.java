@@ -58,14 +58,19 @@ public class Manager {
      public static void addInvoice(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
             Booklist lb) {
         Scanner sc = new Scanner(System.in);
-        Invoice inv = new Invoice();
+         Invoice inv = new Invoice();
 
          // Generate new invoice ID
         int number = ln.getQuantity() + 1;
         String idInvoice;
         do {
-            idInvoice = "HD" + number;
-            number++;
+            if(number<100){
+                idInvoice = "HD0" + number;
+                number++;
+            }else{
+                idInvoice ="HD" + number;
+                number++;
+            }
         } while (ln.test(idInvoice) != null);
         inv.setIdInvoice(idInvoice);
         System.out.println(idInvoice);
@@ -98,27 +103,91 @@ public class Manager {
             le.findById(id).getPosition().equalsIgnoreCase("Salesman") ||
             le.findById(id).getPosition().equalsIgnoreCase("Manager")));
 
-
+        inv.setIdEmployee(id);
         inv.setTime(LocalDate.now());
         ln.addlist(inv);
         ArrayList<InvoiceDetail> invoiceDetails = new ArrayList<>();
         // add buy book
+        int choice ;
+        int quantity;
         String nameBook = new String();
         String continue1 = new String();
         ArrayList<Book> books = new ArrayList<>();
+        ArrayList<InvoiceDetail> listdentail = new ArrayList<>();
         Book book = new Book();
         boolean continue2;
         do{
-            System.out.print("NameBook:");
-            nameBook= sc.nextLine()
-        }while(continue2)  
-        
-       
+            continue2 = true;
+            do{
+                System.out.print("NameBook:");
+                nameBook= sc.nextLine();
+                books = lb.findByTitle(nameBook);
+                if(books.size()==0){
+                    System.out.println("Namebook is empty");
+                }else{
+                    continue2=false;
+                }
+            }while(continue2);
 
+            for(int i=0;i<books.size();i++){
+                System.out.println("No"+(i+1));
+                books.get(i).display();
+            } 
+            do{
+                System.out.print("Your choice:");
+                choice = sc.nextInt();
+                if(choice>books.size()|| choice<=0) {
+                    System.out.println("your choice is empty");
+                }else if(books.get(choice-1).getAmount() == 0){
+                    System.out.println("Sold out!");
+                }
+            }while(choice>books.size()|| choice<=0||books.get(choice-1).getAmount() == 0);
+            book = books.get(choice-1);
+            //quanity
+            do{
+                System.out.println("amouth book:" +lb.findByID(book.getbookID()).getAmount());
+                System.out.print("Amouth to buy:");
+                quantity = sc.nextInt();
+                if(quantity > book.getAmount()){
+                    System.out.println("Dont enoguh amouth to buy");
+                }else if(quantity == 0){
+                    System.out.println("Invalid amouth ");
+                }
+            }while(quantity > book.getAmount()|| quantity ==0);
+
+            book.setAmount(book.getAmount()-quantity);
+
+            InvoiceDetail dentail = new InvoiceDetail();
+            dentail.setIdBook(book.getbookID());
+            dentail.setQuantity(quantity);
+            dentail.setIdInvoice(idInvoice);
+            listdentail.add(dentail);
+
+            sc.nextLine(); 
+            System.out.print("Do you want to buy another book ?(y/n)");
+            continue1 = sc.nextLine();
+            
+            
+
+            
+       
+        }while (continue1.equalsIgnoreCase("y"));
+
+        ln.test(inv.getIdInvoice()).displayInvoice();
+        for(InvoiceDetail st:listdentail){
+            ld.addlist(st);
+        }
+
+        
+        PrintInvoice(le, lc, ln, ld, lb, inv.getIdInvoice());
+        
+        
         // Save invoice and details
-    //    ArrayList<InvoiceDetail> Newden = new ArrayList<>();
+    //    
         
     }   
+
+    
 
       
 
@@ -128,12 +197,14 @@ public class Manager {
         Booklist listb = new Booklist();
         ListInvoice listin = new ListInvoice();
         ListInvoiceDetails listdet = new ListInvoiceDetails();
-
+        
         listin.readFile();
         listdet.readFile();
         
         // Example usage
         // PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
-         addInvoice(listemp, listCus, listin, listdet, listb);
+        addInvoice(listemp, listCus, listin, listdet, listb);
+        listin.saveFile();
+        listdet.savefile();
     }
 }

@@ -69,7 +69,18 @@ public class ListInvoiceDetails {
         list.add(ln);
     }
 
-    
+    public void savefile() {
+        try (java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter("InvoiceDetail.txt"))) {
+            for (InvoiceDetail detail : list) {
+                // Ghi theo định dạng: idInvoice,idBook,quantity
+                bw.write(detail.getIdInvoice() + "," + detail.getIdBook() + "," + detail.getQuantity());
+                bw.newLine(); // Xuống dòng cho mỗi chi tiết
+            }
+            System.out.println("save file InvoiceDentail.txt corret!");
+        } catch (Exception e) {
+            System.err.println("erorr when save file InvoiceDentail.txt: " + e.getMessage());
+        }
+    }
 
 
     
