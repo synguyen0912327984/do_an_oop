@@ -98,7 +98,7 @@ public class Manager {
             le.findById(id).getPosition().equalsIgnoreCase("Salesman") ||
             le.findById(id).getPosition().equalsIgnoreCase("Manager")));
 
-
+        inv.setIdCustomer(id);
         inv.setTime(LocalDate.now());
         ln.addlist(inv);
         ArrayList<InvoiceDetail> invoiceDetails = new ArrayList<>();
@@ -148,10 +148,11 @@ public class Manager {
             book.setAmount(book.getAmount()-quantity);
 
             dentail.setIdBook(book.getbookID());
-            dentail.setQuantity(book.getAmount());
+            dentail.setQuantity(quantity);
             dentail.setIdInvoice(idInvoice);
             listdentail.add(dentail);
 
+            sc.nextLine(); 
             System.out.print("Do you want to buy another book ?(y/n)");
             continue1 = sc.nextLine();
             
@@ -161,8 +162,14 @@ public class Manager {
        
         }while (continue1.equalsIgnoreCase("y"));
 
+        ln.test(inv.getIdInvoice()).displayInvoice();
+
+        for(InvoiceDetail st:listdentail){
+            st.display();
+        }
+
         // Save invoice and details
-    //    ArrayList<InvoiceDetail> Newden = new ArrayList<>();
+    //    
         
     }   
 
