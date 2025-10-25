@@ -94,7 +94,7 @@ public class Book {
     }
     public static Book fromString(String line) {
     String[] p = line.split(";");
-    if (p.length == 7) { // ✅ kiểm tra đủ 6 phần
+    if (p.length == 7) { 
         try {
             String bookID = p[0];
             String title = p[1];
@@ -105,10 +105,10 @@ public class Book {
             boolean status = Boolean.parseBoolean(p[6]);
             return new Book(bookID, title, author, publisher, price, amount, status);
         } catch (NumberFormatException e) {
-            System.err.println("Lỗi định dạng dữ liệu: " + e.getMessage());
+            System.err.println("Loi dinh dang du lieu:" + e.getMessage());
         }
     } else {
-        System.err.println("Dòng dữ liệu không hợp lệ: " + line);
+        System.err.println("Dong du lieu khong hop le:" + line);
     }
     return null;
 }
