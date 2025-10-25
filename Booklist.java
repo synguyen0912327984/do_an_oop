@@ -225,25 +225,52 @@ public class Booklist {
     
     
 
-    // Phuong thuc xoa sach
-    public boolean removeBook(String bookID) 
-    {
-    for (Book b : list) {
-        if (b.getbookID().equalsIgnoreCase(bookID)) {
-            if (!b.isActive()) {
-                System.out.println("Sach nay da bi danh dau xoa truoc do.");
-                return false;
+    public void removeBook() {
+    while (true) {
+        System.out.print("Nhap ID sach can xoa: ");
+        String bookID = sc.nextLine().trim();
+
+        // Kiem tra ID khong duoc de trong
+        if (bookID.isEmpty()) {
+            System.out.println("ID sach khong duoc de trong. Vui long nhap lai!");
+            continue;
+        }
+
+        boolean found = false;
+
+        for (Book b : list) {
+            // Bo qua cac phan tu null neu co
+            if (b == null) continue;
+
+            if (b.getbookID().equalsIgnoreCase(bookID)) {
+                found = true;
+
+                // Kiem tra sach da bi danh dau xoa truoc do
+                if (!b.isActive()) {
+                    System.out.println("Sach nay da bi danh dau xoa truoc do.");
+                    break;
+                }
+
+                // Danh dau xoa mem
+                b.setStatus(false);
+                System.out.println("Da xoa sach co ID: " + bookID);
+                break;
             }
-            b.setStatus(false); // danh dau xoa
-            
-            System.out.println("Da xoa sach co ID:" + bookID); // chi xoa mem
-            return true;
+        }
+
+        if (!found) {
+            System.out.println("Khong tim thay sach co ID: " + bookID);
+        }
+
+        // Hoi nguoi dung co muon xoa tiep khong
+        System.out.print("Ban co muon xoa tiep khong? (Y/N): ");
+        String ans = sc.nextLine().trim();
+        if (ans.equalsIgnoreCase("N")) {
+            break;
         }
     }
-    System.out.println("Khong tim thay sach co ID: " + bookID);
-    return false;
-    }
-    
+}
+
     //phuong thuc in ra danh sach sach da xoa
     public void displayDeletedBooks(){
         System.out.println("Danh sach sach da bi xoa:");
@@ -263,21 +290,33 @@ public class Booklist {
                 System.out.println("ID sach khong duoc de trong.");
                 break;
             }
-            boolean found = false;
+            
             for (Book i : list) {
-                if (i.getbookID().equalsIgnoreCase(bookID_Fix)) {
-                    inputBookInfo(i); // Update sach
-                    System.out.println("Da cap nhat sach co ID: " + bookID_Fix);
-                    found = true;
-                    return;
+                boolean found = false;
+                if(i.isActive()==true){
+                    if (i.getbookID().equalsIgnoreCase(bookID_Fix)) {
+                        inputBookInfo(i); // Update sach
+                        System.out.println("Da cap nhat sach co ID: " + bookID_Fix);
+                        found = true;
+                        return;
                 }
             }
-
-            if (!found) {
+                else if (!i.isActive()){
+                System.out.println("Sach nay da bi xoa, khong the sua.");
+                break;
+                }
+                if (!found){ 
                 System.out.println("Khong tim thay sach co ID: " + bookID_Fix);
+                break;
             }
         }
-    }
+
+            
+            
+            }
+        }
+        
+    
             
     //Phuong thuc thong ke tong so sach hien co
     public void totalBooks() {
@@ -301,6 +340,7 @@ public class Booklist {
             }
         }
     }
+    
     // Phuong thuc cap nhat file
    public void saveToFile() {
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
