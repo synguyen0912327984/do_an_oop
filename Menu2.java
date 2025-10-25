@@ -112,15 +112,28 @@ public class Menu2 {
                                         System.out.println("Enter: ");
                                         select4 = sc.nextInt();
                                         sc.nextLine();
+                                        String temp;
                                         switch(select4){
                                             case 1:
-                                                c.findByPhone(p).redeemPoints(30);
+                                                System.out.print("Are you sure? y/n: ");
+                                                temp = sc.nextLine();
+                                                if(temp.equalsIgnoreCase("y"))
+                                                    c.findByPhone(p).redeemPoints(30);
+                                                else System.out.println("Cancelled.");
                                                 break;
                                             case 2:
-                                                c.findByPhone(p).redeemPoints(50);
+                                                System.out.print("Are you sure? y/n: ");
+                                                temp = sc.nextLine();
+                                                if(temp.equalsIgnoreCase("y"))
+                                                    c.findByPhone(p).redeemPoints(50);
+                                                else System.out.println("Cancelled.");
                                                 break;
                                             case 3:
-                                                c.findByPhone(p).redeemPoints(80);
+                                                System.out.print("Are you sure? y/n: ");
+                                                temp = sc.nextLine();
+                                                if(temp.equalsIgnoreCase("y"))
+                                                    c.findByPhone(p).redeemPoints(80);
+                                                else System.out.println("Cancelled.");
                                                 break;
                                             case 0:
                                                 System.out.println("Returning...");
