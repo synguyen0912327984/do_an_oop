@@ -137,9 +137,14 @@ public class CustomerList implements IActions<Customer>{
             case 2: //Phone
                 System.out.print("Enter new phone number: ");
                 keyword = sc.nextLine();
-                a.setPhoneNumber(keyword);
-                System.out.println("Changed successfully!");
-                break;
+                if(!Person.isValidPhoneNumber(keyword)){
+                    System.out.println("Invalid phone number!\n");
+                }
+                else {
+                    a.setPhoneNumber(keyword);
+                    System.out.println("Changed successfully!");
+                    break;
+                }
             case 3: //Address
                 System.out.print("Enter new address: ");
                 keyword = sc.nextLine();
