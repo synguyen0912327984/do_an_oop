@@ -48,3 +48,23 @@ B047,The Stand,Stephen King,Doubleday,115000,18,true
 B048,Pet Sematary,Stephen King,Doubleday,89000,24,true
 B049,Doctor Sleep,Stephen King,Scribner,97000,20,true
 B050,The Institute,Stephen King,Scribner,98000,19,true
+B071,To Kill a Mockingbird,Harper Lee,Random House,88000,20,true
+B072,1984,George Orwell,Vintage Classics,80000,18,true
+B073,Pride and Prejudice,Jane Austen,Penguin Classics,91000,22,true
+B074,The Great Gatsby,F. Scott Fitzgerald,Modern Library,87000,28,true
+B075,The Hobbit,J.R.R. Tolkien,HarperCollins,90000,38,true
+B076,The Da Vinci Code,Dan Brown,Anchor Books,101000,25,true
+B077,The Alchemist,Paulo Coelho,Vintage Books,93000,27,true
+B078,The Kite Runner,Khaled Hosseini,Bloomsbury,96000,33,true
+B079,The Book Thief,Markus Zusak,Knopf,98000,29,true
+B080,The Fault in Our Stars,John Green,HarperTeen,94000,24,true
+B081,The Hunger Games,Suzanne Collins,Bloomsbury,97000,40,true
+B082,Dune,Frank Herbert,Ace Books,118000,15,true
+B083,Foundation,Isaac Asimov,Harper Voyager,100000,18,true
+B084,Animal Farm,George Orwell,Penguin Books,81000,25,true
+B085,It,Stephen King,Scribner,112000,20,true
+B086,Pet Sematary,Stephen King,Signet Books,91000,19,true
+B087,The Silent Patient,Alex Michaelides,Macmillan,99000,17,true
+B088,The Girl on the Train,Paula Hawkins,Transworld,94000,20,true
+B089,Gone Girl,Gillian Flynn,Broadway Books,97000,18,true
+B090,The Girl with the Dragon Tattoo,Stieg Larsson,MacLehose Press,103000,22,true

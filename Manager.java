@@ -55,12 +55,12 @@ public class Manager {
         System.out.println("==============================================================");
     }
 
-     public static void addCustomerOld(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
+     public static void addInvoice(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
             Booklist lb) {
         Scanner sc = new Scanner(System.in);
         Invoice inv = new Invoice();
 
-        // Generate new invoice ID
+         // Generate new invoice ID
         int number = ln.getQuantity() + 1;
         String idInvoice;
         do {
@@ -72,7 +72,7 @@ public class Manager {
         // Customer ID input
         String id;
         String Phone;
-        boolean valid;
+        boolean valid ;
         do {
             System.out.print("NumberPhone: ");
             Phone = sc.nextLine();
@@ -87,61 +87,37 @@ public class Manager {
             System.out.print("idEmp: ");
             id = sc.nextLine();
             valid = le.findById(id) != null;
-            if (!valid)
-                System.out.println("Employee ID not found!");
-        } while (!valid);
-        inv.setIdEmployee(id);
+            if (!valid || 
+                !(le.findById(id).getPosition().equalsIgnoreCase("Cashier") ||
+                le.findById(id).getPosition().equalsIgnoreCase("Salesman") ||
+                le.findById(id).getPosition().equalsIgnoreCase("Manager"))) {
+                System.out.println("Employee ID invalid!");
+}
+        } while (!valid || 
+            !(le.findById(id).getPosition().equalsIgnoreCase("Cashier") ||
+            le.findById(id).getPosition().equalsIgnoreCase("Salesman") ||
+            le.findById(id).getPosition().equalsIgnoreCase("Manager")));
+
 
         inv.setTime(LocalDate.now());
         ln.addlist(inv);
         ArrayList<InvoiceDetail> invoiceDetails = new ArrayList<>();
-
-        // Add books
-        boolean continueAdding = true;
-        while (continueAdding) {
-            String idBook;
-            int quantity;
-            Book book;
-            String bookname;
-            // Book ID input
-            do {
-                System.out.print("IdBook: ");
-                idBook = sc.nextLine();
-                book = lb.findByID(idBook);
-                if (book == null)
-                    System.out.println("Book ID not found!");
-            } while (book == null);
-            idBook = book.getbookID();
-            System.out.println(book.getAmount());
-            // Quantity input
-            do {
-                System.out.print("Quantity: ");
-                quantity = sc.nextInt();
-                sc.nextLine(); // consume newline
-                if (quantity > book.getAmount()) {
-                    System.out.println("Not enough stock! Available: " + book.getAmount());
-                }
-            } while (quantity > book.getAmount());
-
-            // Add invoice detail
-            InvoiceDetail detail = new InvoiceDetail();
-            detail.setIdInvoice(idInvoice);
-            detail.setIdBook(idBook);
-            detail.setQuantity(quantity);
-            invoiceDetails.add(detail);
-
-            // Update stock
-            book.setAmount(book.getAmount() - quantity);
-            // =0 
-            // Continue?
-            System.out.print("Add another book? (y/n): ");
-            String choice = sc.nextLine();
-            continueAdding = choice.equalsIgnoreCase("y");
-        }
+        // add buy book
+        String nameBook = new String();
+        String continue1 = new String();
+        ArrayList<Book> books = new ArrayList<>();
+        Book book = new Book();
+        boolean continue2;
+        do{
+            System.out.print("NameBook:");
+            nameBook= sc.nextLine()
+        }while(continue2)  
+        
+       
 
         // Save invoice and details
-        ArrayList<InvoiceDetail> Newden = new ArrayList<>();
-
+    //    ArrayList<InvoiceDetail> Newden = new ArrayList<>();
+        
     }   
 
       
@@ -155,9 +131,9 @@ public class Manager {
 
         listin.readFile();
         listdet.readFile();
-        listin.displayAll();
+        
         // Example usage
         // PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
-       // addCustomerOld(listemp, listCus, listin, listdet, listb);
+         addInvoice(listemp, listCus, listin, listdet, listb);
     }
 }
