@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class BookMenu {
+public class Test_BookMenu {
        private static Scanner sc = new Scanner(System.in);
        private static Booklist lb = new Booklist();
        private static int choice;
@@ -120,6 +120,7 @@ public class BookMenu {
     public static void AnalysMenu() {
         System.out.println("1.Thong ke sach co so luong > x");
         System.out.println("2.Thong ke sach theo so luong ban chay nhat");
+        System.out.println("3.Thong ke toan bo so luong sach hien co trong kho");
         System.out.print("Nhap lua chon: ");
         if(sc.hasNextInt()) {
             int analysChoice = sc.nextInt();
@@ -130,6 +131,9 @@ public class BookMenu {
                     break;
                 case 2:
                     System.out.println("Chua hoan thanh chuc nang nay!");
+                    break;
+                    case 3:
+                    lb.totalBooks();
                     break;
                 default:
                     System.out.println("Lua chon khong hop le, vui long nhap lai!");
