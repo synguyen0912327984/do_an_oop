@@ -52,6 +52,13 @@ abstract class Person {
         return active;
     }
 
+    public static boolean isValidPhoneNumber(String phone) {
+        if (phone == null) {
+            return false;
+        }
+        return phone.matches("0[0-9]{9}");
+    }
+
     public void displayinfo() {
         System.out.println("=====================================");
         System.out.println("ID        : " + id);
