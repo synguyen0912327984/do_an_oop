@@ -240,6 +240,7 @@ public class EmployeeList implements IActions<Employee> {
                 System.out.println("Cancelled.");
                 break;
         }
+        sc.close();
     }
 
     public void saveToFile() {
