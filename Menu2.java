@@ -181,9 +181,13 @@ public class Menu2 {
         while (true) {
             System.out.print("Enter phone number: ");
             phone = sc.nextLine();
-            if (Person.isValidPhoneNumber(phone)) {
+            if (Person.isValidPhoneNumber(phone) && c.findByPhone(phone) == null) {
                 break;
-            } else {
+            } 
+            else if(Person.isValidPhoneNumber(phone) && c.findByPhone(phone) != null){
+                System.out.println("Phone number already exist.");
+            }
+            else {
                 System.out.println("Invalid phone number! (10 nums and start with 0).");
             }
         }
