@@ -119,6 +119,55 @@ public class CustomerList implements IActions<Customer> {
         del.setActive(false);
     }
 
+    @Override 
+    public void edit(Customer a){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("EDIT:");
+        System.out.print("1. Name\n2. Phone\n3. Address\nEnter: ");
+        int keys = Integer.parseInt(sc.nextLine());
+        String keyword;
+        switch(keys){
+            case 1: //Name
+                System.out.print("Enter new name: ");
+                keyword = sc.nextLine();
+                a.setName(keyword);
+                System.out.println("Changed successfully!");
+                break;
+            case 2: //Phone
+                System.out.print("Enter new phone number: ");
+                keyword = sc.nextLine();
+                if(!Person.isValidPhoneNumber(keyword)){
+                    System.out.println("Invalid phone number!\n");
+                }
+                else {
+                    a.setPhoneNumber(keyword);
+                    System.out.println("Changed successfully!");
+                    break;
+                }
+            case 3: //Address
+                System.out.print("Enter new address: ");
+                keyword = sc.nextLine();
+                a.setAddress(keyword);
+                System.out.println("Changed successfully!");
+                break;
+            /*case 4: //Active
+                System.out.println("Active (true/false): ");
+                keyword = sc.nextLine();
+                a.setActive(Boolean.parseBoolean(keyword));
+                System.out.println("Changed successfully!");
+                break;
+            case 5: //LoyaltyPoints
+                System.out.println("Enter loyalty points: ");
+                keyword = sc.nextLine();
+                a.setLoyaltyPoints(Integer.parseInt(keyword));
+                System.out.println("Changed successfully!");
+                break;*/
+            default:
+                System.out.println("Cancelled.");
+                break;
+        }
+    }
+
     public void displayAll() {
         for (Customer c : customers) {
             if (c.isActive())

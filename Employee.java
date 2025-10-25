@@ -7,15 +7,15 @@ class Employee extends Person {
         return position;
     }
 
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setPosition(String position) {
+    public void setPosition(String position){
         this.position = position;
     }
 
-    public void setSalary(double salary) {
+    public double getSalary(){
+        return salary;
+    }
+
+    public void setSalary(double salary){
         this.salary = salary;
     }
 

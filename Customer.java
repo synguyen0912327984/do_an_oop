@@ -47,8 +47,6 @@ class Customer extends Person {
         return id + "," + name + "," + phoneNumber + "," + address + "," + loyaltyPoints + "," + active;
     }
 
-    // Interface
-
     public void Buy(Book a) {
         System.out.print("Enter the amount you want to buy: ");
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
