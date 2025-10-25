@@ -195,9 +195,15 @@ public class Booklist {
         
         int number = getQuantity()+1;
         String test_idBook;
-        do{
-            test_idBook = "B0" + number;
-            number++;
+        do{ 
+            if(test_idBook<100){
+                test_idBook = "B0" + number;
+                number++;
+            }
+            else{
+                test_idBook = "B" + number;
+                number++;
+            }
         }
         while (findByID(test_idBook) != null);
         book.setbookID(test_idBook);
