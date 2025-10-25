@@ -98,7 +98,7 @@ public class Manager {
             le.findById(id).getPosition().equalsIgnoreCase("Salesman") ||
             le.findById(id).getPosition().equalsIgnoreCase("Manager")));
 
-        inv.setIdCustomer(id);
+        inv.setIdEmployee(id);
         inv.setTime(LocalDate.now());
         ln.addlist(inv);
         ArrayList<InvoiceDetail> invoiceDetails = new ArrayList<>();
@@ -109,10 +109,10 @@ public class Manager {
         String continue1 = new String();
         ArrayList<Book> books = new ArrayList<>();
         ArrayList<InvoiceDetail> listdentail = new ArrayList<>();
-        InvoiceDetail dentail = new InvoiceDetail();
         Book book = new Book();
-        boolean continue2=true;
+        boolean continue2;
         do{
+            continue2 = true;
             do{
                 System.out.print("NameBook:");
                 nameBook= sc.nextLine();
@@ -147,6 +147,7 @@ public class Manager {
 
             book.setAmount(book.getAmount()-quantity);
 
+            InvoiceDetail dentail = new InvoiceDetail();
             dentail.setIdBook(book.getbookID());
             dentail.setQuantity(quantity);
             dentail.setIdInvoice(idInvoice);
@@ -163,10 +164,10 @@ public class Manager {
         }while (continue1.equalsIgnoreCase("y"));
 
         ln.test(inv.getIdInvoice()).displayInvoice();
-
         for(InvoiceDetail st:listdentail){
             st.display();
         }
+        
 
         // Save invoice and details
     //    
@@ -181,7 +182,7 @@ public class Manager {
         Booklist listb = new Booklist();
         ListInvoice listin = new ListInvoice();
         ListInvoiceDetails listdet = new ListInvoiceDetails();
-
+        
         listin.readFile();
         listdet.readFile();
         

@@ -1,70 +1,100 @@
-B001,To Kill a Mockingbird,Harper Lee,HarperCollins,85000,30,true
-B002,1984,George Orwell,Penguin Books,78000,25,true
-B003,Pride and Prejudice,Jane Austen,Oxford Press,90000,40,true
-B004,The Great Gatsby,F. Scott Fitzgerald,Scribner,88000,35,true
-B005,The Catcher in the Rye,J.D. Salinger,Little Brown,82000,50,true
-B006,Moby Dick,Herman Melville,Harper & Brothers,95000,20,true
-B007,War and Peace,Leo Tolstoy,Wordsworth Editions,120000,15,true
-B008,Crime and Punishment,Fyodor Dostoevsky,Modern Library,110000,22,true
-B009,The Odyssey,Homer,Penguin Classics,100000,18,true
-B010,Jane Eyre,Charlotte Bronte,Smith Elder,87000,30,true
-B011,Brave New World,Aldous Huxley,Chatto & Windus,92000,27,true
-B012,The Hobbit,J.R.R. Tolkien,Allen & Unwin,89000,45,true
-B013,The Lord of the Rings,J.R.R. Tolkien,Allen & Unwin,150000,28,true
-B014,Harry Potter and the Sorcerer’s Stone,J.K. Rowling,Bloomsbury,95000,60,true
-B015,Harry Potter and the Chamber of Secrets,J.K. Rowling,Bloomsbury,97000,55,true
-B016,Harry Potter and the Prisoner of Azkaban,J.K. Rowling,Bloomsbury,98000,50,true
-B017,Harry Potter and the Goblet of Fire,J.K. Rowling,Bloomsbury,105000,48,true
-B018,Harry Potter and the Order of the Phoenix,J.K. Rowling,Bloomsbury,110000,47,true
-B019,Harry Potter and the Half-Blood Prince,J.K. Rowling,Bloomsbury,112000,46,true
-B020,Harry Potter and the Deathly Hallows,J.K. Rowling,Bloomsbury,115000,44,true
-B021,The Da Vinci Code,Dan Brown,Doubleday,99000,38,true
-B022,Angels and Demons,Dan Brown,Pocket Books,97000,40,true
-B023,Inferno,Dan Brown,Bantam Press,98000,42,true
-B024,Origin,Dan Brown,Bantam Press,102000,41,true
-B025,The Alchemist,Paulo Coelho,HarperOne,88000,50,true
-B026,Veronika Decides to Die,Paulo Coelho,HarperCollins,87000,33,true
-B027,The Pilgrimage,Paulo Coelho,HarperCollins,86000,30,true
-B028,Eleven Minutes,Paulo Coelho,HarperOne,89000,29,true
-B029,The Kite Runner,Khaled Hosseini,Riverhead Books,94000,37,true
-B030,A Thousand Splendid Suns,Khaled Hosseini,Bloomsbury,95000,39,true
-B031,And the Mountains Echoed,Khaled Hosseini,Bloomsbury,93000,35,true
-B032,The Book Thief,Markus Zusak,Picador,97000,36,true
-B033,The Fault in Our Stars,John Green,Dutton Books,92000,45,true
-B034,Looking for Alaska,John Green,HarperCollins,91000,30,true
-B035,Paper Towns,John Green,Bloomsbury,93000,28,true
-B036,The Hunger Games,Suzanne Collins,Scholastic Press,98000,42,true
-B037,Catching Fire,Suzanne Collins,Scholastic Press,100000,40,true
-B038,Mockingjay,Suzanne Collins,Scholastic Press,105000,38,true
-B039,Dune,Frank Herbert,Chilton Books,115000,32,true
-B040,Foundation,Isaac Asimov,Bantam Books,99000,29,true
-B041,I & Robot,Isaac Asimov,Bantam Books,94000,25,true
-B042,Animal Farm,George Orwell,Secker & Warburg,79000,33,true
-B043,The Shining,Stephen King,Doubleday,99000,26,true
-B044,It,Stephen King,Viking Press,110000,22,true
-B045,Misery,Stephen King,Viking Press,95000,28,true
-B046,The Green Mile,Stephen King,Signet Books,93000,31,true
-B047,The Stand,Stephen King,Doubleday,115000,18,true
-B048,Pet Sematary,Stephen King,Doubleday,89000,24,true
-B049,Doctor Sleep,Stephen King,Scribner,97000,20,true
-B050,The Institute,Stephen King,Scribner,98000,19,true
-B071,To Kill a Mockingbird,Harper Lee,Random House,88000,20,true
-B072,1984,George Orwell,Vintage Classics,80000,18,true
-B073,Pride and Prejudice,Jane Austen,Penguin Classics,91000,22,true
-B074,The Great Gatsby,F. Scott Fitzgerald,Modern Library,87000,28,true
-B075,The Hobbit,J.R.R. Tolkien,HarperCollins,90000,38,true
-B076,The Da Vinci Code,Dan Brown,Anchor Books,101000,25,true
-B077,The Alchemist,Paulo Coelho,Vintage Books,93000,27,true
-B078,The Kite Runner,Khaled Hosseini,Bloomsbury,96000,33,true
-B079,The Book Thief,Markus Zusak,Knopf,98000,29,true
-B080,The Fault in Our Stars,John Green,HarperTeen,94000,24,true
-B081,The Hunger Games,Suzanne Collins,Bloomsbury,97000,40,true
-B082,Dune,Frank Herbert,Ace Books,118000,15,true
-B083,Foundation,Isaac Asimov,Harper Voyager,100000,18,true
-B084,Animal Farm,George Orwell,Penguin Books,81000,25,true
-B085,It,Stephen King,Scribner,112000,20,true
-B086,Pet Sematary,Stephen King,Signet Books,91000,19,true
-B087,The Silent Patient,Alex Michaelides,Macmillan,99000,17,true
-B088,The Girl on the Train,Paula Hawkins,Transworld,94000,20,true
-B089,Gone Girl,Gillian Flynn,Broadway Books,97000,18,true
-B090,The Girl with the Dragon Tattoo,Stieg Larsson,MacLehose Press,103000,22,true
+B001;Life is a Miracle;Sophia White;Simon & Schuster;92000;58;true
+B002;Across the Mountain;Charlotte Garcia;Penguin Random House;76000;28;true
+B003;Autumn Dreams;William Wilson;Hachette;21000;92;true
+B004;Journey to the Heart;Thomas Lewis;Vintage Books;73000;41;true
+B005;The Girl in the City;Mia Robinson;Scribner;46000;8;true
+B006;Light at the End;Evelyn Lee;Oxford Press;26000;76;true
+B007;Dance of the Leaves;Emily Brown;Macmillan;65000;67;true
+B008;The Road to Happiness;Daniel Moore;Hachette;63000;21;true
+B009;River of Youth;Sarah Davis;Cambridge Press;18000;49;true
+B010;Secrets of the Deep Sea;Michael Johnson;Penguin Random House;58000;81;true
+B011;Autumn Dreams;Emma Thomas;Hachette;51000;74;true
+B012;Whispers of the Wind;James Anderson;Scribner;29000;84;true
+B013;Journey to the Heart;Amelia Rodriguez;Simon & Schuster;22000;45;true
+B014;The Road to Happiness;Robert Thompson;Hachette;93000;59;true
+B015;Winter Warmth;Charlotte Garcia;Oxford Press;52000;7;true
+B016;Dance of the Leaves;John Smith;Vintage Books;74000;66;true
+B017;Beyond the Shadows;Evelyn Lee;Hachette;20000;33;true
+B018;Whispers of the Wind;Emily Brown;Scribner;97000;35;true
+B019;River of Youth;James Anderson;Cambridge Press;89000;18;true
+B020;Keeper of Memories;William Wilson;Vintage Books;21000;72;true
+B021;Journey to the Heart;Olivia Taylor;Macmillan;49000;24;true
+B022;Whispers of the Wind;Daniel Moore;HarperCollins;27000;62;true
+B023;Path of Destiny;Sarah Davis;Crown Publishing;48000;22;true
+B024;Autumn Dreams;Evelyn Lee;Cambridge Press;44000;69;true
+B025;Life is a Miracle;Amelia Rodriguez;Oxford Press;60000;53;true
+B026;Sunset Over the Lake;David Harris;Hachette;47000;46;true
+B027;Journey to the Heart;Emma Thomas;Simon & Schuster;17000;30;true
+B028;River of Youth;Charlotte Garcia;Penguin Random House;51000;36;true
+B029;The Road to Happiness;Olivia Taylor;Cambridge Press;80000;10;true
+B030;Secrets of the Deep Sea;John Smith;Hachette;99000;61;true
+B031;Dance of the Leaves;Emily Brown;Macmillan;78000;70;true
+B032;The Girl in the City;William Wilson;Crown Publishing;91000;20;true
+B033;Life is a Miracle;Michael Johnson;Simon & Schuster;69000;32;true
+B034;Autumn Dreams;James Anderson;Scribner;83000;2;true
+B035;Journey to the Heart;Evelyn Lee;Oxford Press;32000;57;true
+B036;Path of Destiny;Sarah Davis;Penguin Random House;59000;29;true
+B037;River of Youth;Mia Robinson;Cambridge Press;33000;77;true
+B038;Secrets of the Deep Sea;Olivia Taylor;Hachette;74000;4;true
+B039;Winter Warmth;Charlotte Garcia;Scribner;88000;19;true
+B040;Light at the End;Michael Johnson;Vintage Books;76000;3;true
+B041;Whispers of the Wind;Sophia White;Hachette;100000;68;true
+B042;Beyond the Shadows;John Smith;Crown Publishing;83000;6;true
+B043;Autumn Dreams;James Anderson;Cambridge Press;26000;27;true
+B044;Journey to the Heart;Charlotte Garcia;Simon & Schuster;73000;39;true
+B045;Dance of the Leaves;Emily Brown;Oxford Press;18000;14;true
+B046;River of Youth;Sarah Davis;Scribner;93000;90;true
+B047;Secrets of the Deep Sea;Michael Johnson;Hachette;91000;73;true
+B048;Winter Warmth;Amelia Rodriguez;Macmillan;55000;95;true
+B049;The Girl in the City;David Harris;Oxford Press;26000;16;true
+B050;Life is a Miracle;Olivia Taylor;Penguin Random House;61000;48;true
+B051;Journey to the Heart;William Wilson;Cambridge Press;27000;26;true
+B052;River of Youth;Emily Brown;HarperCollins;85000;43;true
+B053;Dance of the Leaves;Sarah Davis;Oxford Press;65000;60;true
+B054;The Road to Happiness;Evelyn Lee;Crown Publishing;99000;83;true
+B055;Journey to the Heart;Daniel Moore;Hachette;25000;12;true
+B056;Secrets of the Deep Sea;Charlotte Garcia;Vintage Books;58000;80;true
+B057;Life is a Miracle;Amelia Rodriguez;Scribner;94000;37;true
+B058;Autumn Dreams;Robert Thompson;Hachette;100000;5;true
+B059;Whispers of the Wind;Sophia White;Cambridge Press;76000;42;true
+B060;Beyond the Shadows;Michael Johnson;Crown Publishing;54000;9;true
+B061;River of Youth;Sarah Davis;Penguin Random House;47000;63;true
+B062;Journey to the Heart;Olivia Taylor;Vintage Books;41000;99;true
+B063;Light at the End;John Smith;Simon & Schuster;29000;56;true
+B064;Autumn Dreams;Amelia Rodriguez;Macmillan;85000;78;true
+B065;The Girl in the City;Sophia White;Cambridge Press;44000;86;true
+B066;River of Youth;Emily Brown;Hachette;94000;44;true
+B067;Secrets of the Deep Sea;Evelyn Lee;Oxford Press;83000;52;true
+B068;Journey to the Heart;Emma Thomas;Scribner;95000;89;true
+B069;Whispers of the Wind;Michael Johnson;Cambridge Press;27000;47;true
+B070;Life is a Miracle;William Wilson;Hachette;51000;1;true
+B071;Autumn Dreams;Sarah Davis;HarperCollins;96000;15;true
+B072;Dance of the Leaves;John Smith;Macmillan;24000;71;true
+B073;Secrets of the Deep Sea;Charlotte Garcia;Scribner;19000;13;true
+B074;Journey to the Heart;Olivia Taylor;Vintage Books;33000;93;true
+B075;Whispers of the Wind;Emily Brown;Hachette;89000;40;true
+B076;Autumn Dreams;James Anderson;Simon & Schuster;47000;25;true
+B077;River of Youth;Sophia White;Cambridge Press;91000;31;true
+B078;The Girl in the City;Amelia Rodriguez;Vintage Books;100000;85;true
+B079;Journey to the Heart;Daniel Moore;HarperCollins;65000;11;true
+B080;Winter Warmth;Michael Johnson;Hachette;53000;98;true
+B081;Secrets of the Deep Sea;Sarah Davis;Crown Publishing;100000;79;true
+B082;Autumn Dreams;Olivia Taylor;Vintage Books;40000;17;true
+B083;Dance of the Leaves;Mia Robinson;Macmillan;77000;55;true
+B084;Life is a Miracle;John Smith;Scribner;89000;23;true
+B085;Journey to the Heart;Amelia Rodriguez;Cambridge Press;38000;91;true
+B086;River of Youth;William Wilson;Oxford Press;90000;64;true
+B087;Whispers of the Wind;Emily Brown;Hachette;100000;75;true
+B088;Autumn Dreams;Charlotte Garcia;Scribner;43000;87;true
+B089;Secrets of the Deep Sea;Emma Thomas;Penguin Random House;68000;94;true
+B090;The Road to Happiness;Sarah Davis;Simon & Schuster;85000;65;true
+B091;Winter Warmth;Olivia Taylor;Vintage Books;31000;82;true
+B092;Journey to the Heart;William Wilson;Oxford Press;33000;54;true
+B093;Dance of the Leaves;Emily Brown;Hachette;49000;97;true
+B094;Life is a Miracle;Sophia White;Cambridge Press;76000;96;true
+B095;Whispers of the Wind;Charlotte Garcia;Scribner;93000;50;true
+B096;River of Youth;Sarah Davis;Hachette;77000;88;true
+B097;Journey to the Heart;Evelyn Lee;Simon & Schuster;99000;34;true
+B098;Autumn Dreams;Emma Thomas;Penguin Random House;83000;38;true
+B099;Secrets of the Deep Sea;Michael Johnson;Vintage Books;92000;100;true
+B100;Dance of the Leaves;William Wilson;Macmillan;95000;51;true
