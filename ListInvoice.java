@@ -94,6 +94,15 @@ public class ListInvoice {
         }
     }
         
+    public ArrayList<Invoice> findtime(LocalDate time) {
+        ArrayList<Invoice> result = new ArrayList<>();
+        for (Invoice inv : list) {
+            if (inv.getTime().isEqual(time)) {
+                result.add(inv);
+            }
+        }
+        return result;
+    }
 
     
 }
