@@ -87,6 +87,9 @@ public class Menu2 {
                                             case 4:
                                                 System.out.println("Enter Publisher: ");
                                                 break;
+                                            default:
+                                                System.out.println("Invalid choice!");
+                                                break;
                                         }
                                         String search = sc.nextLine();
                                         bl.find(type, search);
@@ -128,6 +131,9 @@ public class Menu2 {
                                             case 0:
                                                 System.out.println("Returning...");
                                                 break;
+                                            default:
+                                                System.out.println("Invalid choice!");
+                                                break;
                                         }
                                     } while(select3 != 0);
                                     break;
@@ -168,11 +174,17 @@ public class Menu2 {
                                             case 0:
                                                 System.out.println("Returning...");
                                                 break;
+                                            default:
+                                                System.out.println("Invalid choice!");
+                                                break;
                                         }
                                     }while(select4 != 0);
                                     break;
                                 case 0:
                                     System.out.println("Returning...");
+                                    break;
+                                default:
+                                    System.out.println("Invalid choice!");
                                     break;
                             }
                         } while(select2 != 0);
@@ -193,6 +205,9 @@ public class Menu2 {
                         if(temp.equalsIgnoreCase("DoanOOP"))
                             mainMenu();
                         else System.out.println("Wrong password. Returning...");
+                    default:
+                        System.out.println("Invalid choice!");
+                        break;
                 }
             }while(select != 0);
         }
