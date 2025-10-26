@@ -185,28 +185,47 @@ public class EmployeeList implements IActions<Employee> {
         System.out.println("EDIT:");
         System.out.print("1. Name\n2. Phone\n3. Address\nEnter: ");
         int keys = Menu2.readIntInput();
-        String keyword;
+        boolean valid;
         switch (keys) {
             case 1: // Name
-                System.out.print("Enter new name: ");
-                keyword = sc.nextLine();
-                a.setName(keyword);
+                do{
+                    System.out.print("Enter new name: ");
+                    String Name_test;
+                    Name_test = sc.nextLine();
+                    valid = !Name_test.isEmpty();
+                    if(valid)
+                        a.setName(Name_test);
+                    else
+                        System.out.println("Name cannot be empty. Try again.");
+                }while(!valid);
                 System.out.println("Changed successfully!");
                 break;
             case 2: // Phone
-                System.out.print("Enter new phone number: ");
-                keyword = sc.nextLine();
-                if (!Person.isValidPhoneNumber(keyword)) {
-                    System.out.println("Invalid phone number!\n");
-                } else {
-                    a.setPhoneNumber(keyword);
-                    System.out.println("Changed successfully!");
-                    break;
-                }
+                do{
+                    System.out.print("Enter new phone number: ");
+                    String Phone_test;
+                    Phone_test = sc.nextLine();
+                    valid = Person.isValidPhoneNumber(Phone_test);
+                    if (valid) {
+                        a.setPhoneNumber(Phone_test);
+                    } else {
+                        System.out.println("Invalid phone number");
+                        System.out.println("Please re-enter or press Enter to skip");
+                    }
+                }while(!valid);
+                System.out.println("Changed successfully!");
+                break;
             case 3: // Address
-                System.out.print("Enter new address: ");
-                keyword = sc.nextLine();
-                a.setAddress(keyword);
+                do{
+                    System.out.print("Enter new address: ");
+                    String Address_test;
+                    Address_test = sc.nextLine();
+                    valid = !Address_test.isEmpty();
+                    if(valid)
+                        a.setAddress(Address_test);
+                    else
+                        System.out.println("Title cannot be empty. Try again.");
+                }while(!valid);
                 System.out.println("Changed successfully!");
                 break;
             default:
