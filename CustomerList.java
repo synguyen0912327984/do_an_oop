@@ -119,53 +119,55 @@ public class CustomerList implements IActions<Customer> {
         del.setActive(false);
     }
 
-    @Override 
-    public void edit(Customer a){
+    @Override
+    public void edit(Customer a) {
         Scanner sc = new Scanner(System.in);
         System.out.println("EDIT:");
         System.out.print("1. Name\n2. Phone\n3. Address\nEnter: ");
         int keys = Integer.parseInt(sc.nextLine());
         String keyword;
-        switch(keys){
-            case 1: //Name
+        switch (keys) {
+            case 1: // Name
                 System.out.print("Enter new name: ");
                 keyword = sc.nextLine();
                 a.setName(keyword);
                 System.out.println("Changed successfully!");
                 break;
-            case 2: //Phone
+            case 2: // Phone
                 System.out.print("Enter new phone number: ");
                 keyword = sc.nextLine();
-                if(!Person.isValidPhoneNumber(keyword)){
+                if (!Person.isValidPhoneNumber(keyword)) {
                     System.out.println("Invalid phone number!\n");
-                }
-                else {
+                } else {
                     a.setPhoneNumber(keyword);
                     System.out.println("Changed successfully!");
                     break;
                 }
-            case 3: //Address
+            case 3: // Address
                 System.out.print("Enter new address: ");
                 keyword = sc.nextLine();
                 a.setAddress(keyword);
                 System.out.println("Changed successfully!");
                 break;
-            /*case 4: //Active
-                System.out.println("Active (true/false): ");
-                keyword = sc.nextLine();
-                a.setActive(Boolean.parseBoolean(keyword));
-                System.out.println("Changed successfully!");
-                break;
-            case 5: //LoyaltyPoints
-                System.out.println("Enter loyalty points: ");
-                keyword = sc.nextLine();
-                a.setLoyaltyPoints(Integer.parseInt(keyword));
-                System.out.println("Changed successfully!");
-                break;*/
+            /*
+             * case 4: //Active
+             * System.out.println("Active (true/false): ");
+             * keyword = sc.nextLine();
+             * a.setActive(Boolean.parseBoolean(keyword));
+             * System.out.println("Changed successfully!");
+             * break;
+             * case 5: //LoyaltyPoints
+             * System.out.println("Enter loyalty points: ");
+             * keyword = sc.nextLine();
+             * a.setLoyaltyPoints(Integer.parseInt(keyword));
+             * System.out.println("Changed successfully!");
+             * break;
+             */
             default:
                 System.out.println("Cancelled.");
                 break;
         }
+        sc.close();
     }
 
     public void displayAll() {
@@ -179,11 +181,11 @@ public class CustomerList implements IActions<Customer> {
         Customer customerToEdit = this.findById(id);
 
         if (customerToEdit == null) {
-            System.out.println("Khong tim thay khach hang voi id: " + id);
+            System.out.println("Customer not found with id: " + id);
             return;
         }
 
-        System.out.println("Chinh sua thong tin khach hang (enter de bo qua)");
+        System.out.println("Update customer information (press Enter to skip)");
         customerToEdit.displayinfo();
 
         System.out.print("Ten moi (" + customerToEdit.getName() + "): ");
@@ -193,7 +195,7 @@ public class CustomerList implements IActions<Customer> {
         }
 
         while (true) {
-            System.out.print("SĐT mới (" + customerToEdit.getPhoneNumber() + "): ");
+            System.out.print("New phone number (" + customerToEdit.getPhoneNumber() + "): ");
             String newPhone = scanner.nextLine();
 
             if (newPhone.isEmpty()) {
@@ -204,29 +206,29 @@ public class CustomerList implements IActions<Customer> {
                 customerToEdit.setPhoneNumber(newPhone);
                 break;
             } else {
-                System.out.println("SDT khong hop le");
-                System.out.println("Vui long nhap lai hoac an enter de bo qua");
+                System.out.println("Invalid phone number");
+                System.out.println("Please re-enter or press Enter to skip");
             }
         }
 
-        System.out.print("Dia chi moi (" + customerToEdit.getAddress() + "): ");
+        System.out.print("New address (" + customerToEdit.getAddress() + "): ");
         String newAddress = scanner.nextLine();
         if (!newAddress.isEmpty()) {
             customerToEdit.setAddress(newAddress);
         }
 
-        System.out.print("Diem thuong moi (" + customerToEdit.getLoyaltyPoints() + "): ");
+        System.out.print("New reward points (" + customerToEdit.getLoyaltyPoints() + "): ");
         String newPointsStr = scanner.nextLine();
         if (!newPointsStr.isEmpty()) {
             try {
                 int newPoints = Integer.parseInt(newPointsStr);
                 customerToEdit.setLoyaltyPoints(newPoints);
             } catch (NumberFormatException e) {
-                System.out.println("Gia tri khong hop le. Diem thuong khong duoc thay doi");
+                System.out.println("Invalid value. Reward points were not changed");
             }
         }
 
-        System.out.println("---Cap nhat thong tin khach hang thanh cong!---");
+        System.out.println("---Customer information updated successfully!---");
         customerToEdit.displayinfo();
     }
 

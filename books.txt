@@ -1,100 +1,101 @@
-B001;Life is a Miracle;Sophia White;Simon & Schuster;92000;58;true
-B002;Across the Mountain;Charlotte Garcia;Penguin Random House;76000;28;true
-B003;Autumn Dreams;William Wilson;Hachette;21000;92;true
-B004;Journey to the Heart;Thomas Lewis;Vintage Books;73000;41;true
-B005;The Girl in the City;Mia Robinson;Scribner;46000;8;true
-B006;Light at the End;Evelyn Lee;Oxford Press;26000;76;true
-B007;Dance of the Leaves;Emily Brown;Macmillan;65000;67;true
-B008;The Road to Happiness;Daniel Moore;Hachette;63000;21;true
-B009;River of Youth;Sarah Davis;Cambridge Press;18000;49;true
-B010;Secrets of the Deep Sea;Michael Johnson;Penguin Random House;58000;81;true
-B011;Autumn Dreams;Emma Thomas;Hachette;51000;74;true
-B012;Whispers of the Wind;James Anderson;Scribner;29000;84;true
-B013;Journey to the Heart;Amelia Rodriguez;Simon & Schuster;22000;45;true
-B014;The Road to Happiness;Robert Thompson;Hachette;93000;59;true
-B015;Winter Warmth;Charlotte Garcia;Oxford Press;52000;7;true
-B016;Dance of the Leaves;John Smith;Vintage Books;74000;66;true
-B017;Beyond the Shadows;Evelyn Lee;Hachette;20000;33;true
-B018;Whispers of the Wind;Emily Brown;Scribner;97000;35;true
-B019;River of Youth;James Anderson;Cambridge Press;89000;18;true
-B020;Keeper of Memories;William Wilson;Vintage Books;21000;72;true
-B021;Journey to the Heart;Olivia Taylor;Macmillan;49000;24;true
-B022;Whispers of the Wind;Daniel Moore;HarperCollins;27000;62;true
-B023;Path of Destiny;Sarah Davis;Crown Publishing;48000;22;true
-B024;Autumn Dreams;Evelyn Lee;Cambridge Press;44000;69;true
-B025;Life is a Miracle;Amelia Rodriguez;Oxford Press;60000;53;true
-B026;Sunset Over the Lake;David Harris;Hachette;47000;46;true
-B027;Journey to the Heart;Emma Thomas;Simon & Schuster;17000;30;true
-B028;River of Youth;Charlotte Garcia;Penguin Random House;51000;36;true
-B029;The Road to Happiness;Olivia Taylor;Cambridge Press;80000;10;true
-B030;Secrets of the Deep Sea;John Smith;Hachette;99000;61;true
-B031;Dance of the Leaves;Emily Brown;Macmillan;78000;70;true
-B032;The Girl in the City;William Wilson;Crown Publishing;91000;20;true
-B033;Life is a Miracle;Michael Johnson;Simon & Schuster;69000;32;true
-B034;Autumn Dreams;James Anderson;Scribner;83000;2;true
-B035;Journey to the Heart;Evelyn Lee;Oxford Press;32000;57;true
-B036;Path of Destiny;Sarah Davis;Penguin Random House;59000;29;true
-B037;River of Youth;Mia Robinson;Cambridge Press;33000;77;true
-B038;Secrets of the Deep Sea;Olivia Taylor;Hachette;74000;4;true
-B039;Winter Warmth;Charlotte Garcia;Scribner;88000;19;true
-B040;Light at the End;Michael Johnson;Vintage Books;76000;3;true
-B041;Whispers of the Wind;Sophia White;Hachette;100000;68;true
-B042;Beyond the Shadows;John Smith;Crown Publishing;83000;6;true
-B043;Autumn Dreams;James Anderson;Cambridge Press;26000;27;true
-B044;Journey to the Heart;Charlotte Garcia;Simon & Schuster;73000;39;true
-B045;Dance of the Leaves;Emily Brown;Oxford Press;18000;14;true
-B046;River of Youth;Sarah Davis;Scribner;93000;90;true
-B047;Secrets of the Deep Sea;Michael Johnson;Hachette;91000;73;true
-B048;Winter Warmth;Amelia Rodriguez;Macmillan;55000;95;true
-B049;The Girl in the City;David Harris;Oxford Press;26000;16;true
-B050;Life is a Miracle;Olivia Taylor;Penguin Random House;61000;48;true
-B051;Journey to the Heart;William Wilson;Cambridge Press;27000;26;true
-B052;River of Youth;Emily Brown;HarperCollins;85000;43;true
-B053;Dance of the Leaves;Sarah Davis;Oxford Press;65000;60;true
-B054;The Road to Happiness;Evelyn Lee;Crown Publishing;99000;83;true
-B055;Journey to the Heart;Daniel Moore;Hachette;25000;12;true
-B056;Secrets of the Deep Sea;Charlotte Garcia;Vintage Books;58000;80;true
-B057;Life is a Miracle;Amelia Rodriguez;Scribner;94000;37;true
-B058;Autumn Dreams;Robert Thompson;Hachette;100000;5;true
-B059;Whispers of the Wind;Sophia White;Cambridge Press;76000;42;true
-B060;Beyond the Shadows;Michael Johnson;Crown Publishing;54000;9;true
-B061;River of Youth;Sarah Davis;Penguin Random House;47000;63;true
-B062;Journey to the Heart;Olivia Taylor;Vintage Books;41000;99;true
-B063;Light at the End;John Smith;Simon & Schuster;29000;56;true
-B064;Autumn Dreams;Amelia Rodriguez;Macmillan;85000;78;true
-B065;The Girl in the City;Sophia White;Cambridge Press;44000;86;true
-B066;River of Youth;Emily Brown;Hachette;94000;44;true
-B067;Secrets of the Deep Sea;Evelyn Lee;Oxford Press;83000;52;true
-B068;Journey to the Heart;Emma Thomas;Scribner;95000;89;true
-B069;Whispers of the Wind;Michael Johnson;Cambridge Press;27000;47;true
-B070;Life is a Miracle;William Wilson;Hachette;51000;1;true
-B071;Autumn Dreams;Sarah Davis;HarperCollins;96000;15;true
-B072;Dance of the Leaves;John Smith;Macmillan;24000;71;true
-B073;Secrets of the Deep Sea;Charlotte Garcia;Scribner;19000;13;true
-B074;Journey to the Heart;Olivia Taylor;Vintage Books;33000;93;true
-B075;Whispers of the Wind;Emily Brown;Hachette;89000;40;true
-B076;Autumn Dreams;James Anderson;Simon & Schuster;47000;25;true
-B077;River of Youth;Sophia White;Cambridge Press;91000;31;true
-B078;The Girl in the City;Amelia Rodriguez;Vintage Books;100000;85;true
-B079;Journey to the Heart;Daniel Moore;HarperCollins;65000;11;true
-B080;Winter Warmth;Michael Johnson;Hachette;53000;98;true
-B081;Secrets of the Deep Sea;Sarah Davis;Crown Publishing;100000;79;true
-B082;Autumn Dreams;Olivia Taylor;Vintage Books;40000;17;true
-B083;Dance of the Leaves;Mia Robinson;Macmillan;77000;55;true
-B084;Life is a Miracle;John Smith;Scribner;89000;23;true
-B085;Journey to the Heart;Amelia Rodriguez;Cambridge Press;38000;91;true
-B086;River of Youth;William Wilson;Oxford Press;90000;64;true
-B087;Whispers of the Wind;Emily Brown;Hachette;100000;75;true
-B088;Autumn Dreams;Charlotte Garcia;Scribner;43000;87;true
-B089;Secrets of the Deep Sea;Emma Thomas;Penguin Random House;68000;94;true
-B090;The Road to Happiness;Sarah Davis;Simon & Schuster;85000;65;true
-B091;Winter Warmth;Olivia Taylor;Vintage Books;31000;82;true
-B092;Journey to the Heart;William Wilson;Oxford Press;33000;54;true
-B093;Dance of the Leaves;Emily Brown;Hachette;49000;97;true
-B094;Life is a Miracle;Sophia White;Cambridge Press;76000;96;true
-B095;Whispers of the Wind;Charlotte Garcia;Scribner;93000;50;true
-B096;River of Youth;Sarah Davis;Hachette;77000;88;true
-B097;Journey to the Heart;Evelyn Lee;Simon & Schuster;99000;34;true
-B098;Autumn Dreams;Emma Thomas;Penguin Random House;83000;38;true
-B099;Secrets of the Deep Sea;Michael Johnson;Vintage Books;92000;100;true
-B100;Dance of the Leaves;William Wilson;Macmillan;95000;51;true
+B001;Hidden Truths;Emma Thomas;Crown Publishing;90458.0;4;true
+B002;Sea of Tranquility;Sophia White;Scribner;67525.0;13;true
+B003;Voices from the Past;Amelia Rodriguez;Macmillan;34734.0;31;true
+B004;The Lost Garden;Daniel Moore;Simon & Schuster;89558.0;87;true
+B005;Journey Within;Michael Johnson;Penguin Random House;56977.0;30;true
+B006;Echoes of the Heart;Sophia White;Hachette;27015.0;39;true
+B007;Journey Within;John Smith;Simon & Schuster;58373.0;94;true
+B008;The Edge of Tomorrow;Michael Johnson;Oxford Press;22236.0;73;true
+B009;Journey Within;James Anderson;Crown Publishing;56624.0;60;true
+B010;Echoes of the Heart;John Smith;Cambridge Press;29055.0;100;true
+B011;The Silent River;John Carter;Macmillan;77485.0;23;true
+B012;Voices from the Past;Michael Johnson;Crown Publishing;91357.0;27;true
+B013;The Edge of Tomorrow;Emma Thomas;Oxford Press;87103.0;67;true
+B014;Winds of Change;Robert Thompson;Cambridge Press;77985.0;49;true
+B015;The Last Symphony;Amelia Rodriguez;Scribner;86097.0;83;true
+B016;Journey Within;Thomas Lewis;Crown Publishing;30046.0;69;true
+B017;Sea of Tranquility;Amelia Rodriguez;Cambridge Press;32825.0;28;true
+B018;Rise of the Phoenix;Olivia Taylor;Macmillan;80990.0;65;true
+B019;Golden Horizon;Emma Lewis;HarperCollins;56791.0;98;true
+B020;Secrets Untold;Daniel Moore;Oxford Press;37599.0;87;true
+B021;Voices from the Past;John Smith;Vintage Books;55392.0;54;true
+B022;Shadows of Time;Charlotte Garcia;Vintage Books;89842.0;80;true
+B023;The Edge of Tomorrow;Evelyn Lee;Vintage Books;94627.0;4;true
+B024;Dancing in the Rain;Robert Thompson;Crown Publishing;68949.0;32;true
+B025;The Forgotten Path;Sarah Davis;Oxford Press;46714.0;49;true
+B026;Shadows of Time;James Anderson;Oxford Press;72235.0;87;true
+B027;Sea of Tranquility;James Anderson;Cambridge Press;33340.0;61;true
+B028;Hidden Truths;Emma Thomas;Hachette;35411.0;90;true
+B029;The Edge of Tomorrow;Emma Lewis;Oxford Press;64685.0;6;true
+B030;The Last Symphony;Emma Thomas;Penguin Random House;32274.0;45;true
+B031;Rise of the Phoenix;Robert Thompson;Oxford Press;72228.0;66;true
+B032;The Lost Garden;John Carter;Simon & Schuster;91683.0;29;true
+B033;The Silent River;Michael Johnson;HarperCollins;59559.0;47;true
+B034;The Silver Lining;William Wilson;Simon & Schuster;52789.0;42;true
+B035;The Last Symphony;John Smith;Oxford Press;30648.0;46;true
+B036;Hidden Truths;David Harris;Crown Publishing;53227.0;60;true
+B037;Whispering Woods;Robert Thompson;Crown Publishing;97769.0;38;true
+B038;Echoes of the Heart;Charlotte Garcia;Macmillan;71380.0;22;true
+B039;Dancing in the Rain;Sophia White;Vintage Books;41957.0;67;true
+B040;Rise of the Phoenix;Michael Johnson;HarperCollins;24248.0;9;true
+B041;Rise of the Phoenix;Thomas Lewis;Crown Publishing;47168.0;83;true
+B042;Shadows of Time;John Smith;Cambridge Press;57168.0;74;true
+B043;Voices from the Past;Emily Brown;Simon & Schuster;89289.0;18;true
+B044;The Lost Garden;Emma Thomas;Penguin Random House;79001.0;55;true
+B045;Golden Horizon;Evelyn Lee;Scribner;48081.0;99;true
+B046;The Last Symphony;Evelyn Lee;Macmillan;99325.0;86;true
+B047;Shadows of Time;John Smith;Macmillan;92230.0;83;true
+B048;Secrets Untold;Mia Robinson;Penguin Random House;33493.0;57;true
+B049;The Lost Garden;Thomas Lewis;Simon & Schuster;57099.0;64;true
+B050;Secrets Untold;Robert Thompson;Macmillan;88926.0;17;true
+B051;Dreamcatcher;Emily Brown;Scribner;64108.0;16;true
+B052;The Silver Lining;Michael Johnson;Crown Publishing;80896.0;3;true
+B053;The Lost Garden;John Carter;Macmillan;51907.0;67;true
+B054;Shadows of Time;Emily Brown;Simon & Schuster;23369.0;28;true
+B055;The Forgotten Path;John Carter;Cambridge Press;63115.0;17;true
+B056;The Silent River;Amelia Rodriguez;Scribner;59283.0;90;true
+B057;Journey Within;John Carter;Penguin Random House;76700.0;37;true
+B058;The Lost Garden;Emily Brown;Simon & Schuster;20076.0;73;true
+B059;Journey Within;James Anderson;Penguin Random House;56604.0;7;true
+B060;Sea of Tranquility;Emily Brown;Vintage Books;75584.0;65;true
+B061;Beyond the Clouds;Evelyn Lee;Crown Publishing;79597.0;72;true
+B062;Winds of Change;Sophia White;HarperCollins;39440.0;69;true
+B063;Sea of Tranquility;Mia Robinson;Cambridge Press;52718.0;81;true
+B064;Shadows of Time;David Harris;Crown Publishing;98731.0;63;true
+B065;The Edge of Tomorrow;Sarah Davis;Penguin Random House;63039.0;96;true
+B066;The Silent River;David Harris;Oxford Press;20901.0;46;true
+B067;The Forgotten Path;James Anderson;Cambridge Press;91573.0;22;true
+B068;The Silent River;Daniel Moore;Crown Publishing;63664.0;18;true
+B069;Whispering Woods;John Carter;Cambridge Press;43146.0;12;true
+B070;Winds of Change;Michael Johnson;Vintage Books;84190.0;18;true
+B071;The Last Symphony;David Harris;Vintage Books;41100.0;66;true
+B072;The Lost Garden;John Carter;Crown Publishing;69107.0;100;true
+B073;Sea of Tranquility;Evelyn Lee;Vintage Books;62827.0;74;true
+B074;Beyond the Clouds;Michael Johnson;Crown Publishing;98689.0;62;true
+B075;The Silent River;Amelia Rodriguez;Crown Publishing;91992.0;98;true
+B076;The Edge of Tomorrow;Sarah Davis;Vintage Books;20208.0;29;true
+B077;Shadows of Time;David Harris;Crown Publishing;57242.0;76;true
+B078;Sea of Tranquility;Sarah Davis;Penguin Random House;43341.0;28;true
+B079;The Edge of Tomorrow;Emma Lewis;Macmillan;41013.0;4;true
+B080;Dancing in the Rain;Charlotte Garcia;Penguin Random House;46038.0;17;true
+B081;Winds of Change;Sophia White;Scribner;86262.0;76;true
+B082;Winds of Change;Thomas Lewis;Hachette;49384.0;14;true
+B083;The Forgotten Path;James Anderson;Macmillan;93468.0;71;true
+B084;The Silent River;Emma Lewis;Macmillan;50662.0;81;true
+B085;Golden Horizon;Amelia Rodriguez;Cambridge Press;36291.0;10;true
+B086;Secrets Untold;Mia Robinson;Vintage Books;47662.0;5;true
+B087;Beyond the Clouds;John Smith;Hachette;83412.0;19;true
+B088;Dreamcatcher;Sophia White;Cambridge Press;91640.0;78;true
+B089;Rise of the Phoenix;Sarah Davis;Scribner;68052.0;66;true
+B090;Dancing in the Rain;Robert Thompson;Cambridge Press;53453.0;2;true
+B091;Winds of Change;Daniel Moore;Scribner;96265.0;22;true
+B092;Journey Within;Emma Thomas;Vintage Books;97945.0;82;true
+B093;The Edge of Tomorrow;Charlotte Garcia;HarperCollins;29609.0;9;true
+B094;Voices from the Past;Mia Robinson;Cambridge Press;84625.0;52;true
+B095;Winds of Change;Daniel Moore;Macmillan;38382.0;88;true
+B096;Beyond the Clouds;Sarah Davis;Simon & Schuster;57709.0;66;true
+B097;Winds of Change;Michael Johnson;Oxford Press;47892.0;98;true
+B098;The Last Symphony;Emma Thomas;Cambridge Press;78022.0;57;true
+B099;The Silver Lining;Michael Johnson;Penguin Random House;70585.0;43;true
+B100;Rise of the Phoenix;Emma Lewis;Oxford Press;91784.0;67;true
+B101;Test;test;test;4.0;5;true

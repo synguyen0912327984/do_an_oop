@@ -158,36 +158,45 @@ public class Booklist {
             else
                 System.out.println("Publisher khong duoc de trong. Vui long nhap lai.");
         }while(!valid);
-        //Nhap Price
-        do{
-            System.out.print("Nhap Price: ");
-            String Price_input = sc.nextLine();
-            valid = !Price_input.isEmpty();
-            if(valid)
-                book.setPrice(Double.parseDouble(Price_input));
-            else
-                System.out.println("Price khong duoc de trong. Vui long nhap lai.");
+         // Nhap Price
+    do {
+        System.out.print("Nhap Price: ");
+        String priceInput = sc.nextLine().trim();
+        try {
+            double price = Double.parseDouble(priceInput);
+            if (price < 0) {
+                System.out.println("Price khong duoc am. Vui long nhap lai.");
+                valid = false;
+            } else {
+                book.setPrice(price);
+                valid = true;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Gia tri Price phai la so. Vui long nhap lai.");
+            valid = false;
+        }
+    } while (!valid);
 
-            if((Double.parseDouble(Price_input))<0)
-                System.out.println("Price khong duoc nhap gia tri am. Vui long nhap lai");
-            
-            
-        }while(!valid);
-        do{
-            System.out.print("Nhap Amount: ");
-            String Amount_input = sc.nextLine();
-            valid = !Amount_input.isEmpty();
-            if(valid)
-                book.setAmount(Integer.parseInt(Amount_input));
-            else
-                System.out.println("Amount khong duoc de trong. Vui long nhap lai.");
+    // Nhap Amount
+    do {
+        System.out.print("Nhap Amount: ");
+        String amountInput = sc.nextLine().trim();
+        try {
+            int amount = Integer.parseInt(amountInput);
+            if (amount < 0) {
+                System.out.println("Amount khong duoc am. Vui long nhap lai.");
+                valid = false;
+            } else {
+                book.setAmount(amount);
+                valid = true;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Gia tri Amount phai la so nguyen. Vui long nhap lai.");
+            valid = false;
+        }
+    } while (!valid);
+}
 
-            if((Integer.parseInt(Amount_input))<0)
-                System.out.println("Amount khong duoc nhap gia tri am. Vui long nhap lai");
-            
-            
-        }while(!valid);
-    }
     //Phuong thuc them sach
     public void AddBook(Book book) {
         //Tao ID cho book
@@ -195,7 +204,7 @@ public class Booklist {
         int number = getQuantity()+1;
         String test_idBook;
         do{ 
-            if(test_idBook<100){
+            if(number<100){
                 test_idBook = "B0" + number;
                 number++;
             }
@@ -216,25 +225,52 @@ public class Booklist {
     
     
 
-    // Phuong thuc xoa sach
-    public boolean removeBook(String bookID) 
-    {
-    for (Book b : list) {
-        if (b.getbookID().equalsIgnoreCase(bookID)) {
-            if (!b.isActive()) {
-                System.out.println("Sach nay da bi danh dau xoa truoc do.");
-                return false;
+    public void removeBook() {
+    while (true) {
+        System.out.print("Nhap ID sach can xoa: ");
+        String bookID = sc.nextLine().trim();
+
+        // Kiem tra ID khong duoc de trong
+        if (bookID.isEmpty()) {
+            System.out.println("ID sach khong duoc de trong. Vui long nhap lai!");
+            continue;
+        }
+
+        boolean found = false;
+
+        for (Book b : list) {
+            // Bo qua cac phan tu null neu co
+            if (b == null) continue;
+
+            if (b.getbookID().equalsIgnoreCase(bookID)) {
+                found = true;
+
+                // Kiem tra sach da bi danh dau xoa truoc do
+                if (!b.isActive()) {
+                    System.out.println("Sach nay da bi danh dau xoa truoc do.");
+                    break;
+                }
+
+                // Danh dau xoa mem
+                b.setStatus(false);
+                System.out.println("Da xoa sach co ID: " + bookID);
+                break;
             }
-            b.setStatus(false); // danh dau xoa
-            
-            System.out.println("Da xoa sach co ID:" + bookID); // chi xoa mem
-            return true;
+        }
+
+        if (!found) {
+            System.out.println("Khong tim thay sach co ID: " + bookID);
+        }
+
+        // Hoi nguoi dung co muon xoa tiep khong
+        System.out.print("Ban co muon xoa tiep khong? (Y/N): ");
+        String ans = sc.nextLine().trim();
+        if (ans.equalsIgnoreCase("N")) {
+            break;
         }
     }
-    System.out.println("Khong tim thay sach co ID: " + bookID);
-    return false;
-    }
-    
+}
+
     //phuong thuc in ra danh sach sach da xoa
     public void displayDeletedBooks(){
         System.out.println("Danh sach sach da bi xoa:");
@@ -246,24 +282,41 @@ public class Booklist {
         }
     }
     // Phuong thuc sua sach
-public void updateBook() {
-    System.out.print("Nhap ID sach can sua: ");
-    String bookID_Fix = sc.nextLine(); // nhap id sach can sua
-
-    boolean found = false;
-    for (Book i : list) {
-        if (i.getbookID().equalsIgnoreCase(bookID_Fix)) {
-            inputBookInfo(i); // Update sach
-            System.out.println("Da cap nhat sach co ID: " + bookID_Fix);
-            found = true;
-            break;
+    public void updateBook() {
+            while (true){
+            System.out.print("Nhap ID sach can sua: ");
+            String bookID_Fix = sc.nextLine(); // nhap id sach can sua
+            if(bookID_Fix.isEmpty()){
+                System.out.println("ID sach khong duoc de trong.");
+                break;
+            }
+            
+            for (Book i : list) {
+                boolean found = false;
+                if(i.isActive()==true){
+                    if (i.getbookID().equalsIgnoreCase(bookID_Fix)) {
+                        inputBookInfo(i); // Update sach
+                        System.out.println("Da cap nhat sach co ID: " + bookID_Fix);
+                        found = true;
+                        return;
+                }
+            }
+                else if (!i.isActive()){
+                System.out.println("Sach nay da bi xoa, khong the sua.");
+                break;
+                }
+                if (!found){ 
+                System.out.println("Khong tim thay sach co ID: " + bookID_Fix);
+                break;
+            }
         }
-    }
 
-    if (!found) {
-        System.out.println("Khong tim thay sach co ID: " + bookID_Fix);
-    }
-}
+            
+            
+            }
+        }
+        
+    
             
     //Phuong thuc thong ke tong so sach hien co
     public void totalBooks() {
@@ -287,23 +340,18 @@ public void updateBook() {
             }
         }
     }
+    
     // Phuong thuc cap nhat file
-   public void saveToFile() 
-   {
+   public void saveToFile() {
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
         for (Book b : list) {
-            bw.write(b.getbookID() + "," +
-                     b.getTitle() + "," +
-                     b.getAuthor() + "," +
-                     b.getPublisher() + "," +
-                     b.getPrice() + "," +
-                     b.getAmount());
+            bw.write(b.toString());
             bw.newLine();
         }
-        System.out.println("File books.txt da duoc cap nhat.");
+        System.out.println("File books.txt da duoc cap nhat thanh cong.");
     } catch (IOException e) {
         System.err.println("Loi ghi file: " + e.getMessage());
     }
-    }
+}
     
 }

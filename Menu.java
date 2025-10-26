@@ -16,13 +16,13 @@ public class Menu {
         int select;
         do {
             System.out.println("\n===========================");
-            System.out.println("====== MENU QUAN LY CHINH =====");
+            System.out.println("====== MAIN MANAGEMENT MENU =====");
             System.out.println("===========================");
-            System.out.println("1. Quan ly Khach hang");
-            System.out.println("2. Quan ly Nhan vien");
-            System.out.println("0. Thoat va Luu chuong trinh");
+            System.out.println("1. Customer Management");
+            System.out.println("2. Employee Management");
+            System.out.println("0. Exit and Save Program");
             System.out.println("===========================");
-            System.out.print("Nhap lua chon cua ban: ");
+            System.out.print("Enter your choice: ");
 
             select = readIntInput();
 
@@ -34,13 +34,13 @@ public class Menu {
                     employeeMenu();
                     break;
                 case 0:
-                    System.out.println("Dang luu du lieu vao file...");
+                    System.out.println("Saving data to file...");
                     e.saveToFile();
                     c.saveToFile();
-                    System.out.println("TAM BIET!");
+                    System.out.println("GOODBYE!");
                     break;
                 default:
-                    System.out.println("Lua chon khong hop le, vui long thu lai!");
+                    System.out.println("Invalid choice, please try again!");
                     break;
             }
         } while (select != 0);
@@ -49,15 +49,15 @@ public class Menu {
     public static void customerMenu() {
         int select;
         do {
-            System.out.println("\n--- MENU QUAN LY KHACH HANG ---");
-            System.out.println("1. Them khach hang moi");
-            System.out.println("2. Chinh sua thong tin khach hang (theo ID)");
-            System.out.println("3. Xoa khach hang (theo ID)");
-            System.out.println("4. Tim kiem khach hang");
-            System.out.println("5. In toan bo danh sach khach hang");
-            System.out.println("0. Quay lai Menu Chinh");
+            System.out.println("\n--- CUSTOMER MANAGEMENT MENU ---");
+            System.out.println("1. Add new customer");
+            System.out.println("2. Edit customer information (by ID)");
+            System.out.println("3. Delete customer (by ID)");
+            System.out.println("4. Search for customer");
+            System.out.println("5. Print entire customer list");
+            System.out.println("0. Back to Main Menu");
             System.out.println("---------------------------------");
-            System.out.print("Nhap lua chon: ");
+            System.out.print("Enter choice: ");
 
             select = readIntInput();
 
@@ -66,7 +66,7 @@ public class Menu {
                     addCustomerFromInput(sc, c);
                     break;
                 case 2:
-                    System.out.print("Nhap ID khach hang can chinh sua: ");
+                    System.out.print("Enter customer ID to edit: ");
                     String editCusId = sc.nextLine();
                     c.editCustomer(editCusId, sc);
                     break;
@@ -77,14 +77,14 @@ public class Menu {
                     findCustomerMenu();
                     break;
                 case 5:
-                    System.out.println("\n--- Danh sach toan bo khach hang ---");
+                    System.out.println("\n--- Full Customer List ---");
                     c.displayAll();
                     break;
                 case 0:
-                    System.out.println("Quay lai menu chinh...");
+                    System.out.println("Returning to main menu...");
                     break;
                 default:
-                    System.out.println("Lua chon khong hop le!");
+                    System.out.println("Invalid choice!");
                     break;
             }
         } while (select != 0);
@@ -93,15 +93,15 @@ public class Menu {
     public static void employeeMenu() {
         int select;
         do {
-            System.out.println("\n--- MENU QUAN LY NHAN VIEN ---");
-            System.out.println("1. Them nhan vien moi");
-            System.out.println("2. Chinh sua thong tin nhan vien (theo ID)");
-            System.out.println("3. Sa thai nhan vien (theo ID)");
-            System.out.println("4. Tim kiem nhan vien");
-            System.out.println("5. In toan bo danh sach nhan vien");
-            System.out.println("0. Quay lai Menu Chinh");
+            System.out.println("\n--- EMPLOYEE MANAGEMENT MENU ---");
+            System.out.println("1. Add new employee");
+            System.out.println("2. Edit employee information (by ID)");
+            System.out.println("3. Fire employee (by ID)");
+            System.out.println("4. Search for employee");
+            System.out.println("5. Print entire employee list");
+            System.out.println("0. Back to Main Menu");
             System.out.println("--------------------------------");
-            System.out.print("Nhap lua chon: ");
+            System.out.print("Enter choice: ");
 
             select = readIntInput();
 
@@ -110,7 +110,7 @@ public class Menu {
                     addEmployeeFromInput(sc, e);
                     break;
                 case 2:
-                    System.out.print("Nhap ID nhan vien can chinh sua: ");
+                    System.out.print("Enter employee ID to edit: ");
                     String editEmpId = sc.nextLine();
                     e.editEmployee(editEmpId, sc);
                     break;
@@ -121,14 +121,14 @@ public class Menu {
                     findEmployeeMenu();
                     break;
                 case 5:
-                    System.out.println("\n--- Danh sach toan bo nhan vien ---");
+                    System.out.println("\n--- Full Employee List ---");
                     e.displayAll();
                     break;
                 case 0:
-                    System.out.println("Quay lai menu chinh...");
+                    System.out.println("Returning to main menu...");
                     break;
                 default:
-                    System.out.println("Lua chon khong hop le!");
+                    System.out.println("Invalid choice!");
                     break;
             }
         } while (select != 0);
@@ -137,56 +137,56 @@ public class Menu {
     public static void findCustomerMenu() {
         int select;
         do {
-            System.out.println("\n--- Tim kiem khach hang ---");
-            System.out.println("1. Tim theo ID");
-            System.out.println("2. Tim theo Ten");
-            System.out.println("3. Tim theo So Dien Thoai");
-            System.out.println("0. Quay lai");
-            System.out.print("Nhap lua chon: ");
+            System.out.println("\n--- Search Customer ---");
+            System.out.println("1. Find by ID");
+            System.out.println("2. Find by Name");
+            System.out.println("3. Find by Phone Number");
+            System.out.println("0. Back");
+            System.out.print("Enter choice: ");
 
             select = readIntInput();
             String keyword;
 
             switch (select) {
                 case 1:
-                    System.out.print("Nhap ID khach hang can tim: ");
+                    System.out.print("Enter customer ID to find: ");
                     keyword = sc.nextLine();
                     Customer rsCId = c.findById(keyword);
                     if (rsCId != null) {
-                        System.out.println("Tim thay khach hang:");
+                        System.out.println("Customer found:");
                         rsCId.displayinfo();
                     } else {
-                        System.out.println("Khong tim thay khach hang voi ID: " + keyword);
+                        System.out.println("Customer not found with ID: " + keyword);
                     }
                     break;
                 case 2:
-                    System.out.print("Nhap ten khach hang can tim: ");
+                    System.out.print("Enter customer name to find: ");
                     keyword = sc.nextLine();
                     ArrayList<Customer> rsCName = c.findAllByName(keyword);
                     if (!rsCName.isEmpty()) {
-                        System.out.println("Tim thay " + rsCName.size() + " ket qua:");
+                        System.out.println("Found " + rsCName.size() + " results:");
                         for (Customer cus : rsCName) {
                             cus.displayinfo();
                         }
                     } else {
-                        System.out.println("Khong tim thay ten nao hop le");
+                        System.out.println("No matching names found");
                     }
                     break;
                 case 3:
-                    System.out.print("Nhap so dien thoai khach hang can tim: ");
+                    System.out.print("Enter customer phone number to find: ");
                     keyword = sc.nextLine();
                     Customer rsCPhone = c.findByPhone(keyword);
                     if (rsCPhone != null) {
-                        System.out.println("Tim thay khach hang:");
+                        System.out.println("Customer found:");
                         rsCPhone.displayinfo();
                     } else {
-                        System.out.println("Khong tim thay so dien thoai");
+                        System.out.println("Phone number not found");
                     }
                     break;
                 case 0:
                     break;
                 default:
-                    System.out.println("Lua chon khong hop le!");
+                    System.out.println("Invalid choice!");
                     break;
             }
         } while (select != 0);
@@ -195,97 +195,97 @@ public class Menu {
     public static void findEmployeeMenu() {
         int select;
         do {
-            System.out.println("\n--- Tim kiem nhan vien ---");
-            System.out.println("1. Tim theo ID");
-            System.out.println("2. Tim theo Ten");
-            System.out.println("3. Tim theo So Dien Thoai");
-            System.out.println("0. Quay lai");
-            System.out.print("Nhap lua chon: ");
+            System.out.println("\n--- Search Employee ---");
+            System.out.println("1. Find by ID");
+            System.out.println("2. Find by Name");
+            System.out.println("3. Find by Phone Number");
+            System.out.println("0. Back");
+            System.out.print("Enter choice: ");
 
             select = readIntInput();
             String keyword;
 
             switch (select) {
                 case 1:
-                    System.out.print("Nhap ID nhan vien can tim: ");
+                    System.out.print("Enter employee ID to find: ");
                     keyword = sc.nextLine();
                     Employee rsEId = e.findById(keyword);
                     if (rsEId != null) {
-                        System.out.println("Tim thay nhan vien:");
+                        System.out.println("Employee found:");
                         rsEId.displayinfo();
                     } else {
-                        System.out.println("Khong tim thay nhan vien voi ID: " + keyword);
+                        System.out.println("Employee not found with ID: " + keyword);
                     }
                     break;
                 case 2:
-                    System.out.print("Nhap ten nhan vien can tim: ");
+                    System.out.print("Enter employee name to find: ");
                     keyword = sc.nextLine();
                     ArrayList<Employee> rsEName = e.findAllByName(keyword);
                     if (!rsEName.isEmpty()) {
-                        System.out.println("Tim thay " + rsEName.size() + " ket qua:");
+                        System.out.println("Found " + rsEName.size() + " results:");
                         for (Employee emp : rsEName) {
                             emp.displayinfo();
                         }
                     } else {
-                        System.out.println("Khong tim thay ten nao hop le");
+                        System.out.println("No matching names found");
                     }
                     break;
                 case 3:
-                    System.out.print("Nhap so dien thoai nhan vien can tim: ");
+                    System.out.print("Enter employee phone number to find: ");
                     keyword = sc.nextLine();
                     Employee rsEPhone = e.findByPhone(keyword);
                     if (rsEPhone != null) {
-                        System.out.println("Tim thay nhan vien:");
+                        System.out.println("Employee found:");
                         rsEPhone.displayinfo();
                     } else {
-                        System.out.println("Khong tim thay so dien thoai");
+                        System.out.println("Phone number not found");
                     }
                     break;
                 case 0:
                     break;
                 default:
-                    System.out.println("Lua chon khong hop le!");
+                    System.out.println("Invalid choice!");
                     break;
             }
         } while (select != 0);
     }
 
     private static void deleteCustomer() {
-        System.out.print("Nhap ID khach hang can xoa: ");
+        System.out.print("Enter customer ID to delete: ");
         String delCusId = sc.nextLine();
         Customer custToDel = c.findById(delCusId);
 
         if (custToDel == null) {
-            System.out.println("Khong tim thay khach hang voi ID: " + delCusId);
+            System.out.println("Customer not found with ID: " + delCusId);
         } else {
-            System.out.println("Tim thay khach hang: " + custToDel.getName());
-            System.out.print("Ban co chac chan muon xoa? (y/n): ");
+            System.out.println("Found customer: " + custToDel.getName());
+            System.out.print("Are you sure you want to delete? (y/n): ");
             String confirm = sc.nextLine();
             if (confirm.equalsIgnoreCase("y")) {
                 c.removeById(delCusId);
-                System.out.println("Da xoa khach hang thanh cong.");
+                System.out.println("Customer deleted successfully.");
             } else {
-                System.out.println("Da huy thao tac xoa.");
+                System.out.println("Delete operation canceled.");
             }
         }
     }
 
     private static void deleteEmployee() {
-        System.out.print("Nhap ID nhan vien can sa thai: ");
+        System.out.print("Enter employee ID to fire: ");
         String delEmpId = sc.nextLine();
         Employee empToDel = e.findById(delEmpId);
 
         if (empToDel == null) {
-            System.out.println("Khong tim thay nhan vien voi ID: " + delEmpId);
+            System.out.println("Employee not found with ID: " + delEmpId);
         } else {
-            System.out.println("Tim thay nhan vien: " + empToDel.getName());
-            System.out.print("Ban co chac chan muon sa thai? (y/n): ");
+            System.out.println("Found employee: " + empToDel.getName());
+            System.out.print("Are you sure you want to fire? (y/n): ");
             String confirm = sc.nextLine();
             if (confirm.equalsIgnoreCase("y")) {
                 e.removeById(delEmpId);
-                System.out.println("Da sa thai nhan vien thanh cong.");
+                System.out.println("Employee fired successfully.");
             } else {
-                System.out.println("Da huy thao tac sa thai.");
+                System.out.println("Fire operation canceled.");
             }
         }
     }
@@ -294,77 +294,77 @@ public class Menu {
         try {
             return Integer.parseInt(sc.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println("Loi: Vui long chi nhap so!");
+            System.out.println("Error: Please enter numbers only!");
             return -1;
         }
     }
 
     public static void addCustomerFromInput(Scanner sc, CustomerList c) {
-        System.out.println("--- Tao khach hang moi ---");
-        System.out.print("Nhap ten khach hang: ");
+        System.out.println("--- Create new customer ---");
+        System.out.print("Enter customer name: ");
         String name = sc.nextLine();
 
         String phone;
         while (true) {
-            System.out.print("Nhap SDT: ");
+            System.out.print("Enter phone number: ");
             phone = sc.nextLine();
             if (Person.isValidPhoneNumber(phone)) {
                 break;
             } else {
-                System.out.println("SDT khong hop le! Phai co 10 so va bat dau bang '0'. Vui long nhap lai.");
+                System.out.println("Invalid phone number! Must be 10 digits and start with '0'. Please re-enter.");
             }
         }
 
-        System.out.print("Nhap dia chi: ");
+        System.out.print("Enter address: ");
         String address = sc.nextLine();
 
         Customer newCustomer = new Customer(name, phone, address, 0);
 
         c.add(newCustomer);
-        System.out.println("Da tao khach hang moi thanh cong voi ID: " + newCustomer.getId());
+        System.out.println("Successfully created new customer with ID: " + newCustomer.getId());
         newCustomer.displayinfo();
     }
 
     public static void addEmployeeFromInput(Scanner sc, EmployeeList e) {
-        System.out.println("--- Them nhan vien moi ---");
-        System.out.print("Nhap ten nhan vien: ");
+        System.out.println("--- Add new employee ---");
+        System.out.print("Enter employee name: ");
         String name = sc.nextLine();
 
         String phone;
         while (true) {
-            System.out.print("Nhap SDT: ");
+            System.out.print("Enter phone number: ");
             phone = sc.nextLine();
             if (Person.isValidPhoneNumber(phone)) {
                 break;
             } else {
-                System.out.println("SDT khong hop le! Phai co 10 so va bat dau bang '0'. Vui long nhap lai.");
+                System.out.println("Invalid phone number! Must be 10 digits and start with '0'. Please re-enter.");
             }
         }
 
-        System.out.print("Nhap dia chi: ");
+        System.out.print("Enter address: ");
         String address = sc.nextLine();
-        System.out.print("Nhap chuc vu: ");
+        System.out.print("Enter position: ");
         String position = sc.nextLine();
 
         double salary = 0;
         while (true) {
             try {
-                System.out.print("Nhap luong: ");
+                System.out.print("Enter salary: ");
                 salary = Double.parseDouble(sc.nextLine());
                 if (salary > 0) {
                     break;
                 } else {
-                    System.out.println("Luong phai la so duong.");
+                    System.out.println("Salary must be a positive number.");
                 }
             } catch (NumberFormatException ex) {
-                System.out.println("Nhap lieu khong hop le! Vui long nhap so.");
+                System.out.println("Invalid input! Please enter a number.");
             }
         }
 
         Employee newEmployee = new Employee(name, phone, address, position, salary);
 
         e.add(newEmployee);
-        System.out.println("Da them nhan vien moi thanh cong voi ID: " + newEmployee.getId());
+        System.out.println("Successfully added new employee with ID: " + newEmployee.getId());
         newEmployee.displayinfo();
     }
 }

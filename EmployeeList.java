@@ -116,21 +116,21 @@ public class EmployeeList implements IActions<Employee> {
         Employee employeeToEdit = this.findById(id);
 
         if (employeeToEdit == null) {
-            System.out.println("Khong tim thay nhan vien voi id: " + id);
+            System.out.println("Employee not found with id: " + id);
             return;
         }
 
-        System.out.println("Chinh sua thong tin nhan vien (enter de bo qua)");
+        System.out.println("Edit employee information (press Enter to skip)");
         employeeToEdit.displayinfo();
 
-        System.out.print("Ten moi (" + employeeToEdit.getName() + "): ");
+        System.out.print("New name (" + employeeToEdit.getName() + "): ");
         String newName = scanner.nextLine();
         if (!newName.isEmpty()) {
             employeeToEdit.setName(newName);
         }
 
         while (true) {
-            System.out.print("SĐT mới (" + employeeToEdit.getPhoneNumber() + "): ");
+            System.out.print("New phone number (" + employeeToEdit.getPhoneNumber() + "): ");
             String newPhone = scanner.nextLine();
 
             if (newPhone.isEmpty()) {
@@ -141,35 +141,35 @@ public class EmployeeList implements IActions<Employee> {
                 employeeToEdit.setPhoneNumber(newPhone);
                 break;
             } else {
-                System.out.println("SDT khong hop le");
-                System.out.println("Vui long nhap lai hoac an enter de bo qua");
+                System.out.println("Invalid phone number");
+                System.out.println("Please re-enter or press Enter to skip");
             }
         }
 
-        System.out.print("Dia chi moi (" + employeeToEdit.getAddress() + "): ");
+        System.out.print("New address (" + employeeToEdit.getAddress() + "): ");
         String newAddress = scanner.nextLine();
         if (!newAddress.isEmpty()) {
             employeeToEdit.setAddress(newAddress);
         }
 
-        System.out.print("Chuc vu moi (" + employeeToEdit.getPosition() + "): ");
+        System.out.print("New position (" + employeeToEdit.getPosition() + "): ");
         String newPosition = scanner.nextLine();
         if (!newPosition.isEmpty()) {
             employeeToEdit.setPosition(newPosition);
         }
 
-        System.out.print("Luong moi (" + employeeToEdit.getSalary() + "): ");
+        System.out.print("New salary (" + employeeToEdit.getSalary() + "): ");
         String newSalaryStr = scanner.nextLine();
         if (!newSalaryStr.isEmpty()) {
             try {
                 double newSalary = Double.parseDouble(newSalaryStr);
                 employeeToEdit.setSalary(newSalary);
             } catch (NumberFormatException e) {
-                System.out.println("Gia tri khong hop le. Luong khong duoc thay doi");
+                System.out.println("Invalid value. Salary was not changed");
             }
         }
 
-        System.out.println("---Cap nhap nhan vien thanh cong---");
+        System.out.println("---Employee information updated successfully!---");
         employeeToEdit.displayinfo(); // Hiển thị thông tin mới
     }
 
@@ -180,54 +180,57 @@ public class EmployeeList implements IActions<Employee> {
         }
     }
 
-    @Override 
-    public void edit(Employee a){
+    @Override
+    public void edit(Employee a) {
         Scanner sc = new Scanner(System.in);
         System.out.println("EDIT:");
         System.out.print("1. Name\n2. Phone\n3. Address\n4. Active\n 5. Position\n 6. Salary\nEnter: ");
         int keys = Integer.parseInt(sc.nextLine());
         String keyword;
-        switch(keys){
-            case 1: //Name
+        switch (keys) {
+            case 1: // Name
                 System.out.print("Enter new name: ");
                 keyword = sc.nextLine();
                 a.setName(keyword);
                 System.out.println("Changed successfully!");
                 break;
-            case 2: //Phone
+            case 2: // Phone
                 System.out.print("Enter new phone number: ");
                 keyword = sc.nextLine();
-                if(!Person.isValidPhoneNumber(keyword)){
+                if (!Person.isValidPhoneNumber(keyword)) {
                     System.out.println("Invalid phone number!\n");
-                }
-                else {
+                } else {
                     a.setPhoneNumber(keyword);
                     System.out.println("Changed successfully!");
                     break;
                 }
-            case 3: //Address
+            case 3: // Address
                 System.out.print("Enter new address: ");
                 keyword = sc.nextLine();
                 a.setAddress(keyword);
                 System.out.println("Changed successfully!");
                 break;
-            case 4: //Active
+            case 4: // Active
                 System.out.println("Active (true/false): ");
                 keyword = sc.nextLine();
                 a.setActive(Boolean.parseBoolean(keyword));
                 System.out.println("Changed successfully!");
                 break;
-            case 5: //Position
+            case 5: // Position
                 System.out.print("1. Cashier\n2. Salesman\n3. Accountant\n4. Manager\nPosition: ");
                 int c = sc.nextInt();
-                if(c == 1) keyword = "Cashier";
-                else if(c == 2) keyword = "Salesman";
-                else if(c == 3) keyword = "Accountant";
-                else keyword = "Manager";
+                if (c == 1)
+                    keyword = "Cashier";
+                else if (c == 2)
+                    keyword = "Salesman";
+                else if (c == 3)
+                    keyword = "Accountant";
+                else
+                    keyword = "Manager";
                 a.setPosition(keyword);
                 System.out.println("Changed successfully!");
                 break;
-            case 6: //Salary
+            case 6: // Salary
                 System.out.print("Enter new salary: ");
                 keyword = sc.nextLine();
                 a.setSalary(Double.parseDouble(keyword));
@@ -237,6 +240,7 @@ public class EmployeeList implements IActions<Employee> {
                 System.out.println("Cancelled.");
                 break;
         }
+        sc.close();
     }
 
     public void saveToFile() {
