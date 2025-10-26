@@ -9,7 +9,7 @@ public class Menu2 {
     private static ListInvoice ln = new ListInvoice();
     private static ListInvoiceDetails ld = new ListInvoiceDetails();
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         ln.readFile();
         ld.readFile();
         int select;
@@ -34,35 +34,33 @@ public class Menu2 {
                     System.out.println("GOODBYE!");
                     break;
 
-                //Customer
+                // Customer
 
                 case 1:
                     int select2;
                     System.out.print("Enter your phone number: ");
                     String p = sc.nextLine();
-                    if(Person.isValidPhoneNumber(p) && c.findByPhone(p) == null){
+                    if (Person.isValidPhoneNumber(p) && c.findByPhone(p) == null) {
                         System.out.println("Phone number doesn't exist in database. Create new account?");
                         System.out.print("y/n: ");
                         String temp = sc.nextLine();
-                        if(temp.equalsIgnoreCase("y")){
+                        if (temp.equalsIgnoreCase("y")) {
                             addCustomerFromInput(sc, c);
-                        }
-                        else{
+                        } else {
                             System.out.println("Returning...");
                         }
-                    }
-                    else if(Person.isValidPhoneNumber(p) && c.findByPhone(p) != null && c.findByPhone(p).isActive()){
+                    } else if (Person.isValidPhoneNumber(p) && c.findByPhone(p) != null
+                            && c.findByPhone(p).isActive()) {
                         System.out.println("Welcome!");
                         do{
                             System.out.println("\n==========================");
                             System.out.println("1. Search book");
                             System.out.println("2. Personal setting");
-                            System.out.println("3. Redeem points");
                             System.out.println("0. Return");
                             System.out.println("==========================");
                             System.out.print("Enter: ");
                             select2 = readIntInput();
-                            switch(select2){
+                            switch (select2) {
                                 case 1:
                                     int type;
                                     do{
@@ -76,9 +74,10 @@ public class Menu2 {
                                         System.out.println("==========================");
                                         System.out.print("Enter: ");
                                         type = readIntInput();
-                                        if(type < 1 || type > 4) System.out.println("Cancelled.");
-                                        else{
-                                            switch(type){
+                                        if (type < 1 || type > 4)
+                                            System.out.println("Cancelled.");
+                                        else {
+                                            switch (type) {
                                                 case 1:
                                                     System.out.println("Enter ID: ");
                                                     break;
@@ -97,22 +96,21 @@ public class Menu2 {
                                             }
                                             String search = sc.nextLine();
                                             ArrayList<Book> tempbl = bl.find(type, search);
-                                            if(tempbl.isEmpty()){
+                                            if (tempbl.isEmpty()) {
                                                 System.out.println("Returning...");
-                                            }
-                                            else{
+                                            } else {
                                                 System.out.print("Would you like to buy? y/n: ");
                                                 String temp;
-                                                do{
+                                                do {
                                                     temp = sc.nextLine();
-                                                    if(temp.equalsIgnoreCase("y")){
+                                                    if (temp.equalsIgnoreCase("y")) {
                                                         c.findByPhone(p).Buy(e, bl, ln, ld, sc);
-                                                    }
-                                                    else System.out.println("Returning...");
-                                                }while(temp.equalsIgnoreCase("y"));
+                                                    } else
+                                                        System.out.println("Returning...");
+                                                } while (temp.equalsIgnoreCase("y"));
                                             }
                                         }
-                                    }while(type != 0);
+                                    } while (type != 0);
                                     break;
                                 case 2:
                                     int select3;
@@ -124,7 +122,7 @@ public class Menu2 {
                                         System.out.println("==========================");
                                         System.out.print("Enter: ");
                                         select3 = readIntInput();
-                                        switch(select3){
+                                        switch (select3) {
                                             case 1:
                                                 c.edit(c.findByPhone(p), sc);
                                                 System.out.print("Done!");
@@ -132,11 +130,11 @@ public class Menu2 {
                                             case 2:
                                                 System.out.print("Are you sure? y/n: ");
                                                 String temp = sc.nextLine();
-                                                if(temp.equalsIgnoreCase("y")) {
+                                                if (temp.equalsIgnoreCase("y")) {
                                                     c.findByPhone(p).setActive(false);
                                                     System.out.print("Done!");
-                                                }
-                                                else System.out.println("Cancelled.");
+                                                } else
+                                                    System.out.println("Cancelled.");
                                                 break;
                                             case 0:
                                                 System.out.println("Returning...");
@@ -145,52 +143,55 @@ public class Menu2 {
                                                 System.out.println("Invalid choice!");
                                                 break;
                                         }
-                                    } while(select3 != 0);
+                                    } while (select3 != 0);
                                     break;
-                                case 3:
-                                    int select4;
-                                    do{
-                                        System.out.println("\n==========================");
-                                        System.out.println("1. 25% discount: 30LP");
-                                        System.out.println("2. 50% discount: 50LP");
-                                        System.out.println("3. Select book: 80LP");
-                                        System.out.println("0. Return");
-                                        System.out.println("Your LP: " + c.findByPhone(p).getLoyaltyPoints());
-                                        System.out.println("==========================");
-                                        System.out.println("Enter: ");
-                                        select4 = readIntInput();
-                                        String temp;
-                                        switch(select4){
-                                            case 1:
-                                                System.out.print("Are you sure? y/n: ");
-                                                temp = sc.nextLine();
-                                                if(temp.equalsIgnoreCase("y"))
-                                                    c.findByPhone(p).redeemPoints(30);
-                                                else System.out.println("Cancelled.");
-                                                break;
-                                            case 2:
-                                                System.out.print("Are you sure? y/n: ");
-                                                temp = sc.nextLine();
-                                                if(temp.equalsIgnoreCase("y"))
-                                                    c.findByPhone(p).redeemPoints(50);
-                                                else System.out.println("Cancelled.");
-                                                break;
-                                            case 3:
-                                                System.out.print("Are you sure? y/n: ");
-                                                temp = sc.nextLine();
-                                                if(temp.equalsIgnoreCase("y"))
-                                                    c.findByPhone(p).redeemPoints(80);
-                                                else System.out.println("Cancelled.");
-                                                break;
-                                            case 0:
-                                                System.out.println("Returning...");
-                                                break;
-                                            default:
-                                                System.out.println("Invalid choice!");
-                                                break;
-                                        }
-                                    }while(select4 != 0);
-                                    break;
+                                // case 3:
+                                // int select4;
+                                // do {
+                                // System.out.println("==========================");
+                                // System.out.println("1. 25% discount: 30LP");
+                                // System.out.println("2. 50% discount: 50LP");
+                                // System.out.println("3. Select book: 80LP");
+                                // System.out.println("0. Return");
+                                // System.out.println("Your LP: " + c.findByPhone(p).getLoyaltyPoints());
+                                // System.out.println("==========================");
+                                // System.out.println("Enter: ");
+                                // select4 = readIntInput();
+                                // String temp;
+                                // switch (select4) {
+                                // case 1:
+                                // System.out.print("Are you sure? y/n: ");
+                                // temp = sc.nextLine();
+                                // if (temp.equalsIgnoreCase("y"))
+                                // c.findByPhone(p).redeemPoints(30);
+                                // else
+                                // System.out.println("Cancelled.");
+                                // break;
+                                // case 2:
+                                // System.out.print("Are you sure? y/n: ");
+                                // temp = sc.nextLine();
+                                // if (temp.equalsIgnoreCase("y"))
+                                // c.findByPhone(p).redeemPoints(50);
+                                // else
+                                // System.out.println("Cancelled.");
+                                // break;
+                                // case 3:
+                                // System.out.print("Are you sure? y/n: ");
+                                // temp = sc.nextLine();
+                                // if (temp.equalsIgnoreCase("y"))
+                                // c.findByPhone(p).redeemPoints(80);
+                                // else
+                                // System.out.println("Cancelled.");
+                                // break;
+                                // case 0:
+                                // System.out.println("Returning...");
+                                // break;
+                                // default:
+                                // System.out.println("Invalid choice!");
+                                // break;
+                                // }
+                                // } while (select4 != 0);
+                                // break;
                                 case 0:
                                     System.out.println("Returning...");
                                     break;
@@ -198,13 +199,99 @@ public class Menu2 {
                                     System.out.println("Invalid choice!");
                                     break;
                             }
-                        } while(select2 != 0);
-                    }
-                    else if(c.findByPhone(p) == null){
+                        } while (select2 != 0);
+                    } else if (c.findByPhone(p) == null) {
                         System.out.println("Invalid phone number. Returning...");
-                    }
-                    else{
+                    } else {
                         System.out.println("Account doesn't exist!");
+                    }
+                    break;
+
+                case 2:
+                    int selectE;
+                    System.out.print("Enter your ID: ");
+                    String ID = sc.nextLine();
+                    if (e.findById(ID) == null) {
+                        System.out.println("ID doesn't exist!");
+                    } else if (e.findById(ID) != null && e.findById(ID).isActive()) {
+                        System.out.println("Welcome!");
+                        Employee tempE = e.findById(ID);
+                        do {
+                            System.out.println("==========================");
+                            System.out.println("1. Books management");
+                            System.out.println("2. Personal setting");
+                            System.out.println("0. Return");
+                            System.out.println("==========================");
+                            System.out.print("Enter: ");
+                            selectE = readIntInput();
+                            switch (selectE) {
+                                case 1:
+                                    int selectE2;
+                                    do {
+                                        System.out.println("==========================");
+                                        System.out.println("1. Add book");
+                                        System.out.println("2. Remove book");
+                                        System.out.println("3. Update book");
+                                        System.out.println("4. Deleted books history");
+                                        System.out.println("0. Return");
+                                        System.out.println("==========================");
+                                        System.out.print("Enter: ");
+                                        selectE2 = readIntInput();
+                                        switch (selectE2) {
+                                            case 0:
+                                                System.out.println("Returning...");
+                                                break;
+                                            case 1:
+                                                Book tempB = new Book();
+                                                bl.AddBook(tempB, sc);
+                                                break;
+                                            case 2:
+                                                bl.removeBook(sc);
+                                                break;
+                                            case 3:
+                                                System.out.print("Enter Book's ID to edit: ");
+                                                String temp = sc.nextLine();
+                                                bl.edit(bl.findByID(temp), sc);
+                                                System.out.println("New book's information:");
+                                                bl.findByID(temp).display();
+                                                break;
+                                            case 4:
+                                                bl.displayDeletedBooks();
+                                                break;
+                                            default:
+                                                System.out.println("Invalid choice!");
+                                                break;
+                                        }
+                                    } while (selectE2 != 0);
+                                    break;
+                                case 2:
+                                    int selectE3;
+                                    do {
+                                        System.out.println("==========================");
+                                        System.out.println("1. Edit information");
+                                        System.out.println("0. Return");
+                                        System.out.println("==========================");
+                                        System.out.print("Enter: ");
+                                        selectE3 = readIntInput();
+                                        switch (selectE3) {
+                                            case 1:
+                                                e.edit(tempE, sc);
+                                                System.out.print("Done!");
+                                                break;
+                                            case 0:
+                                                System.out.println("Returning...");
+                                                break;
+                                            default:
+                                                System.out.println("Invalid choice!");
+                                                break;
+                                        }
+                                    } while (selectE3 != 0);
+                                    break;
+                                default:
+                                    System.out.println("Invalid choice!");
+                                    break;
+                            }
+                        } while (selectE != 0);
                     }
                     break;
                     
@@ -314,7 +401,7 @@ public class Menu2 {
             }while(select != 0);
         }
 
-        public static void mainMenu() {
+    public static void mainMenu() {
         int select;
         do {
             System.out.println("\n===========================");
@@ -628,27 +715,27 @@ public class Menu2 {
         newEmployee.displayinfo();
     }
 
-        private static void deleteCustomer() {
-            System.out.print("Enter customer ID to delete: ");
-            String delCusId = sc.nextLine();
-            Customer custToDel = c.findById(delCusId);
+    private static void deleteCustomer() {
+        System.out.print("Enter customer ID to delete: ");
+        String delCusId = sc.nextLine();
+        Customer custToDel = c.findById(delCusId);
 
-            if (custToDel == null) {
-                System.out.println("Customer not found with ID: " + delCusId);
+        if (custToDel == null) {
+            System.out.println("Customer not found with ID: " + delCusId);
+        } else {
+            System.out.println("Found customer: " + custToDel.getName());
+            System.out.print("Are you sure you want to delete? (y/n): ");
+            String confirm = sc.nextLine();
+            if (confirm.equalsIgnoreCase("y")) {
+                c.removeById(delCusId);
+                System.out.println("Customer deleted successfully.");
             } else {
-                System.out.println("Found customer: " + custToDel.getName());
-                System.out.print("Are you sure you want to delete? (y/n): ");
-                String confirm = sc.nextLine();
-                if (confirm.equalsIgnoreCase("y")) {
-                    c.removeById(delCusId);
-                    System.out.println("Customer deleted successfully.");
-                } else {
-                    System.out.println("Delete operation canceled.");
-                }
+                System.out.println("Delete operation canceled.");
             }
         }
+    }
 
-        public static void addCustomerFromInput(Scanner sc, CustomerList c) {
+    public static void addCustomerFromInput(Scanner sc, CustomerList c) {
         System.out.println("--- Create new customer ---");
         System.out.print("Enter customer name: ");
         String name = sc.nextLine();
@@ -657,14 +744,13 @@ public class Menu2 {
         while (true) {
             System.out.print("Enter phone number: ");
             phone = sc.nextLine();
-            if (Person.isValidPhoneNumber(phone)) {
-                break;
-            }
-            else if(Person.isValidPhoneNumber(phone) && c.findByPhone(phone) != null){
-                System.out.println("Phone number already exist.");
-            }
-            else {
+
+            if (!Person.isValidPhoneNumber(phone)) {
                 System.out.println("Invalid phone number! Must be 10 digits and start with '0'. Please re-enter.");
+            } else if (c.findByPhone(phone) != null) {
+                System.out.println("Phone number already exist.");
+            } else {
+                break;
             }
         }
 
@@ -748,4 +834,3 @@ public class Menu2 {
     }
 }
 }
-
