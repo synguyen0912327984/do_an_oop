@@ -75,6 +75,10 @@ public class ListInvoice {
         list.add(l1);
     }
 
+    public void removelist(Invoice l1){
+        list.remove(l1);
+    }
+
     public void saveFile() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("Invoice.txt"))) {
             DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
