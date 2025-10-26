@@ -49,7 +49,7 @@ public class Booklist {
     }
 
     // Phuong thuc tim kiem
-    public void find(int type, String keyword) {
+    public ArrayList<Book> find(int type, String keyword) {
         ArrayList<Book> result = new ArrayList<>();
         
         switch (type) { 
@@ -75,6 +75,7 @@ public class Booklist {
                 b.display();
             }
         }
+        return result;
     }
 
     // Tim theo ID

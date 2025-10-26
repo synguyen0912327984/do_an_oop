@@ -62,47 +62,55 @@ public class Menu2 {
                             select2 = readIntInput();
                             switch(select2){
                                 case 1:
-                                System.out.println("==========================");
-                                    System.out.println("Search by:");
-                                    System.out.println("1. ID");
-                                    System.out.println("2. Title");
-                                    System.out.println("3. Author");
-                                    System.out.println("4. Publisher");
-                                    System.out.println("0. Cancel");
-                                    System.out.println("==========================");
-                                    System.out.print("Enter: ");
-                                    int type = readIntInput();
-                                    if(type < 1 || type > 4) System.out.println("Cancelled.");
-                                    else{
-                                        switch(type){
-                                            case 1:
-                                                System.out.println("Enter ID: ");
-                                                break;
-                                            case 2:
-                                                System.out.println("Enter Title: ");
-                                                break;
-                                            case 3:
-                                                System.out.println("Enter Author: ");
-                                                break;
-                                            case 4:
-                                                System.out.println("Enter Publisher: ");
-                                                break;
-                                            default:
-                                                System.out.println("Invalid choice!");
-                                                break;
-                                        }
-                                        String search = sc.nextLine();
-                                        bl.find(type, search);
-                                        System.out.print("Would you like to buy? y/n: ");
-                                        String temp;
-                                        do{
-                                            temp = sc.nextLine();
-                                            if(temp.equalsIgnoreCase("y")){
-                                                c.findByPhone(p).Buy(e, bl, ln, ld, sc);
+                                    int type;
+                                    do{
+                                        System.out.println("==========================");
+                                        System.out.println("Search by:");
+                                        System.out.println("1. ID");
+                                        System.out.println("2. Title");
+                                        System.out.println("3. Author");
+                                        System.out.println("4. Publisher");
+                                        System.out.println("0. Cancel");
+                                        System.out.println("==========================");
+                                        System.out.print("Enter: ");
+                                        type = readIntInput();
+                                        if(type < 1 || type > 4) System.out.println("Cancelled.");
+                                        else{
+                                            switch(type){
+                                                case 1:
+                                                    System.out.println("Enter ID: ");
+                                                    break;
+                                                case 2:
+                                                    System.out.println("Enter Title: ");
+                                                    break;
+                                                case 3:
+                                                    System.out.println("Enter Author: ");
+                                                    break;
+                                                case 4:
+                                                    System.out.println("Enter Publisher: ");
+                                                    break;
+                                                default:
+                                                    System.out.println("Invalid choice!");
+                                                    break;
                                             }
-                                            else System.out.println("Returning...");
-                                        }while(temp.equalsIgnoreCase("y"));
-                                    }
+                                            String search = sc.nextLine();
+                                            ArrayList<Book> tempbl = bl.find(type, search);
+                                            if(tempbl.isEmpty()){
+                                                System.out.println("Returning...");
+                                            }
+                                            else{
+                                                System.out.print("Would you like to buy? y/n: ");
+                                                String temp;
+                                                do{
+                                                    temp = sc.nextLine();
+                                                    if(temp.equalsIgnoreCase("y")){
+                                                        c.findByPhone(p).Buy(e, bl, ln, ld, sc);
+                                                    }
+                                                    else System.out.println("Returning...");
+                                                }while(temp.equalsIgnoreCase("y"));
+                                            }
+                                        }
+                                    }while(type != 0);
                                     break;
                                 case 2:
                                     int select3;
