@@ -644,12 +644,13 @@ public class Menu2 {
         while (true) {
             System.out.print("Enter phone number: ");
             phone = sc.nextLine();
-            if (Person.isValidPhoneNumber(phone)) {
-                break;
-            } else if (Person.isValidPhoneNumber(phone) && c.findByPhone(phone) != null) {
+
+            if (!Person.isValidPhoneNumber(phone)) {
+                System.out.println("Invalid phone number! Must be 10 digits and start with '0'. Please re-enter.");
+            } else if (c.findByPhone(phone) != null) {
                 System.out.println("Phone number already exist.");
             } else {
-                System.out.println("Invalid phone number! Must be 10 digits and start with '0'. Please re-enter.");
+                break;
             }
         }
 
