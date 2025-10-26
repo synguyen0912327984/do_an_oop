@@ -151,7 +151,7 @@ class Customer extends Person {
             System.out.println("Do you want to use your points to redeem rewards?");
             System.out.println("1. 25% discount on your bill (Costs 30 points)");
             System.out.println("2. 50% discount on your bill (Costs 50 points)");
-            System.out.println("3. Get 1 most expensive book for free (80 points required)");
+            System.out.println("3. Get 1 most expensive book for free (20 points required)");
             System.out.println("0. No, thanks.");
             System.out.print("Enter your choice: ");
             int redeemChoice = 0;
@@ -181,7 +181,7 @@ class Customer extends Person {
                     flag4 = 0;
                     break;
                 case 3:
-                    if (this.redeemPoints(80)) {
+                    if (this.redeemPoints(20)) {
                         System.out.println("Please select which book you want for free:");
                         System.out.println("--------------------------------------------------------------");
                         System.out.printf("%-5s %-40s %-10s%n", "No.", "Name", "Price (per 1 unit)");
@@ -212,12 +212,12 @@ class Customer extends Person {
                                         selectedBook.getTitle(), discountAmount);
                             } else {
                                 System.out.println("Error finding selected book. No discount applied.");
-                                this.addLoyaltyPoints(80);
+                                this.addLoyaltyPoints(20);
                                 System.out.println("Points returned.");
                             }
                         } else {
                             System.out.println("Invalid selection. No discount applied.");
-                            this.addLoyaltyPoints(80);
+                            this.addLoyaltyPoints(20);
                             System.out.println("Points returned.");
                         }
                         flag4 = 0;
