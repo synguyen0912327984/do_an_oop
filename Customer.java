@@ -1,5 +1,4 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -49,7 +48,7 @@ class Customer extends Person {
         return id + "," + name + "," + phoneNumber + "," + address + "," + loyaltyPoints + "," + active;
     }
 
-    public void Buy(EmployeeList E, Booklist lb, ListInvoice ln, ListInvoiceDetails ld) {
+    public void Buy(EmployeeList E, Booklist lb, ListInvoice ln, ListInvoiceDetails ld, Scanner sc) {
         int number = ln.getQuantity() + 1;
         String idInvoice;
         do {
@@ -63,8 +62,7 @@ class Customer extends Person {
         } while (ln.test(idInvoice) != null);
         
 
-        
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+
             Invoice inv = new Invoice();
             String temp3;
             inv.setIdInvoice(idInvoice);
@@ -81,18 +79,19 @@ class Customer extends Person {
             int flag = 1;
             do{
                 System.out.print("Enter book ID: ");
-                String temp0 = br.readLine();
+                String temp0 = sc.nextLine();
+                if(lb.findByID(temp0) != null){
                 System.out.print("Enter the amount you want to buy: ");
-                int temp1 = Integer.parseInt(br.readLine());
+                int temp1 = Integer.parseInt(sc.nextLine());
                 Book a = lb.findByID(temp0);
                 
                 if (a.getAmount() >= temp1) {
                     System.out.print("Are you sure? y/n: ");
-                    temp2 = br.readLine();
+                    temp2 = sc.nextLine();
                     if (temp2.equalsIgnoreCase("y")) {
                         System.out.println("Successfully purchased!");
                         a.setAmount(a.getAmount() - temp1);
-                        addLoyaltyPoints((int) (a.getPrice() / 10000));
+                        addLoyaltyPoints((int)(a.getPrice() * temp1 / 10000));
                         InvoiceDetail ind = new InvoiceDetail(idInvoice, a.getbookID(), temp1);
                         flag = 0;
                         ld.addlist(ind);
@@ -103,11 +102,14 @@ class Customer extends Person {
                     }
                 }
                 else System.out.println("Only " + a.getAmount() + " items are available. Please adjust your quantity.");
-                System.out.print("Continue to buy? y/n: ");
-                temp2 = br.readLine();
+                
+            }
+            else System.out.println("Cannot find book with ID: " + temp0);
+            System.out.print("Continue to buy? y/n: ");
+            temp2 = sc.nextLine();
             }while(temp2.equalsIgnoreCase("y"));
                 System.out.println("Print invoice? y/n: ");
-                String temp = br.readLine();
+                String temp = sc.nextLine();
                 if(temp.equalsIgnoreCase("y")){
                     ArrayList<InvoiceDetail> temp4 = ld.find(idInvoice);
                     System.out.println("==============================================================");
@@ -138,11 +140,9 @@ class Customer extends Person {
                 System.out.println("--------------------------------------------------------------");
                 System.out.printf("%-55s %-10s %-10.2f VND%n", "", "AllTotal:", totalAll);
                 System.out.println("==============================================================");
+                System.out.println("Process Done! Continue to buy? y/n: ");
             }
             else System.out.println("Process Done!");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void addLoyaltyPoints(int points) {
