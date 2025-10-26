@@ -52,14 +52,15 @@ class Customer extends Person {
         int number = ln.getQuantity() + 1;
         String idInvoice;
         do {
-            if (number < 100) {
+            if(number<100){
                 idInvoice = "HD0" + number;
                 number++;
-            } else {
-                idInvoice = "HD" + number;
+            }else{
+                idInvoice ="HD" + number;
                 number++;
             }
         } while (ln.test(idInvoice) != null);
+        
 
 
             Invoice inv = new Invoice();
@@ -93,15 +94,23 @@ class Customer extends Person {
                         flag3 = 1;
                         if (a.getAmount() >= temp1) {
                             flag3 = 0;
-                            System.out.print("Are you sure you want to buy" + '"' +  lb.findByID(temp0).getTitle() + '"' + "? y/n: ");
+                            System.out.print("Are you sure? y/n: ");
                             temp2 = sc.nextLine();
-                            if (temp2.equalsIgnoreCase("y")){
-                                flag2 = 1;
-                            }
+                            if (temp2.equalsIgnoreCase("y")) {
+                                System.out.println("Successfully purchased!");
+                                a.setAmount(a.getAmount() - temp1);
+                                addLoyaltyPoints((int)(a.getPrice() * temp1 / 10000));
+                                InvoiceDetail ind = new InvoiceDetail(idInvoice, a.getbookID(), temp1);
+                                flag = 0;
+                                ld.addlist(ind);
+                                System.out.println("Continue to buy? y/n: ");
+                                temp2 = sc.nextLine();
+                                if(temp2.equalsIgnoreCase("y"))
+                                    flag2 = 1;
+                            } 
                             else {
                                 System.out.println("Cancelled.");
-                                if (flag == 1)
-                                    ln.removelist(inv);
+                                if(flag == 1) ln.removelist(inv);
                             }
                         }
                         else
@@ -128,7 +137,7 @@ class Customer extends Person {
         double discountAmount = 0;
         double finalTotal = totalAll;
         int currentPoints = this.getLoyaltyPoints();
-        int flag4 = 0;
+        int flag4 = 1;
         do {
             System.out.println("\n--------------------------------------------------------------");
             System.out.printf("Subtotal: %,.0f VND%n", totalAll);
@@ -154,7 +163,7 @@ class Customer extends Person {
                     } else {
                         System.out.println("You don't have enough points. Please try again");
                     }
-                    flag4 = 1;
+                    flag4 = 0;
                     break;
                 case 2:
                     if (this.redeemPoints(50)) {
@@ -163,7 +172,7 @@ class Customer extends Person {
                     } else {
                         System.out.println("You don't have enough points. Please try again");
                     }
-                    flag4 = 1;
+                    flag4 = 0;
                     break;
                 case 3:
                     if (this.redeemPoints(80)) {
@@ -205,14 +214,14 @@ class Customer extends Person {
                             this.addLoyaltyPoints(80);
                             System.out.println("Points returned.");
                         }
-                        flag4 = 1;
+                        flag4 = 0;
                     } else {
                         System.out.println("You don't have enough points. Please try again");
                     }
                     break;
                 default:
                     System.out.println("Offer not applied.");
-                    flag4 = 1;
+                    flag4 = 0;
                     break;
             }
         } while (flag4 == 1);
