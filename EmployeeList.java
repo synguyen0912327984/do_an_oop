@@ -181,8 +181,7 @@ public class EmployeeList implements IActions<Employee> {
     }
 
     @Override
-    public void edit(Employee a) {
-        Scanner sc = new Scanner(System.in);
+    public void edit(Employee a, Scanner sc) {
         System.out.println("EDIT:");
         System.out.print("1. Name\n2. Phone\n3. Address\n4. Active\n 5. Position\n 6. Salary\nEnter: ");
         int keys = Integer.parseInt(sc.nextLine());
