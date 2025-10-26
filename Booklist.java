@@ -247,19 +247,19 @@ public class Booklist {
 
                 // Kiem tra sach da bi danh dau xoa truoc do
                 if (!b.isActive()) {
-                    System.out.println("Sach nay da bi danh dau xoa truoc do.");
+                    System.out.println("Books are deleted before.");
                     break;
                 }
 
                 // Danh dau xoa mem
                 b.setStatus(false);
-                System.out.println("Da xoa sach co ID: " + bookID);
+                System.out.println("Deleted book with ID: " + bookID);
                 break;
             }
         }
 
         if (!found) {
-            System.out.println("Khong tim thay sach co ID: " + bookID);
+            System.out.println("Cannot find books with ID: " + bookID);
         }
 
         // Hoi nguoi dung co muon xoa tiep khong
@@ -273,7 +273,7 @@ public class Booklist {
 
     //phuong thuc in ra danh sach sach da xoa
     public void displayDeletedBooks(){
-        System.out.println("Danh sach sach da bi xoa:");
+        System.out.println("Deleted list:");
         for (Book b : list) {
             if (!b.isActive()) {
                 b.display();
@@ -284,10 +284,10 @@ public class Booklist {
     // Phuong thuc sua sach
     public void updateBook(Scanner sc) {
             while (true){
-                System.out.print("Nhap ID sach can sua: ");
+                System.out.print("Enter Book's ID to edit: ");
                 String bookID_Fix = sc.nextLine(); // nhap id sach can sua
                 if(bookID_Fix.isEmpty()){
-                    System.out.println("ID sach khong duoc de trong.");
+                    System.out.println("ID cannot be blank.");
                     break;
                 }
                 
@@ -295,18 +295,18 @@ public class Booklist {
                     boolean found = false;
                     if(i.isActive()==true){
                         if (i.getbookID().equalsIgnoreCase(bookID_Fix)) {
-                            inputBookInfo(i, sc); // Update sach
-                            System.out.println("Da cap nhat sach co ID: " + bookID_Fix);
+                            edit(i, sc); // Update sach
+                            System.out.println("Updated books with ID: " + bookID_Fix);
                             found = true;
                             return;
                         }
                     }
                     else if (!i.isActive()){
-                        System.out.println("Sach nay da bi xoa, khong the sua.");
+                        System.out.println("Books are deleted. Cannot be changed.");
                         break;
                     }
                     if (!found){ 
-                        System.out.println("Khong tim thay sach co ID: " + bookID_Fix);
+                        System.out.println("Cannot find books with ID: " + bookID_Fix);
                         break;
                     }
                 }
@@ -413,17 +413,21 @@ public class Booklist {
                 total += b.getAmount();
             }
         }
-        System.out.println("Tong so sach hien co trong kho: " + total);
+        System.out.println("Total books available: " + total);
     }
     //Phuong thuc thong ke cac sach co so luong > x
     public void booksGreaterThan(Scanner sc){
         System.out.println("Nhap so luong x: ");
         int x = Menu2.readIntInput();
+        if(x <= 0) {
+            System.out.println("x cannot below or equal 0.");
+            return;
+        }
         boolean found = false;
         for (Book b : list) {
             if (b.isActive() && b.getAmount() > x) {
                 if (!found) {
-                    System.out.println("\n===== SACH CO SO LUONG > " + x + " =====");
+                    System.out.println("\n===== BOOKS WITH QUANTITY > " + x + " =====");
                     found = true;
                 }
                 b.display();
@@ -432,7 +436,7 @@ public class Booklist {
             }
         }
         if(!found){
-            System.out.println("Khong co sach nao co so luong > " + x);
+            System.out.println("There are no books with quantity > " + x);
         }
     }
     
@@ -443,9 +447,9 @@ public class Booklist {
             bw.write(b.toString());
             bw.newLine();
         }
-        System.out.println("File books.txt da duoc cap nhat thanh cong.");
+        System.out.println("Successfully updated books.txt.");
     } catch (IOException e) {
-        System.err.println("Loi ghi file: " + e.getMessage());
+        System.err.println("Error: " + e.getMessage());
     }
 }
     

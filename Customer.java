@@ -96,7 +96,7 @@ class Customer extends Person {
                         temp1 = Menu2.readIntInput();
                         a = lb.findByID(temp0);
                         flag3 = 1;
-                        if (a.getAmount() >= temp1) {
+                        if (a.getAmount() >= temp1 && temp1 > 0) {
                             flag3 = 0;
                             System.out.print("Are you sure you want to buy " +  " \"" + lb.findByID(temp0).getTitle() + "\"? y/n: ");
                             temp2 = sc.nextLine();
@@ -116,6 +116,9 @@ class Customer extends Person {
                                 System.out.println("Cancelled.");
                                 if(flag == 1) ln.removelist(inv);
                             }
+                        }
+                        else if(temp1 <= 0){
+                            System.out.println("Amount cannot below or equal 0. Try again.");
                         }
                         else
                         System.out.println(
