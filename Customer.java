@@ -91,6 +91,7 @@ class Customer extends Person {
                     a = lb.findByID(temp0);
                     flag3 = 1;
                     if (a.getAmount() >= temp1) {
+
                         flag3 = 0;
                         System.out.print("Are you sure? y/n: ");
                         temp2 = sc.nextLine();
