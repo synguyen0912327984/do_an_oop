@@ -52,8 +52,8 @@ public class Menu2 {
                     } else if (Person.isValidPhoneNumber(p) && c.findByPhone(p) != null
                             && c.findByPhone(p).isActive()) {
                         System.out.println("Welcome!");
-                        do {
-                            System.out.println("==========================");
+                        do{
+                            System.out.println("\n==========================");
                             System.out.println("1. Search book");
                             System.out.println("2. Personal setting");
                             System.out.println("0. Return");
@@ -63,8 +63,8 @@ public class Menu2 {
                             switch (select2) {
                                 case 1:
                                     int type;
-                                    do {
-                                        System.out.println("==========================");
+                                    do{
+                                        System.out.println("\n==========================");
                                         System.out.println("Search by:");
                                         System.out.println("1. ID");
                                         System.out.println("2. Title");
@@ -114,8 +114,8 @@ public class Menu2 {
                                     break;
                                 case 2:
                                     int select3;
-                                    do {
-                                        System.out.println("==========================");
+                                    do{
+                                        System.out.println("\n==========================");
                                         System.out.println("1. Edit information");
                                         System.out.println("2. Delete account");
                                         System.out.println("0. Return");
@@ -294,16 +294,112 @@ public class Menu2 {
                         } while (selectE != 0);
                     }
                     break;
-                case 3:
-                    break;
-                case 4:
-                    System.out.println("Wrong password. Returning...");
-                default:
-                    System.out.println("Invalid choice!");
-                    break;
-            }
-        } while (select != 0);
-    }
+                    
+                    //Employee
+
+                    case 2:
+                        int selectE;
+                        System.out.print("Enter your ID: ");
+                        String ID = sc.nextLine();
+                        if(e.findById(ID) == null){
+                            System.out.println("ID doesn't exist!");
+                        }
+                        else if(e.findById(ID) != null && e.findById(ID).isActive()){
+                            System.out.println("Welcome!");
+                            Employee tempE = e.findById(ID);
+                            do{
+                                System.out.println("\n==========================");
+                                System.out.println("1. Books management");
+                                System.out.println("2. Personal setting");
+                                System.out.println("0. Return");
+                                System.out.println("==========================");
+                                System.out.print("Enter: ");
+                                selectE = readIntInput();
+                                switch(selectE){
+                                    case 1:
+                                        int selectE2;
+                                        do{
+                                            System.out.println("\n==========================");
+                                            System.out.println("1. Add book");
+                                            System.out.println("2. Remove book");
+                                            System.out.println("3. Update book");
+                                            System.out.println("4. Deleted books history");
+                                            System.out.println("0. Return");
+                                            System.out.println("==========================");
+                                            System.out.print("Enter: ");
+                                            selectE2 = readIntInput();
+                                            switch(selectE2){
+                                                case 0:
+                                                    System.out.println("Returning...");
+                                                    break;
+                                                case 1:
+                                                    Book tempB = new Book();
+                                                    bl.AddBook(tempB, sc);
+                                                    break;
+                                                case 2:
+                                                    bl.removeBook(sc);
+                                                    break;
+                                                case 3:
+                                                    System.out.print("Enter Book's ID to edit: ");
+                                                    String temp = sc.nextLine();
+                                                    bl.edit(bl.findByID(temp), sc);
+                                                    System.out.println("New book's information:");
+                                                    bl.findByID(temp).display();
+                                                    break;
+                                                case 4:
+                                                    bl.displayDeletedBooks();
+                                                    break;
+                                                default:
+                                                    System.out.println("Invalid choice!");
+                                                    break;
+                                            }
+                                        }while(selectE2 != 0);
+                                        break;
+                                    case 2:
+                                        int selectE3;
+                                        do{
+                                            System.out.println("\n==========================");
+                                            System.out.println("1. Edit information");
+                                            System.out.println("0. Return");
+                                            System.out.println("==========================");
+                                            System.out.print("Enter: ");
+                                            selectE3 = readIntInput();
+                                            switch(selectE3){
+                                                case 1:
+                                                    e.edit(tempE, sc);
+                                                    System.out.print("Done!");
+                                                    break;
+                                                case 0:
+                                                    System.out.println("Returning...");
+                                                    break;
+                                                default:
+                                                    System.out.println("Invalid choice!");
+                                                    break;
+                                            }
+                                        } while(selectE3 != 0);
+                                        break;
+                                    default:
+                                        System.out.println("Invalid choice!");
+                                        break;
+                                }
+                            }while(selectE != 0);
+                        }
+                        break;
+
+                    //Management
+
+                    case 3:
+                        System.out.print("Enter password: ");
+                        String temp = sc.nextLine();
+                        if(temp.equalsIgnoreCase("DoanOOP"))
+                            mainMenu();
+                        else System.out.println("Wrong password. Returning...");
+                    default:
+                        System.out.println("Invalid choice!");
+                        break;
+                }
+            }while(select != 0);
+        }
 
     public static void mainMenu() {
         int select;
@@ -313,6 +409,7 @@ public class Menu2 {
             System.out.println("===========================");
             System.out.println("1. Customer Management");
             System.out.println("2. Employee Management");
+            System.out.println("3. Books statistics");
             System.out.println("0. Exit and Save Program");
             System.out.println("===========================");
             System.out.print("Enter your choice: ");
@@ -325,6 +422,9 @@ public class Menu2 {
                     break;
                 case 2:
                     employeeMenu();
+                    break;
+                case 3:
+                    AnalysMenu();
                     break;
                 case 0:
                     System.out.println("Saving data to file...");
@@ -663,4 +763,74 @@ public class Menu2 {
         System.out.println("Successfully created new customer with ID: " + newCustomer.getId());
         newCustomer.displayinfo();
     }
+
+    public static void AnalysMenu() {
+        int analysChoice;
+        do{
+            System.out.println("\n===== BOOK STATISTICS =====");
+            System.out.println("1. Show books with quantity greater than x");
+            System.out.println("2. Show best-selling books");
+            System.out.println("3. Show total number of books currently in stock");
+            System.out.print("Enter: ");
+            analysChoice = readIntInput();
+            switch (analysChoice) {
+                case 1:
+                    bl.booksGreaterThan(sc);
+                    break;
+                case 2:
+                    bestSellingBooks();
+                    break;
+                case 3:
+                    bl.totalBooks();
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }while(analysChoice != 0);
+    }
+    public static void bestSellingBooks() {
+        ld.readFile();
+
+        ArrayList<InvoiceDetail> list = ld.getList();
+
+    // list luu tru ma sach va tong so luong ban
+    ArrayList<String> bookIDs = new ArrayList<>();
+    ArrayList<Integer> totalQuantities = new ArrayList<>();
+
+    // Tinh tong so luong ban cho moi sach
+    for (InvoiceDetail d : list) {
+        String id = d.getIdBook();
+        int quantity = d.getQuantity();
+
+        boolean found = false;
+        for (int i = 0; i < bookIDs.size(); i++) {
+            if (bookIDs.get(i).equalsIgnoreCase(id)) {
+                totalQuantities.set(i, totalQuantities.get(i) + quantity);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            bookIDs.add(id);
+            totalQuantities.add(quantity);
+        }
+    }
+
+    // tim max
+    int max = 0;
+    for (int q : totalQuantities) {
+        if (q > max) max = q;
+    }
+
+    //in ra sach ban chay nhat
+    System.out.println("\n===== BEST-SELLING BOOKs =====");
+    for (int i = 0; i < bookIDs.size(); i++) {
+        if (totalQuantities.get(i) == max) {
+            Book found = bl.findByID(bookIDs.get(i));
+            found.display();
+            System.out.println("So luong ban: " + totalQuantities.get(i));
+        }
+    }
+}
 }
