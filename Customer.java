@@ -98,7 +98,7 @@ class Customer extends Person {
                         flag3 = 1;
                         if (a.getAmount() >= temp1 && temp1 > 0) {
                             flag3 = 0;
-                            System.out.print("Are you sure you want to buy " +  " \"" + lb.findByID(temp0).getTitle() + "\"? y/n: ");
+                            System.out.print("Are you sure you want to buy" +  " \"" + lb.findByID(temp0).getTitle() + "\"? y/n: ");
                             temp2 = sc.nextLine();
                             if (temp2.equalsIgnoreCase("y")) {
                                 System.out.println("Successfully purchased!");
@@ -109,8 +109,51 @@ class Customer extends Person {
                                 ld.addlist(ind);
                                 System.out.println("Continue to buy? y/n: ");
                                 temp2 = sc.nextLine();
-                                if(temp2.equalsIgnoreCase("y"))
-                                    flag2 = 1;
+                                if(temp2.equalsIgnoreCase("y")) {
+                                    int type;
+                                    do {
+                                        System.out.println("==========================");
+                                        System.out.println("Search by:");
+                                        System.out.println("1. ID");
+                                        System.out.println("2. Title");
+                                        System.out.println("3. Author");
+                                        System.out.println("4. Publisher");
+                                        System.out.println("0. Cancel");
+                                        System.out.println("==========================");
+                                        System.out.print("Enter: ");
+                                        type = Menu2.readIntInput();
+                                        if (type < 1 || type > 4) {
+                                            System.out.println("Cancelled.");
+                                            flag2 = 0;
+                                            break;
+                                        }
+                                        else {
+                                            switch (type) {
+                                                case 1:
+                                                    System.out.println("Enter ID: ");
+                                                    break;
+                                                case 2:
+                                                    System.out.println("Enter Title: ");
+                                                    break;
+                                                case 3:
+                                                    System.out.println("Enter Author: ");
+                                                    break;
+                                                case 4:
+                                                    System.out.println("Enter Publisher: ");
+                                                    break;
+                                                default:
+                                                    System.out.println("Invalid choice!");
+                                                    break;
+                                            }
+                                            String search = sc.nextLine();
+                                            ArrayList<Book> tempbl = lb.find(type, search);
+                                            if (!tempbl.isEmpty()) {
+                                                type = 0;
+                                            }
+                                            flag2 = 1;
+                                        }
+                                    }while(type != 0);
+                                }
                             } 
                             else {
                                 System.out.println("Cancelled.");
@@ -276,7 +319,7 @@ class Customer extends Person {
     public void addLoyaltyPoints(int points) {
         if (points > 0) {
             this.loyaltyPoints += points;
-            System.out.println(points + " Added to account! Total: " + loyaltyPoints);
+            System.out.println(points + " Point added to account! Total: " + loyaltyPoints);
         } else
             System.out.println("Invalid points!");
     }
