@@ -67,7 +67,7 @@ public class Booklist {
                 break;
         }
         if (result.isEmpty()) {
-            System.out.println("No matching books found.");
+            System.out.println("No matching books found(or book may have been deleted).");
         } else {
             System.out.println("Search results:");
             for (Book b : result) {
@@ -80,7 +80,7 @@ public class Booklist {
     // Tim theo ID
     public Book findByID(String bookID) {
         for (Book b : list) {
-            if (b.getbookID().equalsIgnoreCase(bookID)) {
+            if (b.getbookID().equalsIgnoreCase(bookID) && b.isActive()) {
                 return b;
             }
         }
@@ -91,7 +91,7 @@ public class Booklist {
    public ArrayList<Book> findByTitle(String title) {
     ArrayList<Book> result = new ArrayList<>();
     for (Book b : list) {
-        if (b.getTitle().toLowerCase().contains(title.toLowerCase())) {
+        if (b.getTitle().toLowerCase().contains(title.toLowerCase()) && b.isActive()) {
             result.add(b);
         }
     }
@@ -103,7 +103,7 @@ public class Booklist {
     public ArrayList<Book> findByAuthor(String author) {
         ArrayList<Book> result = new ArrayList<>();
         for (Book b : list) {
-            if (b.getAuthor().toLowerCase().contains(author.toLowerCase())) {
+            if (b.getAuthor().toLowerCase().contains(author.toLowerCase())&& b.isActive()) {
                 result.add(b);
             }
         }
@@ -113,7 +113,7 @@ public class Booklist {
     public ArrayList<Book> findByPublisher(String publisher) {
         ArrayList<Book> result = new ArrayList<>();
         for (Book b : list) {
-            if (b.getPublisher().toLowerCase().contains(publisher.toLowerCase())) {
+            if (b.getPublisher().toLowerCase().contains(publisher.toLowerCase())&& b.isActive()) {
                 result.add(b);
             }
         }
