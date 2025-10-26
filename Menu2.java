@@ -23,8 +23,7 @@ public class Menu2 {
             System.out.println("==========================");
             System.out.print("Enter: ");
 
-            select = sc.nextInt();
-            sc.nextLine();
+            select = readIntInput();
             switch (select) {
                 case 0:
                     e.saveToFile();
@@ -60,8 +59,7 @@ public class Menu2 {
                             System.out.println("0. Return");
                             System.out.println("==========================");
                             System.out.print("Enter: ");
-                            select2 = sc.nextInt();
-                            sc.nextLine();
+                            select2 = readIntInput();
                             switch(select2){
                                 case 1:
                                 System.out.println("==========================");
@@ -73,8 +71,7 @@ public class Menu2 {
                                     System.out.println("0. Cancel");
                                     System.out.println("==========================");
                                     System.out.print("Enter: ");
-                                    int type = sc.nextInt();
-                                    sc.nextLine();
+                                    int type = readIntInput();
                                     if(type < 1 || type > 4) System.out.println("Cancelled.");
                                     else{
                                         switch(type){
@@ -113,8 +110,7 @@ public class Menu2 {
                                         System.out.println("0. Return");
                                         System.out.println("==========================");
                                         System.out.print("Enter: ");
-                                        select3 = sc.nextInt();
-                                        sc.nextLine();
+                                        select3 = readIntInput();
                                         switch(select3){
                                             case 1:
                                                 c.edit(c.findByPhone(p), sc);
@@ -145,8 +141,7 @@ public class Menu2 {
                                         System.out.println("0. Return");
                                         System.out.println("==========================");
                                         System.out.println("Enter: ");
-                                        select4 = sc.nextInt();
-                                        sc.nextLine();
+                                        select4 = readIntInput();
                                         String temp;
                                         switch(select4){
                                             case 1:
@@ -460,7 +455,7 @@ public class Menu2 {
         }
     }
 
-    private static int readIntInput() {
+    public static int readIntInput() {
         try {
             return Integer.parseInt(sc.nextLine());
         } catch (NumberFormatException e) {
