@@ -212,10 +212,19 @@ public class Manager {
 
     ArrayList<Invoice> inv = new ArrayList<>();
     inv = invoiceList.findtime(date);
-    for(Invoice st: inv){
-        st.displayInvoice();
-    }
     ArrayList<InvoiceDetail> ind = new ArrayList<>();
+    Book b = new Book();
+    ArrayList<Book> listb = new ArrayList<>();
+    for(Invoice st:inv){
+        st.displayInvoice();
+        ind.addAll(invoiceDetailsList.find(st.getIdInvoice()));
+        
+    }
+    System.out.println("Daily book sales report");
+    System.out.printf("");
+    for(Invoice st: ind){
+        
+    }
     
 }
 
