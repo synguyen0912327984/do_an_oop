@@ -148,20 +148,6 @@ public class CustomerList implements IActions<Customer> {
                 a.setAddress(keyword);
                 System.out.println("Changed successfully!");
                 break;
-            /*
-             * case 4: //Active
-             * System.out.println("Active (true/false): ");
-             * keyword = sc.nextLine();
-             * a.setActive(Boolean.parseBoolean(keyword));
-             * System.out.println("Changed successfully!");
-             * break;
-             * case 5: //LoyaltyPoints
-             * System.out.println("Enter loyalty points: ");
-             * keyword = sc.nextLine();
-             * a.setLoyaltyPoints(Integer.parseInt(keyword));
-             * System.out.println("Changed successfully!");
-             * break;
-             */
             default:
                 System.out.println("Cancelled.");
                 break;
