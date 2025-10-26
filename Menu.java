@@ -311,6 +311,7 @@ public class Menu {
             System.out.println("1. Books statistics");
             System.out.println("2. Daily sales report");
             System.out.println("3. Customer's sales report");
+            System.out.println("0. Return");
             System.out.println("--------------------------------");
             System.out.print("Enter choice: ");
 
@@ -325,6 +326,9 @@ public class Menu {
                     break;
                 case 3:
                     CustomerSalesRp(e, c, ln, ld, bl);
+                    break;
+                case 0:
+                    System.out.println("Returning...");
                     break;
                 default:
                     System.out.println("Invalid choice!");
