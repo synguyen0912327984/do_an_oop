@@ -152,7 +152,6 @@ public class CustomerList implements IActions<Customer> {
                 System.out.println("Cancelled.");
                 break;
         }
-        sc.close();
     }
 
     public void displayAll() {

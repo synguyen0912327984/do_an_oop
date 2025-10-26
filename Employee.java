@@ -21,7 +21,7 @@ class Employee extends Person {
 
     public Employee(String name, String phoneNumber, String address, String position, double salary) {
         super(null, name, phoneNumber, address);
-        this.id = String.format("E%03d", employeeCount++);
+        this.id = String.format("E%04d", employeeCount++);
         this.position = position;
         this.salary = salary;
     }

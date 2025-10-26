@@ -184,7 +184,7 @@ public class EmployeeList implements IActions<Employee> {
     public void edit(Employee a, Scanner sc) {
         System.out.println("EDIT:");
         System.out.print("1. Name\n2. Phone\n3. Address\nEnter: ");
-        int keys = Integer.parseInt(sc.nextLine());
+        int keys = Menu2.readIntInput();
         String keyword;
         switch (keys) {
             case 1: // Name
@@ -213,7 +213,6 @@ public class EmployeeList implements IActions<Employee> {
                 System.out.println("Cancelled.");
                 break;
         }
-        sc.close();
     }
 
     public void saveToFile() {

@@ -7,7 +7,6 @@ import java.util.*;
 
 public class Booklist {
     private ArrayList<Book> list;
-    Scanner sc = new Scanner(System.in);
     private static final String FILE_NAME = "books.txt";
     // Khoi tao
     public Booklist() {
@@ -121,85 +120,85 @@ public class Booklist {
         return result;
     }
     //Phuong thuc nhap thong tin sach 
-    public void inputBookInfo(Book book){
+    public void inputBookInfo(Book book, Scanner sc){
         
     //nhap title
         boolean valid;
         do
         {
-            System.out.print("Nhap title: ");
+            System.out.print("Enter title: ");
             String title_test;
             title_test = sc.nextLine();
             valid = !title_test.isEmpty();
             if(valid)
                 book.setTitle(title_test);
             else
-                System.out.println("Title khong duoc de trong. Vui long nhap lai.");
+                System.out.println("Title cannot be empty. Try again.");
         }while(!valid);
     //Nhap Author    
         do
         {
-            System.out.print("Nhap Author: ");
+            System.out.print("Enter Author: ");
             String Author_test;
             Author_test = sc.nextLine();
             valid = !Author_test.isEmpty();
             if(valid)
                 book.setAuthor(Author_test);
             else
-                System.out.println("Author khong duoc de trong. Vui long nhap lai.");
+                System.out.println("Author cannot be empty. Try again.");
         }while(!valid);
         //Nhap Publisher
         do{
-            System.out.print("Nhap Publisher: ");
+            System.out.print("Enter Publisher: ");
             String Publisher_test;
             Publisher_test = sc.nextLine();
             valid = !Publisher_test.isEmpty();
             if(valid)
                 book.setPublisher(Publisher_test);
             else
-                System.out.println("Publisher khong duoc de trong. Vui long nhap lai.");
+                System.out.println("Publisher cannot be empty. Try again.");
         }while(!valid);
          // Nhap Price
     do {
-        System.out.print("Nhap Price: ");
+        System.out.print("Enter Price: ");
         String priceInput = sc.nextLine().trim();
         try {
             double price = Double.parseDouble(priceInput);
             if (price < 0) {
-                System.out.println("Price khong duoc am. Vui long nhap lai.");
+                System.out.println("Price cannot be empty. Try again.");
                 valid = false;
             } else {
                 book.setPrice(price);
                 valid = true;
             }
         } catch (NumberFormatException e) {
-            System.out.println("Gia tri Price phai la so. Vui long nhap lai.");
+            System.out.println("Price must be a number. Try again.");
             valid = false;
         }
     } while (!valid);
 
     // Nhap Amount
     do {
-        System.out.print("Nhap Amount: ");
+        System.out.print("Enter Amount: ");
         String amountInput = sc.nextLine().trim();
         try {
             int amount = Integer.parseInt(amountInput);
             if (amount < 0) {
-                System.out.println("Amount khong duoc am. Vui long nhap lai.");
+                System.out.println("Amount cannot be negative. Try again.");
                 valid = false;
             } else {
                 book.setAmount(amount);
                 valid = true;
             }
         } catch (NumberFormatException e) {
-            System.out.println("Gia tri Amount phai la so nguyen. Vui long nhap lai.");
+            System.out.println("Amount must be integer. Try again.");
             valid = false;
         }
     } while (!valid);
 }
 
     //Phuong thuc them sach
-    public void AddBook(Book book) {
+    public void AddBook(Book book, Scanner sc) {
         //Tao ID cho book
         
         int number = getQuantity()+1;
@@ -216,24 +215,24 @@ public class Booklist {
         }
         while (findByID(test_idBook) != null);
         book.setbookID(test_idBook);
-        System.out.println("Book ID da duoc tao: " + book.getbookID());
+        System.out.println("Book's ID has been created: " + book.getbookID());
 
-        inputBookInfo(book);
+        inputBookInfo(book, sc);
         list.add(book);
         book.setStatus(true); 
-        System.out.println("Da them sach thanh cong!");
+        System.out.println("Book added!");
     }
     
     
 
-    public void removeBook() {
+    public void removeBook(Scanner sc) {
     while (true) {
-        System.out.print("Nhap ID sach can xoa: ");
+        System.out.print("Enter Book's ID to delete: ");
         String bookID = sc.nextLine().trim();
 
         // Kiem tra ID khong duoc de trong
         if (bookID.isEmpty()) {
-            System.out.println("ID sach khong duoc de trong. Vui long nhap lai!");
+            System.out.println("ID cannot be empty. Try again");
             continue;
         }
 
@@ -283,7 +282,7 @@ public class Booklist {
         }
     }
     // Phuong thuc sua sach
-    public void updateBook() {
+    public void updateBook(Scanner sc) {
             while (true){
             System.out.print("Nhap ID sach can sua: ");
             String bookID_Fix = sc.nextLine(); // nhap id sach can sua
@@ -296,7 +295,7 @@ public class Booklist {
                 boolean found = false;
                 if(i.isActive()==true){
                     if (i.getbookID().equalsIgnoreCase(bookID_Fix)) {
-                        inputBookInfo(i); // Update sach
+                        inputBookInfo(i, sc); // Update sach
                         System.out.println("Da cap nhat sach co ID: " + bookID_Fix);
                         found = true;
                         return;
@@ -330,7 +329,7 @@ public class Booklist {
         System.out.println("Tong so sach hien co trong kho: " + total);
     }
     //Phuong thuc thong ke cac sach co so luong > x
-    public void booksGreaterThan(){
+    public void booksGreaterThan(Scanner sc){
         System.out.println("Nhap so luong x: ");
         int x = sc.nextInt();
         boolean found = false;

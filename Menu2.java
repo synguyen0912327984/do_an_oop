@@ -34,6 +34,8 @@ public class Menu2 {
                     System.out.println("GOODBYE!");
                     break;
 
+                //Customer
+
                 case 1:
                     int select2;
                     System.out.print("Enter your phone number: ");
@@ -205,9 +207,91 @@ public class Menu2 {
                         System.out.println("Account doesn't exist!");
                     }
                     break;
+                    
+                    //Employee
 
                     case 2:
+                        int selectE;
+                        System.out.print("Enter your ID: ");
+                        String ID = sc.nextLine();
+                        if(e.findById(ID) == null){
+                            System.out.println("ID doesn't exist!");
+                        }
+                        else if(e.findById(ID) != null && e.findById(ID).isActive()){
+                            System.out.println("Welcome!");
+                            Employee tempE = e.findById(ID);
+                            do{
+                                System.out.println("==========================");
+                                System.out.println("1. Books management");
+                                System.out.println("2. Personal setting");
+                                System.out.println("0. Return");
+                                System.out.println("==========================");
+                                System.out.print("Enter: ");
+                                selectE = readIntInput();
+                                switch(selectE){
+                                    case 1:
+                                        int selectE2;
+                                        do{
+                                            System.out.println("==========================");
+                                            System.out.println("1. Add book");
+                                            System.out.println("2. Remove book");
+                                            System.out.println("3. Update book");
+                                            System.out.println("4. Delete history");
+                                            System.out.println("0. Cancel");
+                                            System.out.println("==========================");
+                                            System.out.print("Enter: ");
+                                            selectE2 = readIntInput();
+                                            switch(selectE2){
+                                                case 1:
+                                                    Book tempB = new Book();
+                                                    bl.AddBook(tempB, sc);
+                                                    break;
+                                                case 2:
+
+                                                    break;
+                                                case 3:
+                                                    break;
+                                                case 4:
+                                                    break;
+                                                default:
+                                                    System.out.println("Invalid choice!");
+                                                    break;
+                                            }
+                                        }while(selectE2 != 0);
+                                        break;
+                                    case 2:
+                                        int selectE3;
+                                        do{
+                                            System.out.println("==========================");
+                                            System.out.println("1. Edit information");
+                                            System.out.println("0. Return");
+                                            System.out.println("==========================");
+                                            System.out.print("Enter: ");
+                                            selectE3 = readIntInput();
+                                            switch(selectE3){
+                                                case 1:
+                                                    e.edit(tempE, sc);
+                                                    System.out.print("Done!");
+                                                    break;
+                                                case 0:
+                                                    System.out.println("Returning...");
+                                                    break;
+                                                default:
+                                                    System.out.println("Invalid choice!");
+                                                    break;
+                                            }
+                                        } while(selectE3 != 0);
+                                        break;
+                                    default:
+                                        System.out.println("Invalid choice!");
+                                        break;
+                                }
+                            }while(selectE != 0);
+                        }
                         break;
+
+                    //Management
+
                     case 3:
                         System.out.print("Enter password: ");
                         String temp = sc.nextLine();
