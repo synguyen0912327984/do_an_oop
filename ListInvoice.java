@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.time.format.DateTimeFormatter;
 
 public class ListInvoice {
     private ArrayList<Invoice> list = new ArrayList<>();
@@ -92,9 +91,9 @@ public class ListInvoice {
                 bw.newLine();
             }
 
-            System.out.println("save file Invoice.txt corret!");
+            System.out.println("File saved successfully: Invoice.txt");
         } catch (Exception e) {
-            System.err.println("erorr when save file Invoice.txt: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
         }
     }
         

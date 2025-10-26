@@ -8,7 +8,7 @@ class Customer extends Person {
 
     public Customer(String name, String phoneNumber, String address, int loyaltyPoints) {
         super(null, name, phoneNumber, address);
-        this.id = String.format("C%03d", customerCount++);
+        this.id = String.format("C%04d", customerCount++);
         /*
          * Dinh dang chuoi voi chuoi dinh dang C + customnerCount
          * %03d do dai toi thieu la 3 neu khong du thi chen 0 vao dau
@@ -48,7 +48,7 @@ class Customer extends Person {
         return id + "," + name + "," + phoneNumber + "," + address + "," + loyaltyPoints + "," + active;
     }
 
-    public void Buy(EmployeeList E, Booklist lb, ListInvoice ln, ListInvoiceDetails ld, Scanner sc) {
+    public int Buy(EmployeeList E, Booklist lb, ListInvoice ln, ListInvoiceDetails ld, Scanner sc) {
         int number = ln.getQuantity() + 1;
         String idInvoice;
         do {
@@ -93,12 +93,12 @@ class Customer extends Person {
                     if(lb.findByID(temp0) != null){
                         flag2 = 0;
                         System.out.print("Enter the amount you want to buy: ");
-                        temp1 = Menu2.readIntInput();
+                        temp1 = Menu.readIntInput();
                         a = lb.findByID(temp0);
                         flag3 = 1;
-                        if (a.getAmount() >= temp1) {
+                        if (a.getAmount() >= temp1 && temp1 > 0) {
                             flag3 = 0;
-                            System.out.print("Are you sure you want to buy " +  " \"" + lb.findByID(temp0).getTitle() + "\"? y/n: ");
+                            System.out.print("Are you sure you want to buy" +  " \"" + lb.findByID(temp0).getTitle() + "\"? y/n: ");
                             temp2 = sc.nextLine();
                             if (temp2.equalsIgnoreCase("y")) {
                                 System.out.println("Successfully purchased!");
@@ -109,27 +109,75 @@ class Customer extends Person {
                                 ld.addlist(ind);
                                 System.out.println("Continue to buy? y/n: ");
                                 temp2 = sc.nextLine();
-                                if(temp2.equalsIgnoreCase("y"))
-                                    flag2 = 1;
+                                if(temp2.equalsIgnoreCase("y")) {
+                                    int type;
+                                    do {
+                                        System.out.println("==========================");
+                                        System.out.println("Search by:");
+                                        System.out.println("1. ID");
+                                        System.out.println("2. Title");
+                                        System.out.println("3. Author");
+                                        System.out.println("4. Publisher");
+                                        System.out.println("0. Cancel");
+                                        System.out.println("==========================");
+                                        System.out.print("Enter: ");
+                                        type = Menu.readIntInput();
+                                        if (type < 1 || type > 4) {
+                                            System.out.println("Cancelled.");
+                                            flag2 = 0;
+                                            break;
+                                        }
+                                        else {
+                                            switch (type) {
+                                                case 1:
+                                                    System.out.println("Enter ID: ");
+                                                    break;
+                                                case 2:
+                                                    System.out.println("Enter Title: ");
+                                                    break;
+                                                case 3:
+                                                    System.out.println("Enter Author: ");
+                                                    break;
+                                                case 4:
+                                                    System.out.println("Enter Publisher: ");
+                                                    break;
+                                                default:
+                                                    System.out.println("Invalid choice!");
+                                                    break;
+                                            }
+                                            String search = sc.nextLine();
+                                            ArrayList<Book> tempbl = lb.find(type, search);
+                                            if (!tempbl.isEmpty()) {
+                                                type = 0;
+                                            }
+                                            flag2 = 1;
+                                        }
+                                    }while(type != 0);
+                                }
                             } 
                             else {
                                 System.out.println("Cancelled.");
                                 if(flag == 1) ln.removelist(inv);
                             }
                         }
+                        else if(temp1 <= 0){
+                            System.out.println("Amount cannot below or equal 0. Try again.");
+                        }
                         else
                         System.out.println(
                                 "Only " + a.getAmount() + " items are available. Please adjust your quantity.");
                     }
-                    else
+                    else {
                         System.out.println("Cannot find book with ID: " + temp0);
+                        break;
+                    }
                 } while (flag3 == 1);
             } while (flag2 == 1);
         ArrayList<InvoiceDetail> currentInvoiceDetails = ld.find(idInvoice);
         if (currentInvoiceDetails.isEmpty()) {
             System.out.println("No items purchased. Cancelling invoice...");
             ln.removelist(inv);
-            return;
+            return 0;
         }
         double totalAll = 0;
         for (InvoiceDetail d : currentInvoiceDetails) {
@@ -149,7 +197,7 @@ class Customer extends Person {
             System.out.println("Do you want to use your points to redeem rewards?");
             System.out.println("1. 25% discount on your bill (Costs 30 points)");
             System.out.println("2. 50% discount on your bill (Costs 50 points)");
-            System.out.println("3. Get 1 most expensive book for free (80 points required)");
+            System.out.println("3. Get 1 most expensive book for free (20 points required)");
             System.out.println("0. No, thanks.");
             System.out.print("Enter your choice: ");
             int redeemChoice = 0;
@@ -179,7 +227,7 @@ class Customer extends Person {
                     flag4 = 0;
                     break;
                 case 3:
-                    if (this.redeemPoints(80)) {
+                    if (this.redeemPoints(20)) {
                         System.out.println("Please select which book you want for free:");
                         System.out.println("--------------------------------------------------------------");
                         System.out.printf("%-5s %-40s %-10s%n", "No.", "Name", "Price (per 1 unit)");
@@ -210,12 +258,12 @@ class Customer extends Person {
                                         selectedBook.getTitle(), discountAmount);
                             } else {
                                 System.out.println("Error finding selected book. No discount applied.");
-                                this.addLoyaltyPoints(80);
+                                this.addLoyaltyPoints(20);
                                 System.out.println("Points returned.");
                             }
                         } else {
                             System.out.println("Invalid selection. No discount applied.");
-                            this.addLoyaltyPoints(80);
+                            this.addLoyaltyPoints(20);
                             System.out.println("Points returned.");
                         }
                         flag4 = 0;
@@ -235,7 +283,6 @@ class Customer extends Person {
         System.out.println("Print invoice? y/n: ");
         String temp = sc.nextLine();
         if (temp.equalsIgnoreCase("y")) {
-            ArrayList<InvoiceDetail> temp4 = ld.find(idInvoice);
             System.out.println("==============================================================");
             System.out.println("                       I N V O i C E                      ");
             System.out.println("==============================================================");
@@ -266,12 +313,13 @@ class Customer extends Person {
             System.out.println("Process Done! Continue to buy? y/n: ");
         } else
             System.out.println("Process Done! Continue to buy? y/n: ");
+        return 1;
     }
 
     public void addLoyaltyPoints(int points) {
         if (points > 0) {
             this.loyaltyPoints += points;
-            System.out.println(points + " Added to account! Total: " + loyaltyPoints);
+            System.out.println(points + " Point added to account! Total: " + loyaltyPoints);
         } else
             System.out.println("Invalid points!");
     }
