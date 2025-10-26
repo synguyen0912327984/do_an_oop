@@ -13,7 +13,7 @@ public class Menu2 {
     private static ListInvoice ln = new ListInvoice();
     private static ListInvoiceDetails ld = new ListInvoiceDetails();
 
-    public static void main(String[] args) {
+    public static void Menu() {
         ln.readFile();
         ld.readFile();
         int select;

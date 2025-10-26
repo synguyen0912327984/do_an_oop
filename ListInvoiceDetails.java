@@ -50,7 +50,7 @@ public class ListInvoiceDetails {
             this.list = tempList;
 
         } catch (Exception e) {
-            System.err.println("Lỗi khi đọc file InvoiceDetail.txt: " + e.getMessage());
+            System.err.println("Cannot read InvoiceDetail.txt: " + e.getMessage());
         }
 
     }
@@ -72,13 +72,12 @@ public class ListInvoiceDetails {
     public void savefile() {
         try (java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter("InvoiceDetail.txt"))) {
             for (InvoiceDetail detail : list) {
-                // Ghi theo định dạng: idInvoice,idBook,quantity
                 bw.write(detail.getIdInvoice() + "," + detail.getIdBook() + "," + detail.getQuantity());
-                bw.newLine(); // Xuống dòng cho mỗi chi tiết
+                bw.newLine();
             }
-            System.out.println("save file InvoiceDentail.txt corret!");
+            System.out.println("File saved successfully: InvoiceDetail.txt");
         } catch (Exception e) {
-            System.err.println("erorr when save file InvoiceDentail.txt: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
         }
     }
 
