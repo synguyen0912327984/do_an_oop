@@ -120,57 +120,42 @@ public class CustomerList implements IActions<Customer> {
     }
 
     @Override
-    public void edit(Customer a, Scanner sc) {
-        System.out.println("EDIT:");
-        System.out.print("1. Name\n2. Phone\n3. Address\nEnter: ");
-        int keys = Integer.parseInt(sc.nextLine());
-        boolean valid;
-        switch (keys) {
-            case 1: // Name
-                do{
-                    System.out.print("Enter new name: ");
-                    String Name_test;
-                    Name_test = sc.nextLine();
-                    valid = !Name_test.isEmpty();
-                    if(valid)
-                        a.setName(Name_test);
-                    else
-                        System.out.println("Name cannot be empty. Try again.");
-                }while(!valid);
-                System.out.println("Changed successfully!");
-                break;
-            case 2: // Phone
-                do{
-                    System.out.print("Enter new phone number: ");
-                    String Phone_test;
-                    Phone_test = sc.nextLine();
-                    valid = Person.isValidPhoneNumber(Phone_test);
-                    if (valid) {
-                        a.setPhoneNumber(Phone_test);
-                    } else {
-                        System.out.println("Invalid phone number");
-                        System.out.println("Please re-enter or press Enter to skip");
-                    }
-                }while(!valid);
-                System.out.println("Changed successfully!");
-                break;
-            case 3: // Address
-                do{
-                    System.out.print("Enter new address: ");
-                    String Address_test;
-                    Address_test = sc.nextLine();
-                    valid = !Address_test.isEmpty();
-                    if(valid)
-                        a.setAddress(Address_test);
-                    else
-                        System.out.println("Title cannot be empty. Try again.");
-                }while(!valid);
-                System.out.println("Changed successfully!");
-                break;
-            default:
-                System.out.println("Cancelled.");
-                break;
+    public void edit(Customer c, Scanner sc) {
+
+        System.out.println("Update customer information (press Enter to skip)");
+
+        c.displayinfo();
+
+        System.out.print("Ten moi (" + c.getName() + "): ");
+        String newName = sc.nextLine();
+        if (!newName.isEmpty()) {
+            c.setName(newName);
         }
+
+        while (true) {
+            System.out.print("New phone number (" + c.getPhoneNumber() + "): ");
+            String newPhone = sc.nextLine();
+
+            if (newPhone.isEmpty()) {
+                break;
+            }
+
+            if (Person.isValidPhoneNumber(newPhone)) {
+                c.setPhoneNumber(newPhone);
+                break;
+            } else {
+                System.out.println("Invalid phone number");
+                System.out.println("Please re-enter or press Enter to skip");
+            }
+        }
+
+        System.out.print("New address (" + c.getAddress() + "): ");
+        String newAddress = sc.nextLine();
+        if (!newAddress.isEmpty()) {
+            c.setAddress(newAddress);
+        }
+        System.out.println("---Customer information updated successfully!---");
+        c.displayinfo();
     }
 
     public void displayAll() {

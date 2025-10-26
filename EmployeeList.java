@@ -33,6 +33,16 @@ public class EmployeeList implements IActions<Employee> {
         Employee.setEmloyeeCount(maxId + 1);
     }
 
+    public ArrayList<Employee> getActiveCashiers() {
+        ArrayList<Employee> activeCashiers = new ArrayList<>();
+        for (Employee emp : employees) {
+            if (emp.getPosition().equalsIgnoreCase("Cashier") && emp.isActive()) {
+                activeCashiers.add(emp);
+            }
+        }
+        return activeCashiers;
+    }
+
     @Override
     public void add(Employee c) {
         employees.add(c);
@@ -40,34 +50,31 @@ public class EmployeeList implements IActions<Employee> {
 
     @Override
     public void find(int keys, String keyword) {
-        /*
-         * System.out.println("1. ID");
-         * System.out.println("2. Phone");
-         * System.out.println("3. Name");
-         * System.out.print("Enter search method: ");
-         */
         switch (keys) {
             case 1:
-                if (findById(keyword) == null) {
+                Employee empById = findById(keyword);
+                if (empById == null) {
                     System.out.println("Cannot find valid employee");
                     break;
                 }
-                findById(keyword).displayinfo();
+                empById.displayinfo();
                 break;
             case 2:
-                if (findByPhone(keyword) == null) {
+                Employee empByPhone = findByPhone(keyword);
+                if (empByPhone == null) {
                     System.out.println("Cannot find valid employee");
                     break;
                 }
-                findByPhone(keyword).displayinfo();
+                empByPhone.displayinfo();
                 break;
             case 3:
-                if (findAllByName(keyword) == null) {
+                ArrayList<Employee> results = findAllByName(keyword);
+                if (results.isEmpty()) {
                     System.out.println("Cannot find valid employee");
                     break;
                 } else {
                     int i = 1;
-                    for (Employee c : findAllByName(keyword)) {
+                    for (Employee c : results) {
                         System.out.println(i + ".");
                         c.displayinfo();
                         i++;
@@ -109,7 +116,12 @@ public class EmployeeList implements IActions<Employee> {
     @Override
     public void removeById(String id) {
         Employee del = findById(id);
-        del.setActive(false);
+        if (del != null) {
+            del.setActive(false);
+            System.out.println("Employee " + id + " has been successfully deactivated.");
+        } else {
+            System.out.println("Error: Cannot find employee with ID " + id + " to remove.");
+        }
     }
 
     public void editEmployee(String id, Scanner scanner) {
@@ -181,57 +193,42 @@ public class EmployeeList implements IActions<Employee> {
     }
 
     @Override
-    public void edit(Employee a, Scanner sc) {
-        System.out.println("EDIT:");
-        System.out.print("1. Name\n2. Phone\n3. Address\nEnter: ");
-        int keys = Menu.readIntInput();
-        boolean valid;
-        switch (keys) {
-            case 1: // Name
-                do{
-                    System.out.print("Enter new name: ");
-                    String Name_test;
-                    Name_test = sc.nextLine();
-                    valid = !Name_test.isEmpty();
-                    if(valid)
-                        a.setName(Name_test);
-                    else
-                        System.out.println("Name cannot be empty. Try again.");
-                }while(!valid);
-                System.out.println("Changed successfully!");
-                break;
-            case 2: // Phone
-                do{
-                    System.out.print("Enter new phone number: ");
-                    String Phone_test;
-                    Phone_test = sc.nextLine();
-                    valid = Person.isValidPhoneNumber(Phone_test);
-                    if (valid) {
-                        a.setPhoneNumber(Phone_test);
-                    } else {
-                        System.out.println("Invalid phone number");
-                        System.out.println("Please re-enter or press Enter to skip");
-                    }
-                }while(!valid);
-                System.out.println("Changed successfully!");
-                break;
-            case 3: // Address
-                do{
-                    System.out.print("Enter new address: ");
-                    String Address_test;
-                    Address_test = sc.nextLine();
-                    valid = !Address_test.isEmpty();
-                    if(valid)
-                        a.setAddress(Address_test);
-                    else
-                        System.out.println("Title cannot be empty. Try again.");
-                }while(!valid);
-                System.out.println("Changed successfully!");
-                break;
-            default:
-                System.out.println("Cancelled.");
-                break;
+    public void edit(Employee e, Scanner sc) {
+
+        System.out.println("Edit employee information (press Enter to skip)");
+        e.displayinfo();
+
+        System.out.print("New name (" + e.getName() + "): ");
+        String newName = sc.nextLine();
+        if (!newName.isEmpty()) {
+            e.setName(newName);
         }
+
+        while (true) {
+            System.out.print("New phone number (" + e.getPhoneNumber() + "): ");
+            String newPhone = sc.nextLine();
+
+            if (newPhone.isEmpty()) {
+                break;
+            }
+
+            if (Person.isValidPhoneNumber(newPhone)) {
+                e.setPhoneNumber(newPhone);
+                break;
+            } else {
+                System.out.println("Invalid phone number");
+                System.out.println("Please re-enter or press Enter to skip");
+            }
+        }
+
+        System.out.print("New address (" + e.getAddress() + "): ");
+        String newAddress = sc.nextLine();
+        if (!newAddress.isEmpty()) {
+            e.setAddress(newAddress);
+        }
+
+        System.out.println("---Employee information updated successfully!---");
+        e.displayinfo();
     }
 
     public void saveToFile() {

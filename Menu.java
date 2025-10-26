@@ -79,7 +79,8 @@ public class Menu {
                                         System.out.print("Enter: ");
                                         type = readIntInput();
                                         if (type < 1 || type > 4)
-                                            System.out.println("Cancelled.");
+                                            System.out.println(
+                                                    "Invalid input. Please enter a number between 1 and 4 (or 0 to exit).");
                                         else {
                                             switch (type) {
                                                 case 1:
@@ -108,7 +109,7 @@ public class Menu {
                                                 do {
                                                     temp = sc.nextLine();
                                                     if (temp.equalsIgnoreCase("y")) {
-                                                        if(c.findByPhone(p).Buy(e, bl, ln, ld, sc) == 0)
+                                                        if (c.findByPhone(p).Buy(e, bl, ln, ld, sc) == 0)
                                                             temp = "n";
                                                     } else
                                                         System.out.println("Returning...");
@@ -136,7 +137,14 @@ public class Menu {
                                                 System.out.print("Are you sure? y/n: ");
                                                 String temp = sc.nextLine();
                                                 if (temp.equalsIgnoreCase("y")) {
-                                                    c.findByPhone(p).setActive(false);
+                                                    Customer check = c.findByPhone(p);
+                                                    if (check != null) {
+                                                        check.setActive(false);
+                                                    } else {
+                                                        System.out.println(
+                                                                "Object not found or Customer not found with phone number: "
+                                                                        + p);
+                                                    }
                                                     System.out.print("Done!");
                                                 } else
                                                     System.out.println("Cancelled.");
@@ -207,11 +215,11 @@ public class Menu {
                                             case 2:
                                                 bl.removeBook(sc);
                                                 break;
-                                             case 3:
+                                            case 3:
                                                 System.out.print("Enter Book's ID to edit: ");
                                                 String temp = sc.nextLine();
                                                 bl.edit(bl.findByID(temp), sc);
-                                                break;   
+                                                break;
                                             case 4:
                                                 bl.displayDeletedBooks();
                                                 break;
@@ -259,10 +267,10 @@ public class Menu {
                 case 3:
                     System.out.print("Enter password: ");
                     String temp = sc.nextLine();
-                    if(temp.equals("DoanOOP")){
+                    if (temp.equals("DoanOOP")) {
                         mainMenu();
-                    }
-                    else System.out.println("Wrong password. Returning...");
+                    } else
+                        System.out.println("Wrong password. Returning...");
                     break;
                 default:
                     System.out.println("Invalid choice!");
@@ -309,7 +317,7 @@ public class Menu {
         } while (select != 0);
     }
 
-    public static void statisticMenu(){
+    public static void statisticMenu() {
         int select;
         do {
             System.out.println("\n--- STATISTICS MENU ---");
@@ -693,53 +701,56 @@ public class Menu {
                 System.out.println("Invalid choice!");
         }
     }
+
     public static void bestSellingBooks() {
         ld.readFile();
 
         ArrayList<InvoiceDetail> list = ld.getList();
 
-    // list luu tru ma sach va tong so luong ban
-    ArrayList<String> bookIDs = new ArrayList<>();
-    ArrayList<Integer> totalQuantities = new ArrayList<>();
+        // list luu tru ma sach va tong so luong ban
+        ArrayList<String> bookIDs = new ArrayList<>();
+        ArrayList<Integer> totalQuantities = new ArrayList<>();
 
-    // Tinh tong so luong ban cho moi sach
-    for (InvoiceDetail d : list) {
-        String id = d.getIdBook();
-        int quantity = d.getQuantity();
+        // Tinh tong so luong ban cho moi sach
+        for (InvoiceDetail d : list) {
+            String id = d.getIdBook();
+            int quantity = d.getQuantity();
 
-        boolean found = false;
-        for (int i = 0; i < bookIDs.size(); i++) {
-            if (bookIDs.get(i).equalsIgnoreCase(id)) {
-                totalQuantities.set(i, totalQuantities.get(i) + quantity);
-                found = true;
-                break;
+            boolean found = false;
+            for (int i = 0; i < bookIDs.size(); i++) {
+                if (bookIDs.get(i).equalsIgnoreCase(id)) {
+                    totalQuantities.set(i, totalQuantities.get(i) + quantity);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                bookIDs.add(id);
+                totalQuantities.add(quantity);
             }
         }
 
-        if (!found) {
-            bookIDs.add(id);
-            totalQuantities.add(quantity);
+        // tim max
+        int max = 0;
+        for (int q : totalQuantities) {
+            if (q > max)
+                max = q;
+        }
+
+        // in ra sach ban chay nhat
+        System.out.println("\n===== BEST-SELLING BOOKS =====");
+        for (int i = 0; i < bookIDs.size(); i++) {
+            if (totalQuantities.get(i) == max) {
+                Book found = bl.findByID(bookIDs.get(i));
+                found.display();
+                System.out.println("Sold: " + totalQuantities.get(i));
+            }
         }
     }
 
-    // tim max
-    int max = 0;
-    for (int q : totalQuantities) {
-        if (q > max) max = q;
-    }
-
-    //in ra sach ban chay nhat
-    System.out.println("\n===== BEST-SELLING BOOKS =====");
-    for (int i = 0; i < bookIDs.size(); i++) {
-        if (totalQuantities.get(i) == max) {
-            Book found = bl.findByID(bookIDs.get(i));
-            found.display();
-            System.out.println("Sold: " + totalQuantities.get(i));
-        }
-    }
-}
-    public static void DailySalesReport(EmployeeList empList, CustomerList custList, ListInvoice invoiceList, 
-                                    ListInvoiceDetails invoiceDetailsList, Booklist bookList) {
+    public static void DailySalesReport(EmployeeList empList, CustomerList custList, ListInvoice invoiceList,
+            ListInvoiceDetails invoiceDetailsList, Booklist bookList) {
         LocalDate date = null;
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -777,7 +788,8 @@ public class Menu {
         // --- In bao cao ---
         System.out.println("\n=== DAILY BOOK SALES REPORT (" + date.format(fmt) + ") ===");
         System.out.printf("%-10s %-40s %10s %15s %15s\n", "Book ID", "Book Title", "Qty", "Price", "Total");
-        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println(
+                "---------------------------------------------------------------------------------------------");
 
         double grandTotal = 0;
 
@@ -793,13 +805,13 @@ public class Menu {
                     entry.getKey(), title, qty, price, total);
         }
 
-        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println(
+                "---------------------------------------------------------------------------------------------");
         System.out.printf("%-10s %-40s %10s %15s %15.2f\n", "", "TOTAL", "", "", grandTotal);
     }
-    
 
-    public static void CustomerSalesRp(EmployeeList empList, CustomerList custList, ListInvoice invoiceList, 
-                                    ListInvoiceDetails invoiceDetailsList, Booklist bookList) {
+    public static void CustomerSalesRp(EmployeeList empList, CustomerList custList, ListInvoice invoiceList,
+            ListInvoiceDetails invoiceDetailsList, Booklist bookList) {
         String phoneCus;
         ArrayList<Invoice> inv;
         Customer cus;
@@ -831,7 +843,8 @@ public class Menu {
         // Duyet hoa don va chi tiet hoa don
         for (Invoice invoice : inv) {
             ArrayList<InvoiceDetail> details = invoiceDetailsList.find(invoice.getIdInvoice());
-            if (details == null) continue;
+            if (details == null)
+                continue;
 
             for (InvoiceDetail detail : details) {
                 String bookId = detail.getIdBook();
@@ -861,7 +874,6 @@ public class Menu {
         }
         System.out.println(inv.getIdCustomer());
         ArrayList<InvoiceDetail> ind = ld.find(id);
-
 
         System.out.println("==============================================================");
         System.out.println("                   B O O K S   I N V O I C E                  ");

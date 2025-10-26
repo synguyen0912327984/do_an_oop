@@ -52,127 +52,141 @@ class Customer extends Person {
         int number = ln.getQuantity() + 1;
         String idInvoice;
         do {
-            if(number<100){
+            if (number < 100) {
                 idInvoice = "HD0" + number;
                 number++;
-            }else{
-                idInvoice ="HD" + number;
+            } else {
+                idInvoice = "HD" + number;
                 number++;
             }
         } while (ln.test(idInvoice) != null);
-        
 
-
-            Invoice inv = new Invoice();
-            String temp3;
-            inv.setIdInvoice(idInvoice);
-            inv.setIdCustomer(id);
-            do{
-                int n = (int)(Math.random() * (50)) + 1;
-                temp3 = String.format("E%04d", n);
-                if(E.findById(temp3).getPosition().equalsIgnoreCase("Cashier") && E.findById(temp3).isActive())
-                    inv.setIdEmployee(temp3);
-            }while(!E.findById(temp3).getPosition().equalsIgnoreCase("Cashier") || E.findById(temp3).isActive() == false);
-            inv.setTime(LocalDate.now());
-            ln.addlist(inv);
-            String temp2;
-            int flag = 1;
-            int flag2 = 1;
-            int flag3 = 1;
-            int temp1;
-            Book a;
-            do{
-                flag2 = 1;
-                System.out.print("Enter book ID: ");
-                String temp0 = sc.nextLine();
-                if (temp0.contains(" ")) {
-                    System.out.println("Book ID cannot contain spaces. Try again.");
-                    continue;
+        Invoice inv = new Invoice();
+        String temp3;
+        inv.setIdInvoice(idInvoice);
+        inv.setIdCustomer(id);
+        ArrayList<Employee> activeCashiers = E.getActiveCashiers();
+        if (activeCashiers.isEmpty()) {
+            System.out.println("Error: No active cashier found. Cannot create invoice.");
+            return 0;
+        }
+        Employee randomCashier = activeCashiers.get((int) (Math.random() * activeCashiers.size()));
+        inv.setIdEmployee(randomCashier.getId());
+        temp3 = randomCashier.getId();
+        inv.setTime(LocalDate.now());
+        ln.addlist(inv);
+        String temp2;
+        int flag = 1;
+        int flag2 = 1;
+        int flag3 = 1;
+        int temp1;
+        Book a;
+        do {
+            flag2 = 1;
+            System.out.print("Enter book ID (or enter '0' to finish buying): ");
+            String temp0 = sc.nextLine();
+            if (temp0.equals("0")) {
+                System.out.println("Finished item selection...");
+                if (flag == 1) {
+                    ln.removelist(inv);
                 }
-                do{
-                    if(lb.findByID(temp0) != null){
-                        flag2 = 0;
-                        System.out.print("Enter the amount you want to buy: ");
-                        temp1 = Menu.readIntInput();
-                        a = lb.findByID(temp0);
-                        flag3 = 1;
-                        if (a.getAmount() >= temp1 && temp1 > 0) {
-                            flag3 = 0;
-                            System.out.print("Are you sure you want to buy" +  " \"" + lb.findByID(temp0).getTitle() + "\"? y/n: ");
-                            temp2 = sc.nextLine();
-                            if (temp2.equalsIgnoreCase("y")) {
-                                System.out.println("Successfully purchased!");
-                                a.setAmount(a.getAmount() - temp1);
-                                addLoyaltyPoints((int)(a.getPrice() * temp1 / 10000));
-                                InvoiceDetail ind = new InvoiceDetail(idInvoice, a.getbookID(), temp1);
-                                flag = 0;
-                                ld.addlist(ind);
-                                System.out.println("Continue to buy? y/n: ");
-                                temp2 = sc.nextLine();
-                                if(temp2.equalsIgnoreCase("y")) {
-                                    int type;
-                                    do {
-                                        System.out.println("==========================");
-                                        System.out.println("Search by:");
-                                        System.out.println("1. ID");
-                                        System.out.println("2. Title");
-                                        System.out.println("3. Author");
-                                        System.out.println("4. Publisher");
-                                        System.out.println("0. Cancel");
-                                        System.out.println("==========================");
-                                        System.out.print("Enter: ");
-                                        type = Menu.readIntInput();
-                                        if (type < 1 || type > 4) {
-                                            System.out.println("Cancelled.");
-                                            flag2 = 0;
-                                            break;
-                                        }
-                                        else {
-                                            switch (type) {
-                                                case 1:
-                                                    System.out.println("Enter ID: ");
-                                                    break;
-                                                case 2:
-                                                    System.out.println("Enter Title: ");
-                                                    break;
-                                                case 3:
-                                                    System.out.println("Enter Author: ");
-                                                    break;
-                                                case 4:
-                                                    System.out.println("Enter Publisher: ");
-                                                    break;
-                                                default:
-                                                    System.out.println("Invalid choice!");
-                                                    break;
-                                            }
-                                            String search = sc.nextLine();
-                                            ArrayList<Book> tempbl = lb.find(type, search);
-                                            if (!tempbl.isEmpty()) {
-                                                type = 0;
-                                            }
-                                            flag2 = 1;
-                                        }
-                                    }while(type != 0);
-                                }
-                            } 
-                            else {
-                                System.out.println("Cancelled.");
-                                if(flag == 1) ln.removelist(inv);
-                            }
-                        }
-                        else if(temp1 <= 0){
-                            System.out.println("Amount cannot below or equal 0. Try again.");
-                        }
-                        else
-                        System.out.println(
-                                "Only " + a.getAmount() + " items are available. Please adjust your quantity.");
-                    }
-                    else {
-                        System.out.println("Cannot find book with ID: " + temp0);
+                flag2 = 0;
+                continue;
+            }
+            if (temp0.contains(" ")) {
+                System.out.println("Book ID cannot contain spaces. Try again.");
+                continue;
+            }
+            a = lb.findByID(temp0);
+            do {
+                if (a != null) {
+                    flag2 = 0;
+                    if (a.getAmount() <= 0) {
+                        System.out.println("Sorry, the book \"" + a.getTitle() + "\" is out of stock.");
+                        flag3 = 0;
+                        flag2 = 1;
                         break;
                     }
-                } while (flag3 == 1);
-            } while (flag2 == 1);
+                    System.out.print("Enter the amount you want to buy (Available: " + a.getAmount() + "): ");
+                    temp1 = Menu.readIntInput();
+                    a = lb.findByID(temp0);
+                    flag3 = 1;
+                    if (a.getAmount() >= temp1 && temp1 > 0) {
+                        flag3 = 0;
+                        System.out.print(
+                                "Are you sure you want to buy" + " \"" + a.getTitle() + "\"? y/n: ");
+                        temp2 = sc.nextLine();
+                        if (temp2.equalsIgnoreCase("y")) {
+                            System.out.println("Successfully purchased!");
+                            a.setAmount(a.getAmount() - temp1);
+                            addLoyaltyPoints((int) (a.getPrice() * temp1 / 10000));
+                            InvoiceDetail ind = new InvoiceDetail(idInvoice, a.getbookID(), temp1);
+                            flag = 0;
+                            ld.addlist(ind);
+                            System.out.println("Continue to buy? y/n: ");
+                            temp2 = sc.nextLine();
+                            if (temp2.equalsIgnoreCase("y")) {
+                                flag2 = 1;
+                                int type;
+                                do {
+                                    System.out.println("==========================");
+                                    System.out.println("Search by:");
+                                    System.out.println("1. ID");
+                                    System.out.println("2. Title");
+                                    System.out.println("3. Author");
+                                    System.out.println("4. Publisher");
+                                    System.out.println("0. Cancel");
+                                    System.out.println("==========================");
+                                    System.out.print("Enter: ");
+                                    type = Menu.readIntInput();
+                                    if (type == 0) {
+                                        System.out.println("Cancelled.");
+                                        flag2 = 0;
+                                        break;
+                                    } else if (type < 1 || type > 4) {
+                                        System.out.println("Invalid choice! Please enter a number from 0 to 4.");
+                                    } else {
+                                        switch (type) {
+                                            case 1:
+                                                System.out.println("Enter ID: ");
+                                                break;
+                                            case 2:
+                                                System.out.println("Enter Title: ");
+                                                break;
+                                            case 3:
+                                                System.out.println("Enter Author: ");
+                                                break;
+                                            case 4:
+                                                System.out.println("Enter Publisher: ");
+                                                break;
+                                        }
+                                        String search = sc.nextLine();
+                                        ArrayList<Book> tempbl = lb.find(type, search);
+                                        if (!tempbl.isEmpty()) {
+                                            type = 0;
+                                        }
+                                        flag2 = 1;
+                                    }
+                                } while (type != 0);
+                            }
+                        } else {
+                            System.out.println("Cancelled.");
+                            if (flag == 1)
+                                ln.removelist(inv);
+                            flag2 = 1;
+                        }
+                    } else if (temp1 <= 0) {
+                        System.out.println("Amount cannot below or equal 0. Try again.");
+                    } else
+                        System.out.println(
+                                "Only " + a.getAmount() + " items are available. Please adjust your quantity.");
+                } else {
+                    System.out.println("Cannot find book with ID: " + temp0);
+                    flag3 = 0;
+                    break;
+                }
+            } while (flag3 == 1);
+        } while (flag2 == 1);
         ArrayList<InvoiceDetail> currentInvoiceDetails = ld.find(idInvoice);
         if (currentInvoiceDetails.isEmpty()) {
             System.out.println("No items purchased. Cancelling invoice...");
@@ -212,19 +226,19 @@ class Customer extends Person {
                     if (this.redeemPoints(30)) {
                         discountAmount = totalAll * 0.25;
                         System.out.println("25% DISCOUNT APPLIED!");
+                        flag4 = 0;
                     } else {
                         System.out.println("You don't have enough points. Please try again");
                     }
-                    flag4 = 0;
                     break;
                 case 2:
                     if (this.redeemPoints(50)) {
                         discountAmount = totalAll * 0.50;
                         System.out.println("50% DISCOUNT APPLIED!");
+                        flag4 = 0;
                     } else {
                         System.out.println("You don't have enough points. Please try again");
                     }
-                    flag4 = 0;
                     break;
                 case 3:
                     if (this.redeemPoints(20)) {
