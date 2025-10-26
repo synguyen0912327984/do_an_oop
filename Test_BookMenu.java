@@ -31,7 +31,7 @@ public class Test_BookMenu {
             switch (choice) {
                 case 1:
                     Book newBook = new Book();
-                    lb.AddBook(newBook);
+                    lb.AddBook(newBook, sc);
                     break;
 
                 case 2:
@@ -42,7 +42,7 @@ public class Test_BookMenu {
                     DeletedBooksMenu();
                     break;
                 case 4:
-                    lb.updateBook();
+                    lb.updateBook(sc);
                     break;  
                 case 5:
                     SearchBookMenu();
@@ -84,7 +84,7 @@ public class Test_BookMenu {
 
         switch (delChoice) {
             case 1:
-                lb.removeBook();
+                lb.removeBook(sc);
                 // Sau khi xoa, quay lai menu xoa
                 break;
 
@@ -132,7 +132,7 @@ public class Test_BookMenu {
             sc.nextLine(); // Xoa ky tu Enter
             switch (analysChoice) {
                 case 1:
-                    lb.booksGreaterThan();
+                    lb.booksGreaterThan(sc);
                     break;
                 case 2:
                     bestSellingBooks();

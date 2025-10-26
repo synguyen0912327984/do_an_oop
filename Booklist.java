@@ -418,7 +418,7 @@ public class Booklist {
     //Phuong thuc thong ke cac sach co so luong > x
     public void booksGreaterThan(Scanner sc){
         System.out.println("Nhap so luong x: ");
-        int x = sc.nextInt();
+        int x = Menu2.readIntInput();
         boolean found = false;
         for (Book b : list) {
             if (b.isActive() && b.getAmount() > x) {

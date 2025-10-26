@@ -54,7 +54,7 @@ public class Menu2 {
                     else if(Person.isValidPhoneNumber(p) && c.findByPhone(p) != null && c.findByPhone(p).isActive()){
                         System.out.println("Welcome!");
                         do{
-                            System.out.println("==========================");
+                            System.out.println("\n==========================");
                             System.out.println("1. Search book");
                             System.out.println("2. Personal setting");
                             System.out.println("3. Redeem points");
@@ -66,7 +66,7 @@ public class Menu2 {
                                 case 1:
                                     int type;
                                     do{
-                                        System.out.println("==========================");
+                                        System.out.println("\n==========================");
                                         System.out.println("Search by:");
                                         System.out.println("1. ID");
                                         System.out.println("2. Title");
@@ -117,7 +117,7 @@ public class Menu2 {
                                 case 2:
                                     int select3;
                                     do{
-                                        System.out.println("==========================");
+                                        System.out.println("\n==========================");
                                         System.out.println("1. Edit information");
                                         System.out.println("2. Delete account");
                                         System.out.println("0. Return");
@@ -150,7 +150,7 @@ public class Menu2 {
                                 case 3:
                                     int select4;
                                     do{
-                                        System.out.println("==========================");
+                                        System.out.println("\n==========================");
                                         System.out.println("1. 25% discount: 30LP");
                                         System.out.println("2. 50% discount: 50LP");
                                         System.out.println("3. Select book: 80LP");
@@ -221,7 +221,7 @@ public class Menu2 {
                             System.out.println("Welcome!");
                             Employee tempE = e.findById(ID);
                             do{
-                                System.out.println("==========================");
+                                System.out.println("\n==========================");
                                 System.out.println("1. Books management");
                                 System.out.println("2. Personal setting");
                                 System.out.println("0. Return");
@@ -232,7 +232,7 @@ public class Menu2 {
                                     case 1:
                                         int selectE2;
                                         do{
-                                            System.out.println("==========================");
+                                            System.out.println("\n==========================");
                                             System.out.println("1. Add book");
                                             System.out.println("2. Remove book");
                                             System.out.println("3. Update book");
@@ -271,7 +271,7 @@ public class Menu2 {
                                     case 2:
                                         int selectE3;
                                         do{
-                                            System.out.println("==========================");
+                                            System.out.println("\n==========================");
                                             System.out.println("1. Edit information");
                                             System.out.println("0. Return");
                                             System.out.println("==========================");
@@ -322,6 +322,7 @@ public class Menu2 {
             System.out.println("===========================");
             System.out.println("1. Customer Management");
             System.out.println("2. Employee Management");
+            System.out.println("3. Books statistics");
             System.out.println("0. Exit and Save Program");
             System.out.println("===========================");
             System.out.print("Enter your choice: ");
@@ -334,6 +335,9 @@ public class Menu2 {
                     break;
                 case 2:
                     employeeMenu();
+                    break;
+                case 3:
+                    AnalysMenu();
                     break;
                 case 0:
                     System.out.println("Saving data to file...");
@@ -673,5 +677,75 @@ public class Menu2 {
         System.out.println("Successfully created new customer with ID: " + newCustomer.getId());
         newCustomer.displayinfo();
     }
+
+    public static void AnalysMenu() {
+        int analysChoice;
+        do{
+            System.out.println("\n===== BOOK STATISTICS =====");
+            System.out.println("1. Show books with quantity greater than x");
+            System.out.println("2. Show best-selling books");
+            System.out.println("3. Show total number of books currently in stock");
+            System.out.print("Enter: ");
+            analysChoice = readIntInput();
+            switch (analysChoice) {
+                case 1:
+                    bl.booksGreaterThan(sc);
+                    break;
+                case 2:
+                    bestSellingBooks();
+                    break;
+                case 3:
+                    bl.totalBooks();
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }while(analysChoice != 0);
+    }
+    public static void bestSellingBooks() {
+        ld.readFile();
+
+        ArrayList<InvoiceDetail> list = ld.getList();
+
+    // list luu tru ma sach va tong so luong ban
+    ArrayList<String> bookIDs = new ArrayList<>();
+    ArrayList<Integer> totalQuantities = new ArrayList<>();
+
+    // Tinh tong so luong ban cho moi sach
+    for (InvoiceDetail d : list) {
+        String id = d.getIdBook();
+        int quantity = d.getQuantity();
+
+        boolean found = false;
+        for (int i = 0; i < bookIDs.size(); i++) {
+            if (bookIDs.get(i).equalsIgnoreCase(id)) {
+                totalQuantities.set(i, totalQuantities.get(i) + quantity);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            bookIDs.add(id);
+            totalQuantities.add(quantity);
+        }
+    }
+
+    // tim max
+    int max = 0;
+    for (int q : totalQuantities) {
+        if (q > max) max = q;
+    }
+
+    //in ra sach ban chay nhat
+    System.out.println("\n===== BEST-SELLING BOOKs =====");
+    for (int i = 0; i < bookIDs.size(); i++) {
+        if (totalQuantities.get(i) == max) {
+            Book found = bl.findByID(bookIDs.get(i));
+            found.display();
+            System.out.println("So luong ban: " + totalQuantities.get(i));
+        }
+    }
+}
 }
 
