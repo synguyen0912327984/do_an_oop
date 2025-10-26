@@ -93,7 +93,7 @@ class Customer extends Person {
                     if(lb.findByID(temp0) != null){
                         flag2 = 0;
                         System.out.print("Enter the amount you want to buy: ");
-                        temp1 = Menu2.readIntInput();
+                        temp1 = Menu.readIntInput();
                         a = lb.findByID(temp0);
                         flag3 = 1;
                         if (a.getAmount() >= temp1 && temp1 > 0) {
@@ -121,7 +121,7 @@ class Customer extends Person {
                                         System.out.println("0. Cancel");
                                         System.out.println("==========================");
                                         System.out.print("Enter: ");
-                                        type = Menu2.readIntInput();
+                                        type = Menu.readIntInput();
                                         if (type < 1 || type > 4) {
                                             System.out.println("Cancelled.");
                                             flag2 = 0;

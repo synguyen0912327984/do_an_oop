@@ -324,7 +324,7 @@ public class Booklist {
         }
         System.out.println("EDIT:");
         System.out.print("1. Title\n2. Author\n3. Publisher\n4. Price\n5. Amount\nEnter: ");
-        int keys = Menu2.readIntInput();
+        int keys = Menu.readIntInput();
         boolean valid;
         switch (keys) {
             case 1: // Title
@@ -429,7 +429,7 @@ public class Booklist {
     //Phuong thuc thong ke cac sach co so luong > x
     public void booksGreaterThan(Scanner sc){
         System.out.println("Enter quantity x: ");
-        int x = Menu2.readIntInput();
+        int x = Menu.readIntInput();
         if(x <= 0) {
             System.out.println("x cannot below or equal 0.");
             return;
