@@ -734,7 +734,7 @@ public class Menu2 {
         LocalDate date = null;
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        // Nhập ngày hợp lệ
+        // Nhap ngay hop le
         while (true) {
             try {
                 System.out.print("Enter date (dd/MM/yyyy): ");
@@ -750,14 +750,14 @@ public class Menu2 {
             }
         }
 
-        // Lấy danh sách hóa đơn trong ngày
+        // Lay danh sach hoa don trong ngay
         ArrayList<Invoice> inv = invoiceList.findtime(date);
         ArrayList<InvoiceDetail> ind = new ArrayList<>();
         for (Invoice st : inv) {
             ind.addAll(invoiceDetailsList.find(st.getIdInvoice()));
         }
 
-        // Gom số lượng từng sách
+        // Gom so luong tung sach
         Map<String, Integer> bookSales = new HashMap<>();
         for (InvoiceDetail detail : ind) {
             String idBook = detail.getIdBook();
@@ -765,7 +765,7 @@ public class Menu2 {
             bookSales.put(idBook, bookSales.getOrDefault(idBook, 0) + amount);
         }
 
-        // --- In báo cáo ---
+        // --- In bao cao ---
         System.out.println("\n=== DAILY BOOK SALES REPORT (" + date.format(fmt) + ") ===");
         System.out.printf("%-10s %-40s %10s %15s %15s\n", "Book ID", "Book Title", "Qty", "Price", "Total");
         System.out.println("---------------------------------------------------------------------------------------------");
@@ -791,12 +791,11 @@ public class Menu2 {
 
     public static void CustomerSalesRp(EmployeeList empList, CustomerList custList, ListInvoice invoiceList, 
                                     ListInvoiceDetails invoiceDetailsList, Booklist bookList) {
-        Scanner sc = new Scanner(System.in);
         String phoneCus;
         ArrayList<Invoice> inv;
         Customer cus;
 
-        // Nhập và kiểm tra số điện thoại
+        // Nhap va kiem tra so dien thoai
         do {
             System.out.print("Phone Number: ");
             phoneCus = sc.nextLine();
@@ -806,7 +805,7 @@ public class Menu2 {
             }
         } while (cus == null);
 
-        // Lấy danh sách hóa đơn của khách hàng
+        // Lay danh sach hoa don cua khach hang
         inv = invoiceList.findidCus(cus.getId());
         if (inv == null || inv.isEmpty()) {
             System.out.println("This customer has no invoices.");
@@ -820,7 +819,7 @@ public class Menu2 {
 
         Map<String, Book> uniqueBooks = new HashMap<>();
 
-        // Duyệt hóa đơn và chi tiết hóa đơn
+        // Duyet hoa don va chi tiet hoa don
         for (Invoice invoice : inv) {
             ArrayList<InvoiceDetail> details = invoiceDetailsList.find(invoice.getIdInvoice());
             if (details == null) continue;
@@ -836,7 +835,7 @@ public class Menu2 {
             }
         }
 
-        // In danh sách sách (tránh trùng lặp)
+        // In danh sach sach (Tranh trung lap)
         System.out.printf("%-5s %-10s %-30s\n", "No", "BookID", "Title");
         int index = 1;
         for (Book book : uniqueBooks.values()) {
