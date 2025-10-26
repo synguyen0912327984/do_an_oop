@@ -174,21 +174,21 @@ public class Menu2 {
 
         public static void addCustomerFromInput(Scanner sc, CustomerList c) {
         System.out.println("--- Create new customer ---");
-        System.out.print("Enter name: ");
+        System.out.print("Enter customer name: ");
         String name = sc.nextLine();
 
         String phone;
         while (true) {
             System.out.print("Enter phone number: ");
             phone = sc.nextLine();
-            if (Person.isValidPhoneNumber(phone) && c.findByPhone(phone) == null) {
+            if (Person.isValidPhoneNumber(phone)) {
                 break;
-            } 
+            }
             else if(Person.isValidPhoneNumber(phone) && c.findByPhone(phone) != null){
                 System.out.println("Phone number already exist.");
             }
             else {
-                System.out.println("Invalid phone number! (10 nums and start with 0).");
+                System.out.println("Invalid phone number! Must be 10 digits and start with '0'. Please re-enter.");
             }
         }
 
