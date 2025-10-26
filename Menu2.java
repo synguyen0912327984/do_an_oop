@@ -1,12 +1,16 @@
 import java.util.Scanner;
 
 public class Menu2 {
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        EmployeeList e = new EmployeeList();
-        CustomerList c = new CustomerList();
-        Booklist bl = new Booklist();
+    private static Scanner sc = new Scanner(System.in);
+    private static EmployeeList e = new EmployeeList();
+    private static CustomerList c = new CustomerList();
+    private static Booklist bl = new Booklist();
+    private static ListInvoice ln = new ListInvoice();
+    private static ListInvoiceDetails ld = new ListInvoiceDetails();
 
+    public static void main(String[] args){
+        ln.readFile();
+        ld.readFile();
         int select;
         do {
             System.out.println("\n====== MENU ======");
@@ -29,7 +33,18 @@ public class Menu2 {
                     int select2;
                     System.out.print("Enter your phone number: ");
                     String p = sc.nextLine();
-                    if(Person.isValidPhoneNumber(p) && c.findByPhone(p) != null && c.findByPhone(p).isActive() != false){
+                    if(Person.isValidPhoneNumber(p) && c.findByPhone(p) == null){
+                        System.out.println("Phone number doesn't exist in database. Create new account?");
+                        System.out.print("y/n: ");
+                        String temp = sc.nextLine();
+                        if(temp.equalsIgnoreCase("y")){
+                            addCustomerFromInput(sc, c);
+                        }
+                        else{
+                            System.out.println("Returning...");
+                        }
+                    }
+                    else if(Person.isValidPhoneNumber(p) && c.findByPhone(p) != null && c.findByPhone(p).isActive() != false){
                         System.out.println("Welcome!");
                         do{
                             System.out.println("==========================");
@@ -44,7 +59,7 @@ public class Menu2 {
                             switch(select2){
                                 case 1:
                                 System.out.println("==========================");
-                                    System.out.println("\nSearch by:");
+                                    System.out.println("Search by:");
                                     System.out.println("1. ID");
                                     System.out.println("2. Title");
                                     System.out.println("3. Author");
@@ -72,6 +87,16 @@ public class Menu2 {
                                         }
                                         String search = sc.nextLine();
                                         bl.find(type, search);
+                                        System.out.print("Would you like to buy? y/n: ");
+                                        String temp;
+                                        do{
+                                            temp = sc.nextLine();
+                                            if(temp.equalsIgnoreCase("y")){
+                                                c.findByPhone(p).Buy(e, bl, ln, ld);
+                                            }
+                                            else System.out.println("Returning...");
+                                        }while(temp.equalsIgnoreCase("y"));
+                                        System.out.println("Returning...");
                                     }
                                     break;
                                 case 2:
@@ -91,8 +116,13 @@ public class Menu2 {
                                                 System.out.print("Done!");
                                                 break;
                                             case 2:
-                                                c.findByPhone(p).setActive(false);
-                                                System.out.print("Done!");
+                                                System.out.print("Are you sure? y/n: ");
+                                                String temp = sc.nextLine();
+                                                if(temp.equalsIgnoreCase("y")) {
+                                                    c.findByPhone(p).setActive(false);
+                                                    System.out.print("Done!");
+                                                }
+                                                else System.out.println("Cancelled.");
                                                 break;
                                             case 0:
                                                 System.out.println("Returning...");
@@ -150,17 +180,6 @@ public class Menu2 {
                     else if(!c.findByPhone(p).isActive()){
                         System.out.println("Account doesn't exist!");
                     }
-                    else if(Person.isValidPhoneNumber(p) && c.findByPhone(p) == null){
-                        System.out.println("Phone number doesn't exist in database. Create new account?");
-                        System.out.print("y/n: ");
-                        String temp = sc.nextLine();
-                        if(temp.equalsIgnoreCase("y")){
-                            addCustomerFromInput(sc, c);
-                        }
-                        else{
-                            System.out.println("Returning...");
-                        }
-                    }
                     else{
                         System.out.println("Invalid phone number. Returning...");
                     }
@@ -170,6 +189,26 @@ public class Menu2 {
                         break;
                 }
             }while(select != 0);
+        }
+
+        private static void deleteCustomer() {
+            System.out.print("Enter customer ID to delete: ");
+            String delCusId = sc.nextLine();
+            Customer custToDel = c.findById(delCusId);
+
+            if (custToDel == null) {
+                System.out.println("Customer not found with ID: " + delCusId);
+            } else {
+                System.out.println("Found customer: " + custToDel.getName());
+                System.out.print("Are you sure you want to delete? (y/n): ");
+                String confirm = sc.nextLine();
+                if (confirm.equalsIgnoreCase("y")) {
+                    c.removeById(delCusId);
+                    System.out.println("Customer deleted successfully.");
+                } else {
+                    System.out.println("Delete operation canceled.");
+                }
+            }
         }
 
         public static void addCustomerFromInput(Scanner sc, CustomerList c) {
