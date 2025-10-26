@@ -85,6 +85,10 @@ class Customer extends Person {
                 flag2 = 1;
                 System.out.print("Enter book ID: ");
                 String temp0 = sc.nextLine();
+                if (temp0.contains(" ")) {
+                    System.out.println("Book ID cannot contain spaces. Try again.");
+                    continue;
+                }
                 do{
                     if(lb.findByID(temp0) != null){
                         flag2 = 0;
@@ -94,7 +98,7 @@ class Customer extends Person {
                         flag3 = 1;
                         if (a.getAmount() >= temp1) {
                             flag3 = 0;
-                            System.out.print("Are you sure? y/n: ");
+                            System.out.print("Are you sure you want to buy " +  " \"" + lb.findByID(temp0).getTitle() + "\"? y/n: ");
                             temp2 = sc.nextLine();
                             if (temp2.equalsIgnoreCase("y")) {
                                 System.out.println("Successfully purchased!");
@@ -117,10 +121,10 @@ class Customer extends Person {
                         System.out.println(
                                 "Only " + a.getAmount() + " items are available. Please adjust your quantity.");
                     }
-                else
-                    System.out.println("Cannot find book with ID: " + temp0);
-            } while (flag3 == 1);
-        } while (flag2 == 1);
+                    else
+                        System.out.println("Cannot find book with ID: " + temp0);
+                } while (flag3 == 1);
+            } while (flag2 == 1);
         ArrayList<InvoiceDetail> currentInvoiceDetails = ld.find(idInvoice);
         if (currentInvoiceDetails.isEmpty()) {
             System.out.println("No items purchased. Cancelling invoice...");
