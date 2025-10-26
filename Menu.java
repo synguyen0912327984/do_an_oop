@@ -191,6 +191,7 @@ public class Menu {
                                         System.out.println("2. Remove book");
                                         System.out.println("3. Update book");
                                         System.out.println("4. Deleted books history");
+                                        System.out.println("5. Invoice lookup");
                                         System.out.println("0. Return");
                                         System.out.println("==========================");
                                         System.out.print("Enter: ");
@@ -210,10 +211,14 @@ public class Menu {
                                                 System.out.print("Enter Book's ID to edit: ");
                                                 String temp = sc.nextLine();
                                                 bl.edit(bl.findByID(temp), sc);
-                                                
                                                 break;   
                                             case 4:
                                                 bl.displayDeletedBooks();
+                                                break;
+                                            case 5:
+                                                System.out.print("Enter invoice's ID to lookup: ");
+                                                String tempI = sc.nextLine();
+                                                PrintInvoice(e, c, ln, ld, bl, tempI);
                                                 break;
                                             default:
                                                 System.out.println("Invalid choice!");
@@ -845,5 +850,47 @@ public class Menu {
         for (Book book : uniqueBooks.values()) {
             System.out.printf("%-5d %-10s %-30s\n", index++, book.getbookID(), book.getTitle());
         }
+    }
+
+    public static void PrintInvoice(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
+            Booklist lb, String id) {
+        Invoice inv = ln.test(id);
+        if (inv == null) {
+            System.out.println(id + " is empty");
+            return;
+        }
+        System.out.println(inv.getIdCustomer());
+        ArrayList<InvoiceDetail> ind = ld.find(id);
+
+
+        System.out.println("==============================================================");
+        System.out.println("                   B O O K S   I N V O I C E                  ");
+        System.out.println("==============================================================");
+        System.out.println("IdInvoice : " + inv.getIdInvoice());
+        System.out.println("Date      : " + inv.getTime());
+        System.out.println("Customer  : " + lc.findById(inv.getIdCustomer()).getName());
+        System.out.println("Staff     : " + le.findById(inv.getIdEmployee()).getName());
+        System.out.println("--------------------------------------------------------------");
+
+        System.out.printf("%-5s %-40s %-10s %-10s %-10s%n", "No", "Name", "Amount", "Price", "Total");
+        System.out.println("--------------------------------------------------------------");
+
+        double totalAll = 0;
+
+        for (int i = 0; i < ind.size(); i++) {
+            InvoiceDetail d = ind.get(i);
+            Book b = lb.findByID(d.getIdBook());
+            if (b == null)
+                continue; // safety check
+            double total = d.getQuantity() * b.getPrice();
+            totalAll += total;
+
+            System.out.printf("%-5d %-40s %-10d %-10.2f %-10.2f%n",
+                    (i + 1), b.getTitle(), d.getQuantity(), b.getPrice(), total);
+        }
+
+        System.out.println("--------------------------------------------------------------");
+        System.out.printf("%-55s %-10s %-10.2f VND%n", "", "AllTotal:", totalAll);
+        System.out.println("==============================================================");
     }
 }
