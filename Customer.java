@@ -149,7 +149,7 @@ class Customer extends Person {
                 System.out.println("==============================================================");
                 System.out.println("Process Done! Continue to buy? y/n: ");
             }
-            else System.out.println("Process Done!");
+            else System.out.println("Process Done! Continue to buy? y/n: ");
     }
 
     public void addLoyaltyPoints(int points) {
