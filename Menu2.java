@@ -104,7 +104,8 @@ public class Menu2 {
                                                 do {
                                                     temp = sc.nextLine();
                                                     if (temp.equalsIgnoreCase("y")) {
-                                                        c.findByPhone(p).Buy(e, bl, ln, ld, sc);
+                                                        if(c.findByPhone(p).Buy(e, bl, ln, ld, sc) == 0)
+                                                            temp = "n";
                                                     } else
                                                         System.out.println("Returning...");
                                                 } while (temp.equalsIgnoreCase("y"));
@@ -247,9 +248,13 @@ public class Menu2 {
                     }
                     break;
                 case 3:
+                    System.out.print("Enter password: ");
+                    String temp = sc.nextLine();
+                    if(temp.equals("DoanOOP")){
+                        mainMenu();
+                    }
+                    else System.out.println("Wrong password. Returning...");
                     break;
-                case 4:
-                    System.out.println("Wrong password. Returning...");
                 default:
                     System.out.println("Invalid choice!");
                     break;
@@ -265,6 +270,7 @@ public class Menu2 {
             System.out.println("===========================");
             System.out.println("1. Customer Management");
             System.out.println("2. Employee Management");
+            System.out.println("3. Books statistics");
             System.out.println("0. Exit and Save Program");
             System.out.println("===========================");
             System.out.print("Enter your choice: ");
@@ -277,6 +283,9 @@ public class Menu2 {
                     break;
                 case 2:
                     employeeMenu();
+                    break;
+                case 3:
+                    AnalysMenu();
                     break;
                 case 0:
                     System.out.println("Saving data to file...");
@@ -615,4 +624,73 @@ public class Menu2 {
         System.out.println("Successfully created new customer with ID: " + newCustomer.getId());
         newCustomer.displayinfo();
     }
+
+    public static void AnalysMenu() {
+        System.out.println("\n===== BOOK STATISTICS =====");
+        System.out.println("1. Show books with quantity greater than x");
+        System.out.println("2. Show best-selling books");
+        System.out.println("3. Show total number of books currently in stock");
+        System.out.print("Enter: ");
+
+        int analysChoice = readIntInput();
+        switch (analysChoice) {
+            case 1:
+                bl.booksGreaterThan(sc);
+                break;
+            case 2:
+                bestSellingBooks();
+                break;
+            case 3:
+                bl.totalBooks();
+                break;
+            default:
+                System.out.println("Invalid choice!");
+        }
+    }
+    public static void bestSellingBooks() {
+        ld.readFile();
+
+        ArrayList<InvoiceDetail> list = ld.getList();
+
+    // list luu tru ma sach va tong so luong ban
+    ArrayList<String> bookIDs = new ArrayList<>();
+    ArrayList<Integer> totalQuantities = new ArrayList<>();
+
+    // Tinh tong so luong ban cho moi sach
+    for (InvoiceDetail d : list) {
+        String id = d.getIdBook();
+        int quantity = d.getQuantity();
+
+        boolean found = false;
+        for (int i = 0; i < bookIDs.size(); i++) {
+            if (bookIDs.get(i).equalsIgnoreCase(id)) {
+                totalQuantities.set(i, totalQuantities.get(i) + quantity);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            bookIDs.add(id);
+            totalQuantities.add(quantity);
+        }
+    }
+
+    // tim max
+    int max = 0;
+    for (int q : totalQuantities) {
+        if (q > max) max = q;
+    }
+
+    //in ra sach ban chay nhat
+    System.out.println("\n===== BEST-SELLING BOOKS =====");
+    for (int i = 0; i < bookIDs.size(); i++) {
+        if (totalQuantities.get(i) == max) {
+            Book found = bl.findByID(bookIDs.get(i));
+            found.display();
+            System.out.println("Sold: " + totalQuantities.get(i));
+        }
+    }
+}
+    
 }

@@ -281,6 +281,38 @@ public class Booklist {
             }
         }
     }
+    // Phuong thuc sua sach
+    public void updateBook(Scanner sc) {
+            while (true){
+                System.out.print("Enter Book's ID to edit: ");
+                String bookID_Fix = sc.nextLine(); // nhap id sach can sua
+                if(bookID_Fix.isEmpty()){
+                    System.out.println("ID cannot be blank.");
+                    break;
+                }
+                
+                for (Book i : list) {
+                    boolean found = false;
+                    if(i.isActive()==true){
+                        if (i.getbookID().equalsIgnoreCase(bookID_Fix)) {
+                            edit(i, sc); // Update sach
+                            System.out.println("Updated books with ID: " + bookID_Fix);
+                            found = true;
+                            return;
+                        }
+                    }
+                    else if (!i.isActive()){
+                        System.out.println("Books are deleted. Cannot be changed.");
+                        break;
+                    }
+                    if (!found){ 
+                        System.out.println("Cannot find books with ID: " + bookID_Fix);
+                        break;
+                    }
+                }
+            }
+        }
+
     public void edit(Book a, Scanner sc) {
         if(a == null){
             System.out.println("Book not found.");
@@ -398,6 +430,10 @@ public class Booklist {
     public void booksGreaterThan(Scanner sc){
         System.out.println("Enter quantity x: ");
         int x = Menu2.readIntInput();
+        if(x <= 0) {
+            System.out.println("x cannot below or equal 0.");
+            return;
+        }
         boolean found = false;
         for (Book b : list) {
             if (b.isActive() && b.getAmount() > x) {
