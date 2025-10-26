@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 class Customer extends Person {
     private static int customerCount = 0;
@@ -47,21 +49,97 @@ class Customer extends Person {
         return id + "," + name + "," + phoneNumber + "," + address + "," + loyaltyPoints + "," + active;
     }
 
-    public void Buy(Book a) {
-        System.out.print("Enter the amount you want to buy: ");
+    public void Buy(EmployeeList E, Booklist lb, ListInvoice ln, ListInvoiceDetails ld) {
+        int number = ln.getQuantity() + 1;
+        String idInvoice;
+        do {
+            if(number<100){
+                idInvoice = "HD0" + number;
+                number++;
+            }else{
+                idInvoice ="HD" + number;
+                number++;
+            }
+        } while (ln.test(idInvoice) != null);
+        
+
+        
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-            int temp1 = Integer.parseInt(br.readLine());
-            if (a.getAmount() >= temp1) {
-                System.out.print("Are you sure? y/n: ");
-                String temp2 = br.readLine();
-                if (temp2.equalsIgnoreCase("y")) {
-                    System.out.println("Successfully purchased!");
-                    a.setAmount(a.getAmount() - temp1);
-                    addLoyaltyPoints((int) (a.getPrice() / 10000));
-                } else
-                    System.out.println("Cancelled.");
-            } else
-                System.out.println("Only " + a.getAmount() + " items are available. Please adjust your quantity.");
+            Invoice inv = new Invoice();
+            String temp3;
+            inv.setIdInvoice(idInvoice);
+            inv.setIdCustomer(id);
+            do{
+                int n = (int)(Math.random() * (50)) + 1;
+                temp3 = String.format("E%04d", n);
+                if(E.findById(temp3).getPosition().equalsIgnoreCase("Cashier") && E.findById(temp3).isActive())
+                    inv.setIdEmployee(temp3);
+            }while(!E.findById(temp3).getPosition().equalsIgnoreCase("Cashier") || E.findById(temp3).isActive() == false);
+            inv.setTime(LocalDate.now());
+            ln.addlist(inv);
+            String temp2;
+            int flag = 1;
+            do{
+                System.out.print("Enter book ID: ");
+                String temp0 = br.readLine();
+                System.out.print("Enter the amount you want to buy: ");
+                int temp1 = Integer.parseInt(br.readLine());
+                Book a = lb.findByID(temp0);
+                
+                if (a.getAmount() >= temp1) {
+                    System.out.print("Are you sure? y/n: ");
+                    temp2 = br.readLine();
+                    if (temp2.equalsIgnoreCase("y")) {
+                        System.out.println("Successfully purchased!");
+                        a.setAmount(a.getAmount() - temp1);
+                        addLoyaltyPoints((int) (a.getPrice() / 10000));
+                        InvoiceDetail ind = new InvoiceDetail(idInvoice, a.getbookID(), temp1);
+                        flag = 0;
+                        ld.addlist(ind);
+                    } 
+                    else {
+                        System.out.println("Cancelled.");
+                        if(flag == 1) ln.removelist(inv);
+                    }
+                }
+                else System.out.println("Only " + a.getAmount() + " items are available. Please adjust your quantity.");
+                System.out.print("Continue to buy? y/n: ");
+                temp2 = br.readLine();
+            }while(temp2.equalsIgnoreCase("y"));
+                System.out.println("Print invoice? y/n: ");
+                String temp = br.readLine();
+                if(temp.equalsIgnoreCase("y")){
+                    ArrayList<InvoiceDetail> temp4 = ld.find(idInvoice);
+                    System.out.println("==============================================================");
+                    System.out.println("                       I N V O i C E                      ");
+                    System.out.println("==============================================================");
+                    System.out.println("IdInvoice : " + inv.getIdInvoice());
+                    System.out.println("Date      : " + inv.getTime());
+                    System.out.println("Customer  : " + getName());
+                    System.out.println("Staff     : " + E.findById(temp3).getName());
+                    System.out.println("--------------------------------------------------------------");
+
+                    System.out.printf("%-5s %-40s %-10s %-10s %-10s%n", "No", "Name", "Amount", "Price", "Total");
+                    System.out.println("--------------------------------------------------------------");
+
+                    double totalAll = 0;
+
+                    for (int i = 0; i < temp4.size(); i++) {
+                        InvoiceDetail d = temp4.get(i);
+                        Book b = lb.findByID(d.getIdBook());
+                        if (b == null)
+                            continue; // safety check
+                        double total = d.getQuantity() * b.getPrice();
+                        totalAll += total;
+
+                        System.out.printf("%-5d %-40s %-10d %-10.2f %-10.2f%n",
+                                (i + 1), b.getTitle(), d.getQuantity(), b.getPrice(), total);
+                }
+                System.out.println("--------------------------------------------------------------");
+                System.out.printf("%-55s %-10s %-10.2f VND%n", "", "AllTotal:", totalAll);
+                System.out.println("==============================================================");
+            }
+            else System.out.println("Process Done!");
         } catch (Exception e) {
             e.printStackTrace();
         }

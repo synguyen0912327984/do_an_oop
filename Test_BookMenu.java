@@ -1,9 +1,12 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Test_BookMenu {
        private static Scanner sc = new Scanner(System.in);
        private static Booklist lb = new Booklist();
+       private static ListInvoiceDetails lid = new ListInvoiceDetails();
        private static int choice;
+
     public static void mainMenu() {
 
         do {
@@ -101,6 +104,7 @@ public class Test_BookMenu {
 
     
     public static void SearchBookMenu() {
+        System.out.println("\n===== MENU TIM KIEM SACH =====");
         System.out.println("1.Tim kiem theo ID");
         System.out.println("2.Tim kiem theo Title");
         System.out.println("3.Tim kiem theo Author");
@@ -118,6 +122,7 @@ public class Test_BookMenu {
         }
     }
     public static void AnalysMenu() {
+        System.out.println("\n===== MENU THONG KE SACH =====");
         System.out.println("1.Thong ke sach co so luong > x");
         System.out.println("2.Thong ke sach theo so luong ban chay nhat");
         System.out.println("3.Thong ke toan bo so luong sach hien co trong kho");
@@ -130,9 +135,9 @@ public class Test_BookMenu {
                     lb.booksGreaterThan();
                     break;
                 case 2:
-                    System.out.println("Chua hoan thanh chuc nang nay!");
+                    bestSellingBooks();
                     break;
-                    case 3:
+                case 3:
                     lb.totalBooks();
                     break;
                 default:
@@ -143,6 +148,51 @@ public class Test_BookMenu {
             sc.next(); // Xoa dau vao khong hop le
         }
     }
+    public static void bestSellingBooks() {
+        lid.readFile();
+
+        ArrayList<InvoiceDetail> list = lid.getList();
+
+    // list luu tru ma sach va tong so luong ban
+    ArrayList<String> bookIDs = new ArrayList<>();
+    ArrayList<Integer> totalQuantities = new ArrayList<>();
+
+    // Tinh tong so luong ban cho moi sach
+    for (InvoiceDetail d : list) {
+        String id = d.getIdBook();
+        int quantity = d.getQuantity();
+
+        boolean found = false;
+        for (int i = 0; i < bookIDs.size(); i++) {
+            if (bookIDs.get(i).equalsIgnoreCase(id)) {
+                totalQuantities.set(i, totalQuantities.get(i) + quantity);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            bookIDs.add(id);
+            totalQuantities.add(quantity);
+        }
+    }
+
+    // tim max
+    int max = 0;
+    for (int q : totalQuantities) {
+        if (q > max) max = q;
+    }
+
+    //in ra sach ban chay nhat
+    System.out.println("\n===== SACH BAN CHAY NHAT =====");
+    for (int i = 0; i < bookIDs.size(); i++) {
+        if (totalQuantities.get(i) == max) {
+            Book found = lb.findByID(bookIDs.get(i));
+            found.display();
+            System.out.println("So luong ban: " + totalQuantities.get(i));
+        }
+    }
+}
     public static void main(String[] args) {
         mainMenu();
     }

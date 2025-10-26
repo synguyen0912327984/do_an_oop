@@ -56,10 +56,10 @@ public class Manager {
         System.out.println("==============================================================");
     }
 
-     public static void addInvoice(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
+    public static void addInvoice(EmployeeList le, CustomerList lc, ListInvoice ln, ListInvoiceDetails ld,
             Booklist lb) {
         Scanner sc = new Scanner(System.in);
-         Invoice inv = new Invoice();
+        Invoice inv = new Invoice();
 
          // Generate new invoice ID
         int number = ln.getQuantity() + 1;
@@ -93,13 +93,13 @@ public class Manager {
             System.out.print("idEmp: ");
             id = sc.nextLine();
             valid = le.findById(id) != null;
-            if (!valid || 
+            if (!valid && 
                 !(le.findById(id).getPosition().equalsIgnoreCase("Cashier") ||
                 le.findById(id).getPosition().equalsIgnoreCase("Salesman") ||
                 le.findById(id).getPosition().equalsIgnoreCase("Manager"))) {
                 System.out.println("Employee ID invalid!");
 }
-        } while (!valid || 
+        } while (!valid && 
             !(le.findById(id).getPosition().equalsIgnoreCase("Cashier") ||
             le.findById(id).getPosition().equalsIgnoreCase("Salesman") ||
             le.findById(id).getPosition().equalsIgnoreCase("Manager")));
