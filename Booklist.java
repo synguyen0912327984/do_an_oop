@@ -332,12 +332,20 @@ public class Booklist {
     public void booksGreaterThan(){
         System.out.println("Nhap so luong x: ");
         int x = sc.nextInt();
-        System.out.println("Cac sach co so luong > " + x + ":");
+        boolean found = false;
         for (Book b : list) {
             if (b.isActive() && b.getAmount() > x) {
+                if (!found) {
+                    System.out.println("\n===== SACH CO SO LUONG > " + x + " =====");
+                    found = true;
+                }
                 b.display();
                 System.out.println("----------");
+                found = true;
             }
+        }
+        if(!found){
+            System.out.println("Khong co sach nao co so luong > " + x);
         }
     }
     

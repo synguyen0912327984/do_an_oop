@@ -211,7 +211,12 @@ public class Manager {
     }
 
     ArrayList<Invoice> inv = new ArrayList<>();
-
+    inv = invoiceList.findtime(date);
+    for(Invoice st: inv){
+        st.displayInvoice();
+    }
+    ArrayList<InvoiceDetail> ind = new ArrayList<>();
+    
 }
 
     
@@ -229,7 +234,7 @@ public class Manager {
         listdet.readFile();
         
         // Example usage
-        // PrintInvoice(listemp, listCus, listin, listdet, listb, "HD011");
+    //    PrintInvoice(listemp, listCus, listin, listdet, listb, "HD100");
         //addInvoice(listemp, listCus, listin, listdet, listb);
         DailySalesReport(listemp, listCus, listin, listdet, listb);
     }

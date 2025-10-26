@@ -99,3 +99,4 @@ B098;The Last Symphony;Emma Thomas;Cambridge Press;78022.0;57;true
 B099;The Silver Lining;Michael Johnson;Penguin Random House;70585.0;43;true
 B100;Rise of the Phoenix;Emma Lewis;Oxford Press;91784.0;67;true
 B101;Test;test;test;4.0;5;true
+B102;3;32;rsaerw4;4.0;3434343;true
