@@ -17,6 +17,7 @@ public class Menu2 {
             System.out.println("Who are you?");
             System.out.println("1. Customer");
             System.out.println("2. Employee");
+            System.out.println("0. Exit");
             System.out.println("==========================");
             System.out.print("Enter: ");
 
