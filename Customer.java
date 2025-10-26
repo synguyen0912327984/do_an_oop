@@ -161,7 +161,7 @@ class Customer extends Person {
                     } else {
                         System.out.println("You don't have enough points. Please try again");
                     }
-                    flag4 = 1;
+                    flag4 = 0;
                     break;
                 case 2:
                     if (this.redeemPoints(50)) {
@@ -170,7 +170,7 @@ class Customer extends Person {
                     } else {
                         System.out.println("You don't have enough points. Please try again");
                     }
-                    flag4 = 1;
+                    flag4 = 0;
                     break;
                 case 3:
                     if (this.redeemPoints(80)) {
@@ -212,7 +212,7 @@ class Customer extends Person {
                             this.addLoyaltyPoints(80);
                             System.out.println("Points returned.");
                         }
-                        flag4 = 1;
+                        flag4 = 0;
                     } else {
                         System.out.println("You don't have enough points. Please try again");
                     }
