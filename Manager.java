@@ -248,7 +248,6 @@ public class Manager {
 
         System.out.println("---------------------------------------------------------------------------------------------");
         System.out.printf("%-10s %-40s %10s %15s %15.2f\n", "", "TOTAL", "", "", grandTotal);
-        sc.close();
     }
 
     public static void CustomerSalesRp(EmployeeList empList, CustomerList custList, ListInvoice invoiceList, 
@@ -304,8 +303,6 @@ public class Manager {
         for (Book book : uniqueBooks.values()) {
             System.out.printf("%-5d %-10s %-30s\n", index++, book.getbookID(), book.getTitle());
         }
-
-        sc.close();
     }
 
 
@@ -330,7 +327,7 @@ public class Manager {
         // Example usage
     //    PrintInvoice(listemp, listCus, listin, listdet, listb, "HD100");
         //addInvoice(listemp, listCus, listin, listdet, listb);
-    //    DailySalesReport(listemp, listCus, listin, listdet, listb);
+        DailySalesReport(listemp, listCus, listin, listdet, listb);
         CustomerSalesRp(listemp, listCus, listin, listdet, listb);
     }
 }

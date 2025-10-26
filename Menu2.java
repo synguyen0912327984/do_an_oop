@@ -1,4 +1,8 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Menu2 {
@@ -270,7 +274,7 @@ public class Menu2 {
             System.out.println("===========================");
             System.out.println("1. Customer Management");
             System.out.println("2. Employee Management");
-            System.out.println("3. Books statistics");
+            System.out.println("3. Statistics");
             System.out.println("0. Exit and Save Program");
             System.out.println("===========================");
             System.out.print("Enter your choice: ");
@@ -295,6 +299,35 @@ public class Menu2 {
                     break;
                 default:
                     System.out.println("Invalid choice, please try again!");
+                    break;
+            }
+        } while (select != 0);
+    }
+
+    public static void statisticMenu(){
+        int select;
+        do {
+            System.out.println("\n--- STATISTICS MENU ---");
+            System.out.println("1. Books statistics");
+            System.out.println("2. Daily sales report");
+            System.out.println("3. Customer's sales report");
+            System.out.println("--------------------------------");
+            System.out.print("Enter choice: ");
+
+            select = readIntInput();
+
+            switch (select) {
+                case 1:
+                    AnalysMenu();
+                    break;
+                case 2:
+                    DailySalesReport(e, c, ln, ld, bl);
+                    break;
+                case 3:
+                    CustomerSalesRp(e, c, ln, ld, bl);
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
                     break;
             }
         } while (select != 0);
@@ -692,5 +725,118 @@ public class Menu2 {
         }
     }
 }
+    public static void DailySalesReport(EmployeeList empList, CustomerList custList, ListInvoice invoiceList, 
+                                    ListInvoiceDetails invoiceDetailsList, Booklist bookList) {
+        LocalDate date = null;
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        // Nhập ngày hợp lệ
+        while (true) {
+            try {
+                System.out.print("Enter date (dd/MM/yyyy): ");
+                String input = sc.nextLine();
+                date = LocalDate.parse(input, fmt);
+                if (date.isAfter(LocalDate.now())) {
+                    System.out.println("The date cannot be in the future!");
+                    continue;
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid date, please try again!");
+            }
+        }
+
+        // Lấy danh sách hóa đơn trong ngày
+        ArrayList<Invoice> inv = invoiceList.findtime(date);
+        ArrayList<InvoiceDetail> ind = new ArrayList<>();
+        for (Invoice st : inv) {
+            ind.addAll(invoiceDetailsList.find(st.getIdInvoice()));
+        }
+
+        // Gom số lượng từng sách
+        Map<String, Integer> bookSales = new HashMap<>();
+        for (InvoiceDetail detail : ind) {
+            String idBook = detail.getIdBook();
+            int amount = detail.getQuantity();
+            bookSales.put(idBook, bookSales.getOrDefault(idBook, 0) + amount);
+        }
+
+        // --- In báo cáo ---
+        System.out.println("\n=== DAILY BOOK SALES REPORT (" + date.format(fmt) + ") ===");
+        System.out.printf("%-10s %-40s %10s %15s %15s\n", "Book ID", "Book Title", "Qty", "Price", "Total");
+        System.out.println("---------------------------------------------------------------------------------------------");
+
+        double grandTotal = 0;
+
+        for (Map.Entry<String, Integer> entry : bookSales.entrySet()) {
+            Book b = bookList.findByID(entry.getKey());
+            String title = (b != null) ? b.getTitle() : "Unknown";
+            double price = (b != null) ? b.getPrice() : 0;
+            int qty = entry.getValue();
+            double total = price * qty;
+            grandTotal += total;
+
+            System.out.printf("%-10s %-40s %10d %15.2f %15.2f\n",
+                    entry.getKey(), title, qty, price, total);
+        }
+
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.printf("%-10s %-40s %10s %15s %15.2f\n", "", "TOTAL", "", "", grandTotal);
+    }
     
+
+    public static void CustomerSalesRp(EmployeeList empList, CustomerList custList, ListInvoice invoiceList, 
+                                    ListInvoiceDetails invoiceDetailsList, Booklist bookList) {
+        Scanner sc = new Scanner(System.in);
+        String phoneCus;
+        ArrayList<Invoice> inv;
+        Customer cus;
+
+        // Nhập và kiểm tra số điện thoại
+        do {
+            System.out.print("Phone Number: ");
+            phoneCus = sc.nextLine();
+            cus = custList.findByPhone(phoneCus);
+            if (cus == null) {
+                System.out.println("This phone number is empty or not found!");
+            }
+        } while (cus == null);
+
+        // Lấy danh sách hóa đơn của khách hàng
+        inv = invoiceList.findidCus(cus.getId());
+        if (inv == null || inv.isEmpty()) {
+            System.out.println("This customer has no invoices.");
+            return;
+        }
+
+        System.out.println("Customer Information:");
+        System.out.println(cus);
+
+        System.out.println("\nThe Books that the customer has bought:");
+
+        Map<String, Book> uniqueBooks = new HashMap<>();
+
+        // Duyệt hóa đơn và chi tiết hóa đơn
+        for (Invoice invoice : inv) {
+            ArrayList<InvoiceDetail> details = invoiceDetailsList.find(invoice.getIdInvoice());
+            if (details == null) continue;
+
+            for (InvoiceDetail detail : details) {
+                String bookId = detail.getIdBook();
+                if (!uniqueBooks.containsKey(bookId)) {
+                    Book book = bookList.findByID(bookId);
+                    if (book != null) {
+                        uniqueBooks.put(bookId, book);
+                    }
+                }
+            }
+        }
+
+        // In danh sách sách (tránh trùng lặp)
+        System.out.printf("%-5s %-10s %-30s\n", "No", "BookID", "Title");
+        int index = 1;
+        for (Book book : uniqueBooks.values()) {
+            System.out.printf("%-5d %-10s %-30s\n", index++, book.getbookID(), book.getTitle());
+        }
+    }
 }
