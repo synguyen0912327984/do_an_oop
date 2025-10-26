@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.time.format.DateTimeFormatter;
 
 public class ListInvoice {
     private ArrayList<Invoice> list = new ArrayList<>();

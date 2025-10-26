@@ -184,7 +184,7 @@ public class EmployeeList implements IActions<Employee> {
     public void edit(Employee a, Scanner sc) {
         System.out.println("EDIT:");
         System.out.print("1. Name\n2. Phone\n3. Address\nEnter: ");
-        int keys = Menu2.readIntInput();
+        int keys = Menu.readIntInput();
         boolean valid;
         switch (keys) {
             case 1: // Name

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Menu2 {
+public class Menu {
     private static Scanner sc = new Scanner(System.in);
     private static EmployeeList e = new EmployeeList();
     private static CustomerList c = new CustomerList();
@@ -13,7 +13,7 @@ public class Menu2 {
     private static ListInvoice ln = new ListInvoice();
     private static ListInvoiceDetails ld = new ListInvoiceDetails();
 
-    public static void Menu() {
+    public static void MainMenu() {
         ln.readFile();
         ld.readFile();
         int select;
