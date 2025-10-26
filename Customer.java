@@ -103,6 +103,10 @@ class Customer extends Person {
                                 InvoiceDetail ind = new InvoiceDetail(idInvoice, a.getbookID(), temp1);
                                 flag = 0;
                                 ld.addlist(ind);
+                                System.out.println("Continue to buy? y/n: ");
+                                temp2 = sc.nextLine();
+                                if(temp2.equalsIgnoreCase("y"))
+                                    flag2 = 1;
                             } 
                             else {
                                 System.out.println("Cancelled.");

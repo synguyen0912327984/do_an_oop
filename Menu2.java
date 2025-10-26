@@ -145,6 +145,7 @@ public class Menu2 {
                                         System.out.println("2. 50% discount: 50LP");
                                         System.out.println("3. Select book: 80LP");
                                         System.out.println("0. Return");
+                                        System.out.println("Your LP: " + c.findByPhone(p).getLoyaltyPoints());
                                         System.out.println("==========================");
                                         System.out.println("Enter: ");
                                         select4 = readIntInput();
