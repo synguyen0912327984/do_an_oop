@@ -289,7 +289,7 @@ public class Menu2 {
                     employeeMenu();
                     break;
                 case 3:
-                    AnalysMenu();
+                    statisticMenu();
                     break;
                 case 0:
                     System.out.println("Saving data to file...");
