@@ -104,7 +104,8 @@ public class Menu2 {
                                                 do {
                                                     temp = sc.nextLine();
                                                     if (temp.equalsIgnoreCase("y")) {
-                                                        c.findByPhone(p).Buy(e, bl, ln, ld, sc);
+                                                        if(c.findByPhone(p).Buy(e, bl, ln, ld, sc) == 0)
+                                                            temp = "n";
                                                     } else
                                                         System.out.println("Returning...");
                                                 } while (temp.equalsIgnoreCase("y"));

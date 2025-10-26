@@ -48,7 +48,7 @@ class Customer extends Person {
         return id + "," + name + "," + phoneNumber + "," + address + "," + loyaltyPoints + "," + active;
     }
 
-    public void Buy(EmployeeList E, Booklist lb, ListInvoice ln, ListInvoiceDetails ld, Scanner sc) {
+    public int Buy(EmployeeList E, Booklist lb, ListInvoice ln, ListInvoiceDetails ld, Scanner sc) {
         int number = ln.getQuantity() + 1;
         String idInvoice;
         do {
@@ -121,15 +121,17 @@ class Customer extends Person {
                         System.out.println(
                                 "Only " + a.getAmount() + " items are available. Please adjust your quantity.");
                     }
-                    else
+                    else {
                         System.out.println("Cannot find book with ID: " + temp0);
+                        break;
+                    }
                 } while (flag3 == 1);
             } while (flag2 == 1);
         ArrayList<InvoiceDetail> currentInvoiceDetails = ld.find(idInvoice);
         if (currentInvoiceDetails.isEmpty()) {
             System.out.println("No items purchased. Cancelling invoice...");
             ln.removelist(inv);
-            return;
+            return 0;
         }
         double totalAll = 0;
         for (InvoiceDetail d : currentInvoiceDetails) {
@@ -235,7 +237,6 @@ class Customer extends Person {
         System.out.println("Print invoice? y/n: ");
         String temp = sc.nextLine();
         if (temp.equalsIgnoreCase("y")) {
-            ArrayList<InvoiceDetail> temp4 = ld.find(idInvoice);
             System.out.println("==============================================================");
             System.out.println("                       I N V O i C E                      ");
             System.out.println("==============================================================");
@@ -266,6 +267,7 @@ class Customer extends Person {
             System.out.println("Process Done! Continue to buy? y/n: ");
         } else
             System.out.println("Process Done! Continue to buy? y/n: ");
+        return 1;
     }
 
     public void addLoyaltyPoints(int points) {
