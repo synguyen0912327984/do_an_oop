@@ -202,13 +202,12 @@ public class Menu2 {
                                             case 2:
                                                 bl.removeBook(sc);
                                                 break;
-                                            case 3:
+                                             case 3:
                                                 System.out.print("Enter Book's ID to edit: ");
                                                 String temp = sc.nextLine();
                                                 bl.edit(bl.findByID(temp), sc);
-                                                System.out.println("New book's information:");
-                                                bl.findByID(temp).display();
-                                                break;
+                                                
+                                                break;   
                                             case 4:
                                                 bl.displayDeletedBooks();
                                                 break;

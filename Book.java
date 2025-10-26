@@ -16,7 +16,7 @@ public class Book {
         this.Publisher = Publisher;
         this.Price = Price;
         this.Amount = Amount;
-        this.status = true; //mac dinh la con hoat dong
+        this.status = status; //mac dinh la con hoat dong
     }
 
     // Get va set
