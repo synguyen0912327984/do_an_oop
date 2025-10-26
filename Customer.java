@@ -61,61 +61,54 @@ class Customer extends Person {
             }
         } while (ln.test(idInvoice) != null);
 
-        Invoice inv = new Invoice();
-        String temp3;
-        inv.setIdInvoice(idInvoice);
-        inv.setIdCustomer(id);
-        do {
-            int n = (int) (Math.random() * (50)) + 1;
-            temp3 = String.format("E%04d", n);
-            if (E.findById(temp3).getPosition().equalsIgnoreCase("Cashier") && E.findById(temp3).isActive())
-                inv.setIdEmployee(temp3);
-        } while (!E.findById(temp3).getPosition().equalsIgnoreCase("Cashier") || E.findById(temp3).isActive() == false);
-        inv.setTime(LocalDate.now());
-        ln.addlist(inv);
-        String temp2;
-        int flag = 1;
-        int flag2 = 1;
-        int flag3 = 1;
-        int temp1;
-        Book a;
-        do {
-            flag2 = 1;
-            System.out.print("Enter book ID: ");
-            String temp0 = sc.nextLine();
-            do {
-                if (lb.findByID(temp0) != null) {
-                    flag2 = 0;
-                    System.out.print("Enter the amount you want to buy: ");
-                    temp1 = Menu2.readIntInput();
-                    a = lb.findByID(temp0);
-                    flag3 = 1;
-                    if (a.getAmount() >= temp1) {
 
-                        flag3 = 0;
-                        System.out.print("Are you sure? y/n: ");
-                        temp2 = sc.nextLine();
-                        if (temp2.equalsIgnoreCase("y")) {
-                            System.out.println("Successfully purchased!");
-                            a.setAmount(a.getAmount() - temp1);
-                            addLoyaltyPoints((int) (a.getPrice() * temp1 / 10000));
-                            InvoiceDetail ind = new InvoiceDetail(idInvoice, a.getbookID(), temp1);
-                            flag = 0;
-                            ld.addlist(ind);
-                            System.out.println("Continue to buy? y/n: ");
+            Invoice inv = new Invoice();
+            String temp3;
+            inv.setIdInvoice(idInvoice);
+            inv.setIdCustomer(id);
+            do{
+                int n = (int)(Math.random() * (50)) + 1;
+                temp3 = String.format("E%04d", n);
+                if(E.findById(temp3).getPosition().equalsIgnoreCase("Cashier") && E.findById(temp3).isActive())
+                    inv.setIdEmployee(temp3);
+            }while(!E.findById(temp3).getPosition().equalsIgnoreCase("Cashier") || E.findById(temp3).isActive() == false);
+            inv.setTime(LocalDate.now());
+            ln.addlist(inv);
+            String temp2;
+            int flag = 1;
+            int flag2 = 1;
+            int flag3 = 1;
+            int temp1;
+            Book a;
+            do{
+                flag2 = 1;
+                System.out.print("Enter book ID: ");
+                String temp0 = sc.nextLine();
+                do{
+                    if(lb.findByID(temp0) != null){
+                        flag2 = 0;
+                        System.out.print("Enter the amount you want to buy: ");
+                        temp1 = Menu2.readIntInput();
+                        a = lb.findByID(temp0);
+                        flag3 = 1;
+                        if (a.getAmount() >= temp1) {
+                            flag3 = 0;
+                            System.out.print("Are you sure you want to buy" + '"' +  lb.findByID(temp0).getTitle() + '"' + "? y/n: ");
                             temp2 = sc.nextLine();
-                            if (temp2.equalsIgnoreCase("y"))
+                            if (temp2.equalsIgnoreCase("y")){
                                 flag2 = 1;
-                        } else {
-                            System.out.println("Cancelled.");
-                            if (flag == 1)
-                                ln.removelist(inv);
+                            }
+                            else {
+                                System.out.println("Cancelled.");
+                                if (flag == 1)
+                                    ln.removelist(inv);
+                            }
                         }
-                    } else
+                        else
                         System.out.println(
                                 "Only " + a.getAmount() + " items are available. Please adjust your quantity.");
-
-                } else
+                    }
+                else
                     System.out.println("Cannot find book with ID: " + temp0);
             } while (flag3 == 1);
         } while (flag2 == 1);
