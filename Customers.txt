@@ -1,5 +1,5 @@
 C0001,Nguyen Van A,0123456789,District 1,100,true
-C0002,Tran Thi B,0901000002,District 2,120,true
+C0002,Nguyen Van A,0901000002,District 2,120,true
 C0003,Le Van C,0901000003,District 3,90,true
 C0004,Pham Thi D,0901000004,District 4,150,true
 C0005,Vo Van E,0901000005,District 5,80,true
@@ -48,3 +48,5 @@ C0047,Le Hoang AU,0901000047,District 5,130,true
 C0048,Tran Van AV,0901000048,District 6,85,true
 C0049,Pham Van AW,0901000049,District 7,100,true
 C0050,Do Thi AX,0901000050,District 8,145,true
+C0051,Nguyen Anh Sy,0912327984,199tonducthang,0,false
+C0052,Nguyen Anh Sy,0912327984,199tonducthang,0,true

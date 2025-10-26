@@ -756,6 +756,14 @@ public class Menu {
                 break;
             } catch (Exception e) {
                 System.out.println("Invalid date, please try again!");
+                System.out.print("Do you want to search another date? (Y/N): ");
+                String choice = sc.nextLine().trim().toUpperCase();
+                if (choice.equals("Y")) {
+                    continue; // quay lại nhập ngày mới
+                } else {
+                    System.out.println("Returning to main menu...");
+                    return; // thoát hàm
+                }
             }
         }
 
