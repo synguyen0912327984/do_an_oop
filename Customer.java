@@ -94,7 +94,7 @@ class Customer extends Person {
                         flag3 = 1;
                         if (a.getAmount() >= temp1) {
                             flag3 = 0;
-                            System.out.print("Are you sure? y/n: ");
+                            System.out.print("Are you sure you want to buy" + '"' +  lb.findByID(temp0).getTitle() + '"' + "? y/n: ");
                             temp2 = sc.nextLine();
                             if (temp2.equalsIgnoreCase("y")) {
                                 System.out.println("Successfully purchased!");
