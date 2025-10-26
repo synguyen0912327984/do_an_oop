@@ -26,6 +26,9 @@ public class Menu2 {
                 case 0:
                     e.saveToFile();
                     c.saveToFile();
+                    bl.saveToFile();
+                    ln.saveFile();
+                    ld.savefile();
                     System.out.println("GOODBYE!");
                     break;
 
@@ -44,7 +47,7 @@ public class Menu2 {
                             System.out.println("Returning...");
                         }
                     }
-                    else if(Person.isValidPhoneNumber(p) && c.findByPhone(p) != null && c.findByPhone(p).isActive() != false){
+                    else if(Person.isValidPhoneNumber(p) && c.findByPhone(p) != null && c.findByPhone(p).isActive()){
                         System.out.println("Welcome!");
                         do{
                             System.out.println("==========================");
@@ -92,11 +95,10 @@ public class Menu2 {
                                         do{
                                             temp = sc.nextLine();
                                             if(temp.equalsIgnoreCase("y")){
-                                                c.findByPhone(p).Buy(e, bl, ln, ld);
+                                                c.findByPhone(p).Buy(e, bl, ln, ld, sc);
                                             }
                                             else System.out.println("Returning...");
                                         }while(temp.equalsIgnoreCase("y"));
-                                        System.out.println("Returning...");
                                     }
                                     break;
                                 case 2:
@@ -112,7 +114,7 @@ public class Menu2 {
                                         sc.nextLine();
                                         switch(select3){
                                             case 1:
-                                                c.edit(c.findByPhone(p));
+                                                c.edit(c.findByPhone(p), sc);
                                                 System.out.print("Done!");
                                                 break;
                                             case 2:
@@ -177,11 +179,11 @@ public class Menu2 {
                             }
                         } while(select2 != 0);
                     }
-                    else if(!c.findByPhone(p).isActive()){
-                        System.out.println("Account doesn't exist!");
+                    else if(c.findByPhone(p) == null){
+                        System.out.println("Invalid phone number. Returning...");
                     }
                     else{
-                        System.out.println("Invalid phone number. Returning...");
+                        System.out.println("Account doesn't exist!");
                     }
                     break;
 

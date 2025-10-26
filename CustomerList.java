@@ -120,8 +120,7 @@ public class CustomerList implements IActions<Customer> {
     }
 
     @Override
-    public void edit(Customer a) {
-        Scanner sc = new Scanner(System.in);
+    public void edit(Customer a, Scanner sc) {
         System.out.println("EDIT:");
         System.out.print("1. Name\n2. Phone\n3. Address\nEnter: ");
         int keys = Integer.parseInt(sc.nextLine());
