@@ -98,4 +98,3 @@ B097;Winds of Change;Michael Johnson;Oxford Press;47892.0;98;true
 B098;The Last Symphony;Emma Thomas;Cambridge Press;78022.0;57;true
 B099;The Silver Lining;Michael Johnson;Penguin Random House;70585.0;43;true
 B100;Rise of the Phoenix;Emma Lewis;Oxford Press;91784.0;67;true
-B101;DATABASE;Kevin Mcdonald;TESla;3.481798327E9;232;false
