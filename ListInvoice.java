@@ -108,5 +108,14 @@ public class ListInvoice {
         return result;
     }
 
+    public ArrayList<Invoice> findidCus(String id){
+        ArrayList<Invoice> result = new ArrayList<>();
+        for (Invoice inv : list) {
+            if (inv.getIdCustomer().equals(id)) {
+                result.add(inv);
+            }
+        }
+        return result;
+    }
     
 }
