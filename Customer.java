@@ -8,7 +8,7 @@ class Customer extends Person {
 
     public Customer(String name, String phoneNumber, String address, int loyaltyPoints) {
         super(null, name, phoneNumber, address);
-        this.id = String.format("C%03d", customerCount++);
+        this.id = String.format("C%04d", customerCount++);
         /*
          * Dinh dang chuoi voi chuoi dinh dang C + customnerCount
          * %03d do dai toi thieu la 3 neu khong du thi chen 0 vao dau
