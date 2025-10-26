@@ -663,6 +663,7 @@ public class Menu2 {
         System.out.println("1. Show books with quantity greater than x");
         System.out.println("2. Show best-selling books");
         System.out.println("3. Show total number of books currently in stock");
+        System.out.println("0. Return");
         System.out.print("Enter: ");
 
         int analysChoice = readIntInput();
@@ -675,6 +676,9 @@ public class Menu2 {
                 break;
             case 3:
                 bl.totalBooks();
+                break;
+            case 0:
+                System.out.println("Returning...");
                 break;
             default:
                 System.out.println("Invalid choice!");
