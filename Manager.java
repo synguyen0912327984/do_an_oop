@@ -330,7 +330,7 @@ public class Manager {
         // Example usage
     //    PrintInvoice(listemp, listCus, listin, listdet, listb, "HD100");
         //addInvoice(listemp, listCus, listin, listdet, listb);
-    //    DailySalesReport(listemp, listCus, listin, listdet, listb);
+       DailySalesReport(listemp, listCus, listin, listdet, listb);
         CustomerSalesRp(listemp, listCus, listin, listdet, listb);
     }
 }
