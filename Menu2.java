@@ -236,22 +236,31 @@ public class Menu2 {
                                             System.out.println("1. Add book");
                                             System.out.println("2. Remove book");
                                             System.out.println("3. Update book");
-                                            System.out.println("4. Delete history");
-                                            System.out.println("0. Cancel");
+                                            System.out.println("4. Deleted books history");
+                                            System.out.println("0. Return");
                                             System.out.println("==========================");
                                             System.out.print("Enter: ");
                                             selectE2 = readIntInput();
                                             switch(selectE2){
+                                                case 0:
+                                                    System.out.println("Returning...");
+                                                    break;
                                                 case 1:
                                                     Book tempB = new Book();
                                                     bl.AddBook(tempB, sc);
                                                     break;
                                                 case 2:
-
+                                                    bl.removeBook(sc);
                                                     break;
                                                 case 3:
+                                                    System.out.print("Enter Book's ID to edit: ");
+                                                    String temp = sc.nextLine();
+                                                    bl.edit(bl.findByID(temp), sc);
+                                                    System.out.println("New book's information:");
+                                                    bl.findByID(temp).display();
                                                     break;
                                                 case 4:
+                                                    bl.displayDeletedBooks();
                                                     break;
                                                 default:
                                                     System.out.println("Invalid choice!");

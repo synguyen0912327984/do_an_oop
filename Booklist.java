@@ -284,37 +284,124 @@ public class Booklist {
     // Phuong thuc sua sach
     public void updateBook(Scanner sc) {
             while (true){
-            System.out.print("Nhap ID sach can sua: ");
-            String bookID_Fix = sc.nextLine(); // nhap id sach can sua
-            if(bookID_Fix.isEmpty()){
-                System.out.println("ID sach khong duoc de trong.");
-                break;
-            }
-            
-            for (Book i : list) {
-                boolean found = false;
-                if(i.isActive()==true){
-                    if (i.getbookID().equalsIgnoreCase(bookID_Fix)) {
-                        inputBookInfo(i, sc); // Update sach
-                        System.out.println("Da cap nhat sach co ID: " + bookID_Fix);
-                        found = true;
-                        return;
+                System.out.print("Nhap ID sach can sua: ");
+                String bookID_Fix = sc.nextLine(); // nhap id sach can sua
+                if(bookID_Fix.isEmpty()){
+                    System.out.println("ID sach khong duoc de trong.");
+                    break;
                 }
-            }
-                else if (!i.isActive()){
-                System.out.println("Sach nay da bi xoa, khong the sua.");
-                break;
+                
+                for (Book i : list) {
+                    boolean found = false;
+                    if(i.isActive()==true){
+                        if (i.getbookID().equalsIgnoreCase(bookID_Fix)) {
+                            inputBookInfo(i, sc); // Update sach
+                            System.out.println("Da cap nhat sach co ID: " + bookID_Fix);
+                            found = true;
+                            return;
+                        }
+                    }
+                    else if (!i.isActive()){
+                        System.out.println("Sach nay da bi xoa, khong the sua.");
+                        break;
+                    }
+                    if (!found){ 
+                        System.out.println("Khong tim thay sach co ID: " + bookID_Fix);
+                        break;
+                    }
                 }
-                if (!found){ 
-                System.out.println("Khong tim thay sach co ID: " + bookID_Fix);
-                break;
             }
         }
 
-            
-            
-            }
+    public void edit(Book a, Scanner sc) {
+        System.out.println("EDIT:");
+        System.out.print("1. Title\n2. Author\n3. Publisher\n4. Price\n5. Amount\nEnter: ");
+        int keys = Menu2.readIntInput();
+        boolean valid;
+        switch (keys) {
+            case 1: // Title
+                do{
+                    System.out.print("Enter title: ");
+                    String title_test;
+                    title_test = sc.nextLine();
+                    valid = !title_test.isEmpty();
+                    if(valid)
+                        a.setTitle(title_test);
+                    else
+                        System.out.println("Title cannot be empty. Try again.");
+                }while(!valid);
+                break;
+            case 2: // Author
+                do{
+                    System.out.print("Enter Author: ");
+                    String Author_test;
+                    Author_test = sc.nextLine();
+                    valid = !Author_test.isEmpty();
+                    if(valid)
+                        a.setAuthor(Author_test);
+                    else
+                        System.out.println("Author cannot be empty. Try again.");
+                }while(!valid);
+                System.out.println("Changed successfully!");
+                break;
+            case 3: // Publisher
+                do{
+                    System.out.print("Enter new publisher: ");
+                    String Publisher_test;
+                    Publisher_test = sc.nextLine();
+                    valid = !Publisher_test.isEmpty();
+                    if(valid)
+                        a.setPublisher(Publisher_test);
+                    else
+                        System.out.println("Publisher cannot be empty. Try again.");
+                }while(!valid);
+                System.out.println("Changed successfully!");
+                break;
+            case 4: // Price
+                do {
+                    System.out.print("Enter new price: ");
+                    String priceInput = sc.nextLine().trim();
+                    try {
+                        double price = Double.parseDouble(priceInput);
+                        if (price < 0) {
+                            System.out.println("Price cannot be empty. Try again.");
+                            valid = false;
+                        } else {
+                            a.setPrice(price);
+                            valid = true;
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Price must be a number. Try again.");
+                        valid = false;
+                    }
+                } while (!valid);
+                System.out.println("Changed successfully!");
+                break;
+            case 5: // Amount
+                do {
+                    System.out.print("Enter new amount: ");
+                    String amountInput = sc.nextLine().trim();
+                    try {
+                        int amount = Integer.parseInt(amountInput);
+                        if (amount < 0) {
+                            System.out.println("Amount cannot be negative. Try again.");
+                            valid = false;
+                        } else {
+                            a.setAmount(amount);
+                            valid = true;
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Amount must be integer. Try again.");
+                        valid = false;
+                    }
+                } while (!valid);
+                System.out.println("Changed successfully!");
+                break;
+            default:
+                System.out.println("Cancelled.");
+                break;
         }
+    }
         
     
             
