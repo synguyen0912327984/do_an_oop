@@ -67,7 +67,7 @@ public class Booklist {
                 break;
         }
         if (result.isEmpty()) {
-            System.out.println("No matching books found(or book may have been deleted).");
+            System.out.println("No matching books found.");
         } else {
             System.out.println("Search results:");
             for (Book b : result) {
@@ -221,6 +221,7 @@ public class Booklist {
         list.add(book);
         book.setStatus(true); 
         System.out.println("Book added!");
+        book.display();
     }
     
     
@@ -247,14 +248,22 @@ public class Booklist {
 
                 // Kiem tra sach da bi danh dau xoa truoc do
                 if (!b.isActive()) {
-                    System.out.println("This book has already been marked as deleted.");
+                    System.out.println("This book has been deleted before.");
                     break;
                 }
 
                 // Danh dau xoa mem
-                b.setStatus(false);
-                System.out.println("Book with ID " + bookID + " has been deleted.");
-                break;
+                System.out.print("Are you sure you want to delete this book? (Y/N): ");
+                String confirm = sc.nextLine().trim();
+                if (!confirm.equalsIgnoreCase("Y")) {
+                    System.out.println("Deletion cancelled.");
+                    break;
+                }
+                else{
+                    b.setStatus(false);
+                    System.out.println("Book with ID " + bookID + " has been deleted.");
+                    break;
+                }
             }
         }
 
@@ -290,9 +299,9 @@ public class Booklist {
                     System.out.println("ID cannot be blank.");
                     break;
                 }
-                
+                boolean found = false;
                 for (Book i : list) {
-                    boolean found = false;
+                    
                     if(i.isActive()==true){
                         if (i.getbookID().equalsIgnoreCase(bookID_Fix)) {
                             edit(i, sc); // Update sach
@@ -420,9 +429,11 @@ public class Booklist {
     public void totalBooks() {
         int total = 0;
         for (Book b : list) {
-            if (b.isActive()) {
-                total += b.getAmount();
-            }
+            if(b==null) continue;
+                if (b.isActive()) {
+                    
+                    total += b.getAmount();
+                }
         }
         System.out.println("Total number of books currently in stock: " + total);
     }
@@ -443,7 +454,7 @@ public class Booklist {
                 }
                 b.display();
                 System.out.println("----------");
-                found = true;
+                
             }
         }
         if(!found){
