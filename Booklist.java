@@ -382,7 +382,7 @@ public class Booklist {
                     try {
                         double price = Double.parseDouble(priceInput);
                         if (price < 0) {
-                            System.out.println("Price cannot be empty. Try again.");
+                            System.out.println("Price cannot be negative. Try again.");
                             valid = false;
                         } else {
                             a.setPrice(price);
