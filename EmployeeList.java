@@ -169,12 +169,31 @@ public class EmployeeList implements IActions<Employee> {
             employeeToEdit.setAddress(newAddress);
         }
 
-        System.out.print("New position (" + employeeToEdit.getPosition() + "): ");
-        String newPosition = scanner.nextLine();
-        if (!newPosition.isEmpty()) {
-            employeeToEdit.setPosition(newPosition);
+        int newPos;
+        do {
+            System.out.println("New position (" + employeeToEdit.getPosition() + "): ");
+            System.out.println("1.Cashier \n2.Manager \n3.Salesman \n4.Accountant");
+            newPos = Menu.readIntInput();
+        } while (newPos == -1);
+        String newPosition = "";
+        switch (newPos) {
+            case 1:
+                newPosition = "Cashier";
+                employeeToEdit.setPosition(newPosition);
+                break;
+            case 2:
+                newPosition = "Manager";
+                employeeToEdit.setPosition(newPosition);
+                break;
+            case 3:
+                newPosition = "Salesman";
+                employeeToEdit.setPosition(newPosition);
+                break;
+            case 4:
+                newPosition = "Accountant";
+                employeeToEdit.setPosition(newPosition);
+                break;
         }
-
         System.out.print("New salary (" + employeeToEdit.getSalary() + "): ");
         String newSalaryStr = scanner.nextLine();
         if (!newSalaryStr.isEmpty()) {
