@@ -138,6 +138,8 @@ public class Menu {
                                                             "Object not found or Customer not found with phone number: "
                                                                     + p);
                                                 }
+                                                System.out.println("Saving to file...");
+                                                c.saveToFile();
                                                 System.out.print("Done!");
                                                 break;
                                             case 2:
@@ -153,6 +155,8 @@ public class Menu {
                                                                         + p);
                                                     }
                                                     System.out.print("Done!");
+                                                    System.out.println("Saving to file...");
+                                                    c.saveToFile();
                                                 } else
                                                     System.out.println("Cancelled.");
                                                 break;
@@ -184,11 +188,11 @@ public class Menu {
                     int selectE;
                     System.out.print("Enter your ID: ");
                     String ID = sc.nextLine();
-                    if (e.findById(ID) == null) {
+                    Employee tempE = e.findById(ID);
+                    if (tempE == null) {
                         System.out.println("ID doesn't exist!");
-                    } else if (e.findById(ID) != null && e.findById(ID).isActive()) {
+                    } else if (tempE != null && e.findById(ID).isActive()) {
                         System.out.println("Welcome!");
-                        Employee tempE = e.findById(ID);
                         do {
                             System.out.println("==========================");
                             System.out.println("1. Books management");
@@ -253,6 +257,8 @@ public class Menu {
                                         switch (selectE3) {
                                             case 1:
                                                 e.edit(tempE, sc);
+                                                System.out.println("Saving to file...");
+                                                e.saveToFile();
                                                 System.out.print("Done!");
                                                 break;
                                             case 0:
