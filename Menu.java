@@ -150,7 +150,8 @@ public class Menu {
                                                     Customer check = c.findByPhone(p);
                                                     if (check != null) {
                                                         check.setActive(false);
-                                                        
+                                                        select3 = 0;
+                                                        select2 = 0;
                                                     } else {
                                                         System.out.println(
                                                                 "Object not found or Customer not found with phone number: "
