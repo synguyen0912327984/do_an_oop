@@ -609,7 +609,7 @@ public class Menu {
 
             if (!Person.isValidPhoneNumber(phone)) {
                 System.out.println("Invalid phone number! Must be 10 digits and start with '0'. Please re-enter.");
-            } else if (c.findByPhone(phone) != null) {
+            } else if (e.findByPhone(phone) != null) {
                 System.out.println("Phone number already exist.");
             } else {
                 break;
