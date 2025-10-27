@@ -617,8 +617,27 @@ public class Menu {
         }
         System.out.print("Enter address: ");
         String address = sc.nextLine();
-        System.out.print("Enter position: ");
-        String position = sc.nextLine();
+        System.out.println("Enter position: ");
+        int newPos;
+        String position = "";
+        do {
+            System.out.println("1.Cashier \n2.Manager \n3.Salesman \n4.Accountant \nEnter:");
+            newPos = Menu.readIntInput();
+        } while (newPos < 1 || newPos > 4);
+        switch (newPos) {
+            case 1:
+                position = "Cashier";
+                break;
+            case 2:
+                position = "Manager";
+                break;
+            case 3:
+                position = "Salesman";
+                break;
+            case 4:
+                position = "Accountant";
+                break;
+        }
 
         double salary = 0;
         while (true) {
