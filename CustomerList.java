@@ -121,38 +121,54 @@ public class CustomerList implements IActions<Customer> {
 
     @Override
     public void edit(Customer c, Scanner sc) {
-
-        System.out.println("Update customer information (press Enter to skip)");
-
         c.displayinfo();
-
-        System.out.print("Ten moi (" + c.getName() + "): ");
-        String newName = sc.nextLine();
-        if (!newName.isEmpty()) {
-            c.setName(newName);
-        }
-
-        while (true) {
-            System.out.print("New phone number (" + c.getPhoneNumber() + "): ");
-            String newPhone = sc.nextLine();
-
-            if (newPhone.isEmpty()) {
-                break;
+        int value;
+        do {
+            System.out.println("1.Name \n2.Phone \n3.address \n0.Exit: ");
+            System.out.println("Enter: ");
+            value = Menu.readIntInput();
+            if (value == 0) {
+                System.out.println("Exiting...");
+                return;
             }
-
-            if (Person.isValidPhoneNumber(newPhone)) {
-                c.setPhoneNumber(newPhone);
-                break;
-            } else {
-                System.out.println("Invalid phone number");
-                System.out.println("Please re-enter or press Enter to skip");
+            if (value > 3 || value < 1) {
+                value = -1;
+                System.out.println("Please choose an option from 1 to 3.");
             }
-        }
+        } while (value == -1);
+        switch (value) {
+            case 1:
+                System.out.print("Ten moi (" + c.getName() + "): ");
+                String newName = sc.nextLine();
+                if (!newName.isEmpty()) {
+                    c.setName(newName);
+                }
+                break;
+            case 2:
+                while (true) {
+                    System.out.print("New phone number (" + c.getPhoneNumber() + "): ");
+                    String newPhone = sc.nextLine();
 
-        System.out.print("New address (" + c.getAddress() + "): ");
-        String newAddress = sc.nextLine();
-        if (!newAddress.isEmpty()) {
-            c.setAddress(newAddress);
+                    if (newPhone.isEmpty()) {
+                        break;
+                    }
+
+                    if (Person.isValidPhoneNumber(newPhone)) {
+                        c.setPhoneNumber(newPhone);
+                        break;
+                    } else {
+                        System.out.println("Invalid phone number");
+                        System.out.println("Please re-enter or press Enter to skip");
+                    }
+                }
+                break;
+            case 3:
+                System.out.print("New address (" + c.getAddress() + "): ");
+                String newAddress = sc.nextLine();
+                if (!newAddress.isEmpty()) {
+                    c.setAddress(newAddress);
+                }
+                break;
         }
         System.out.println("---Customer information updated successfully!---");
         c.displayinfo();

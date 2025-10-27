@@ -130,7 +130,14 @@ public class Menu {
                                         select3 = readIntInput();
                                         switch (select3) {
                                             case 1:
-                                                c.edit(c.findByPhone(p), sc);
+                                                Customer checkInfo = c.findByPhone(p);
+                                                if (checkInfo != null) {
+                                                    c.edit(checkInfo, sc);
+                                                } else {
+                                                    System.out.println(
+                                                            "Object not found or Customer not found with phone number: "
+                                                                    + p);
+                                                }
                                                 System.out.print("Done!");
                                                 break;
                                             case 2:

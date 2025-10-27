@@ -194,37 +194,54 @@ public class EmployeeList implements IActions<Employee> {
 
     @Override
     public void edit(Employee e, Scanner sc) {
-
-        System.out.println("Edit employee information (press Enter to skip)");
         e.displayinfo();
-
-        System.out.print("New name (" + e.getName() + "): ");
-        String newName = sc.nextLine();
-        if (!newName.isEmpty()) {
-            e.setName(newName);
-        }
-
-        while (true) {
-            System.out.print("New phone number (" + e.getPhoneNumber() + "): ");
-            String newPhone = sc.nextLine();
-
-            if (newPhone.isEmpty()) {
-                break;
+        int value;
+        do {
+            System.out.println("1.Name \n2.Phone \n3.address \n0.Exit: ");
+            System.out.println("Enter: ");
+            value = Menu.readIntInput();
+            if (value == 0) {
+                System.out.println("Exiting...");
+                return;
             }
-
-            if (Person.isValidPhoneNumber(newPhone)) {
-                e.setPhoneNumber(newPhone);
-                break;
-            } else {
-                System.out.println("Invalid phone number");
-                System.out.println("Please re-enter or press Enter to skip");
+            if (value > 3 || value < 1) {
+                value = -1;
+                System.out.println("Please choose an option from 1 to 3.");
             }
-        }
+        } while (value == -1);
+        switch (value) {
+            case 1:
+                System.out.print("New name (" + e.getName() + "): ");
+                String newName = sc.nextLine();
+                if (!newName.isEmpty()) {
+                    e.setName(newName);
+                }
+                break;
+            case 2:
+                while (true) {
+                    System.out.print("New phone number (" + e.getPhoneNumber() + "): ");
+                    String newPhone = sc.nextLine();
 
-        System.out.print("New address (" + e.getAddress() + "): ");
-        String newAddress = sc.nextLine();
-        if (!newAddress.isEmpty()) {
-            e.setAddress(newAddress);
+                    if (newPhone.isEmpty()) {
+                        break;
+                    }
+
+                    if (Person.isValidPhoneNumber(newPhone)) {
+                        e.setPhoneNumber(newPhone);
+                        break;
+                    } else {
+                        System.out.println("Invalid phone number");
+                        System.out.println("Please re-enter or press Enter to skip");
+                    }
+                }
+                break;
+            case 3:
+                System.out.print("New address (" + e.getAddress() + "): ");
+                String newAddress = sc.nextLine();
+                if (!newAddress.isEmpty()) {
+                    e.setAddress(newAddress);
+                }
+                break;
         }
 
         System.out.println("---Employee information updated successfully!---");
