@@ -133,6 +133,7 @@ public class Menu {
                                                 Customer checkInfo = c.findByPhone(p);
                                                 if (checkInfo != null) {
                                                     c.edit(checkInfo, sc);
+                                                    p = checkInfo.getPhoneNumber();
                                                 } else {
                                                     System.out.println(
                                                             "Object not found or Customer not found with phone number: "
