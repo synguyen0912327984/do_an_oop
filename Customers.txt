@@ -48,3 +48,4 @@ C0047,Le Hoang AU,0901000047,District 5,130,true
 C0048,Tran Van AV,0901000048,District 6,85,true
 C0049,Pham Van AW,0901000049,District 7,100,true
 C0050,Do Thi AX,0901000050,District 8,145,true
+C0051,Vo Huu Nghia ,0123456789,a,100,true
