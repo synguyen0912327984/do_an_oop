@@ -221,7 +221,12 @@ public class EmployeeList implements IActions<Employee> {
                 while (true) {
                     System.out.print("New phone number (" + e.getPhoneNumber() + "): ");
                     String newPhone = sc.nextLine();
-
+                    Employee checkForEmployee = findByPhone(newPhone);
+                    if (checkForEmployee != null) {
+                        System.out.println(
+                                "Phone number already exist.Please enter another phone number or press Enter to skip.");
+                        continue;
+                    }
                     if (newPhone.isEmpty()) {
                         break;
                     }

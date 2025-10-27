@@ -148,6 +148,12 @@ public class CustomerList implements IActions<Customer> {
                 while (true) {
                     System.out.print("New phone number (" + c.getPhoneNumber() + "): ");
                     String newPhone = sc.nextLine();
+                    Customer checkForCustomer = findByPhone(newPhone);
+                    if (checkForCustomer != null) {
+                        System.out.println(
+                                "Phone number already exist.Please enter another phone number or press Enter to skip.");
+                        continue;
+                    }
                     if (newPhone.isEmpty()) {
                         break;
                     }
