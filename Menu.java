@@ -740,7 +740,7 @@ public class Menu {
     }
 
     public static void bestSellingBooks() {
-        ld.readFile();
+        
 
         ArrayList<InvoiceDetail> list = ld.getList();
 
