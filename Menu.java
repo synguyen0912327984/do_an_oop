@@ -740,8 +740,6 @@ public class Menu {
     }
 
     public static void bestSellingBooks() {
-        ld.readFile();
-
         ArrayList<InvoiceDetail> list = ld.getList();
 
         // list luu tru ma sach va tong so luong ban
