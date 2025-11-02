@@ -177,6 +177,7 @@ class Customer extends Person {
                         }
                     } else if (temp1 <= 0) {
                         System.out.println("Amount cannot below or equal 0. Try again.");
+                        
                     } else
                         System.out.println(
                                 "Only " + a.getAmount() + " items are available. Please adjust your quantity.");
