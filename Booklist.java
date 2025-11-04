@@ -32,6 +32,9 @@ public class Booklist {
     public ArrayList<Book> getList() {
         return list;
     }
+    public void setList(ArrayList<Book> list) {
+        this.list = list;
+    }
 
     
 
