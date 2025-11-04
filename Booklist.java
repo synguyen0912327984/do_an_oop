@@ -15,7 +15,7 @@ public class Booklist {
             String line;
 
             while ((line = br.readLine()) != null) {
-                list.add(Book.fromString(line));// neu sua lai thanh AddBook thi se bi dinh Scanner, ket trong vong lap trong ham Addbook
+                list.add(Book.fromString(line));
             }
 
         } catch (Exception e) {
@@ -31,9 +31,6 @@ public class Booklist {
     }
     public ArrayList<Book> getList() {
         return list;
-    }
-    public void setList(ArrayList<Book> list) {
-        this.list = list;
     }
 
     
